@@ -1,0 +1,111 @@
+.header{
+    background-color:transparent;
+    padding: 0px 15px;
+    height: 80px;
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    transition: all .5s;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    height: 128px;
+    position: absolute;
+    top: -7px;
+    left: -2px;
+    background-color: transparent;
+    border-bottom-left-radius: 65px;
+    border-bottom-right-radius: 65px;
+    transition: all .5s;
+    padding: 10px;
+}
+
+.bg-color-1{
+    background-color: #0c2461;
+}
+.scrollChange{
+    background-color: #0c2461;
+    padding: 0px 10px;
+    height: 60px;
+}
+.scrollChange .logo{
+    background-color: #0c2461;
+    height: 110px;
+}
+.scrollChange .menu-btn{
+    padding: 16px 30px;
+    transition: all .5s;
+}
+
+.header .menu li{
+    display: inline-block;
+}
+.menu-btn{
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    transition: all .5s;
+}
+.ml-80px{
+    margin-left: 80px;
+}
+.menu li a{
+    display: block;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 0px;
+    padding:26px 30px;
+    transition: color 0.2s ease;
+    transition: background-color .8s ease;
+}
+.menu li a:hover{
+    text-decoration: none;
+}
+.menu li a:hover{
+    color: #f1e5e5;
+    background-color: #0f3083;
+}
+
+
+@media (max-width: 947px){
+    .header .menu-btn{
+        display: block;
+        z-index: 9;
+        font-size: 30px;
+        margin-top: 2%;
+    }
+    .menu-btn i.active:before{
+        content: "\f00d";
+        z-index: 9;
+    }
+    .header .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        background: #132055;
+        text-align: center;
+        transition: all 0.3s ease;
+        z-index: 5;
+        overflow-y: auto;
+    }
+    .header .menu.active{
+        left: 0%;
+    }
+    .header .menu li{
+        display: block;
+        margin-left: -12px;
+    }
+    .header .menu li a{
+        padding: 20px;
+        font-size: 25px;
+    }
+    .scrollChange .menu-btn{
+        margin-top: 0%;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,11 @@
+.formersNoteSection{
+    background-image: url('https://ardc.edu.au/wp-content/uploads/2022/05/AdobeStock_408552427-1024x480.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    min-height: 450px;
+    height: auto;
+}
+.swiper-pagination{
+    bottom: -1% !important;
+}

@@ -1,0 +1,106 @@
+.join-us-page{
+    padding-top: 80px;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    background-color: #ecf0f1;
+    text-align: center;
+    height: auto;
+}
+.join-us-page .why-join-us{
+    font-size: 16px;
+    color: rgb(3, 44, 82);
+    font-weight: 600;
+}
+.join-us-page .join-us-banner{
+    height: 400px;
+}
+.join-us-page .join-us-banner img{
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    background-color: whitesmoke;
+    object-fit: cover;
+}
+.join-us-page form label{
+    display: block;
+    margin: auto;
+}
+.join-us-page form label textarea{
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    border: none;
+    background-color: rgb(255, 250, 255);
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    color: rgb(68, 138, 184);
+    border-bottom: 3px solid #102772;
+    transition: all .6s;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.join-us-page form label input[type=text],input[type=number]{
+    width: 100%;
+    padding: 10px;
+    height: 45px;
+    background-color: rgb(255, 250, 255);
+    outline: none;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    color: rgb(48, 44, 44);
+    border-bottom: 3px solid #102772;
+    transition: all .6s;
+}
+.join-us-page form input:focus,.join-us-page form textarea:focus{
+    background-color: white;
+    -webkit-box-shadow: 0px 12px 20px -3px rgba(0,0,0,0.66); 
+    box-shadow: 0px 6px 20px -3px rgba(0,0,0,0.66);
+}
+.join-us-page form .profile-img{
+    position: relative;
+    background-color: white;
+    overflow: hidden;
+    height: 400px;
+    width: 300px;
+    transition: all .6s;
+    border-radius: 10px;
+}
+.join-us-page form .profile-img input[type=file]{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.join-us-page form .profile-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.join-us-page form .profile-img:hover{
+    filter: brightness(80%);
+}
+.join-us-page form button{
+    margin-top: 20px;
+    padding: 15px 35px;
+    outline: none;
+    border: none;
+    border-bottom: 3px solid cornflowerblue;
+}

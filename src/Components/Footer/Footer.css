@@ -1,0 +1,23 @@
+.footerDiv{
+    height: auto;
+    background-color: #102772;
+    clip-path: ellipse(90% 100% at 52.8% 100%);
+    margin: 0px;
+    padding: 30px;
+}
+.footerDiv .footerLogo{
+    height: 120px;
+}
+.footerDiv .footerLinks{
+    display: block;
+    font-size: 20px;
+    margin: 10px 20px;
+    font-weight: 500;
+    color: rgb(236, 227, 227);
+    transition: all .3s;
+}
+.footerDiv .footerLinks:hover{
+    color: white;
+    text-decoration: none;
+    margin-left: 30px;
+}

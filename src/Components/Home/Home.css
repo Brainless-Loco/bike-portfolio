@@ -1,0 +1,42 @@
+.home-first{
+    height: 100vh;
+    width: 100%;
+    /* background-image: url('https://img.freepik.com/free-vector/abstract-low-poly-connection-lines-digital-technology-background_1017-25550.jpg'); */
+    background-image: url('https://i.postimg.cc/KcDSZqgf/Illu-Linked-Data.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:relative;
+    z-index: 5;
+}
+
+.middle-center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.Welcome-note{
+    color: rgb(209, 209, 208);
+}
+.join-us-button{
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: #e3e3e4;
+    font-size: 30px;
+    font-weight: 700;
+    border-bottom: 2.5px solid #016DB2;
+    border-radius: 15px;
+    transition: all .5s;
+    background-color: #102772;
+}
+.join-us-button:hover{
+    color: #102772;
+    outline:none;
+    background-color: #e3e3e4;
+    text-decoration: none;
+    cursor: pointer;
+}

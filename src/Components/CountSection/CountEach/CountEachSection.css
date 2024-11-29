@@ -1,0 +1,29 @@
+
+.eachCount{
+    width: 320px;
+    height: 320px;
+    padding: 0px 20px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    background-color: #1b42a5;
+    color: white;
+    transition: all .6s;
+    cursor: pointer;
+    overflow: hidden;
+}
+.eachCount:hover{
+    background-color: #2b5fe2;
+    transform: scale(1.10);
+}
+.countUp{
+    font-size: 70px;
+    font-weight: 700;
+}
+.countTitle{
+    color: white;
+    font-size: 40px;
+}
+.countDesc{
+    font-size: 15px;
+    color: white;
+}

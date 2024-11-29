@@ -1,0 +1,27 @@
+.contactUs{
+    min-height: 450px;
+    padding: 30px 0px;
+}
+.text-color1{
+    color: #102772;
+}
+.contactUs .contact-us-text{
+    font-size: 18px;
+    font-weight: 500;
+}
+.contactUs .contactUsTextInput{
+    background-color: white;
+    border: 1px solid #102772;
+    color: rgb(83, 81, 81);
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    width: 90%;
+    height: 45px;
+    outline: none;
+}
+.contactUs .contactUsMessageInput{
+    height: 200px;
+    resize: none;
+}
