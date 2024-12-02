@@ -23,11 +23,6 @@ function App() {
         <Footer/>
         <CreditDiv/>
       </Router>
-      {/* <Router>
-        <Routes>
-          <Route path='/admin/home' element={<Home/>}/>
-        </Routes>
-      </Router> */}
       
     </Box>
   );
