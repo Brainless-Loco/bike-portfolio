@@ -1,13 +1,13 @@
 import React from 'react';
-import OneComment from '../OneComment/OneComment';
+import OneComment from './OneComment/OneComment';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import './FormerComment.css';
+import './OthersComments.css';
 
 // SwiperCore.use([Pagination]);
 
 
-const FormerComment = () => {
+const OthersComments = () => {
     return (
         <div className="container-fluid text-center swiper-container formersNoteSection">
             <h1 className="text-white glipse-title pt-3">What Others Say about BIKE </h1>
@@ -30,4 +30,4 @@ const FormerComment = () => {
     );
 };
 
-export default FormerComment;
+export default OthersComments;

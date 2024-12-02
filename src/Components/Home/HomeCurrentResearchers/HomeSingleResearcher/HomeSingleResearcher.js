@@ -1,7 +1,7 @@
 import React from 'react';
 import './HomeSingleResearcher.css';
 
-const HomeEachMemory = (props) => {
+const HomeSingleResearcher = (props) => {
     return (
         <div className="EachResearcher mb-4 mx-3" >
             <img src={props.imageURL} alt=""/>
@@ -17,4 +17,4 @@ const HomeEachMemory = (props) => {
     );
 };
 
-export default HomeEachMemory;
+export default HomeSingleResearcher;

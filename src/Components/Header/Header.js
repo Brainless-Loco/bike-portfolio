@@ -4,7 +4,7 @@ import './Header.css';
 import logo from '../../Images/Logo/logo.svg';
 
 const Header = () => {
-    let menuList = ["About","Director","Research","Teaching","Projects","Researchers","Latest"]
+    let menuList = ["Director","Researches","Teaching","Projects","Researchers","Latest"]
     return (
         <div className="header">
             <Link to="/"><img className="logo" src={logo} alt="logo"/></Link>
