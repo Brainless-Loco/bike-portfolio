@@ -3,16 +3,16 @@ import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import $ from "jquery";
-import About from '../AboutSection/About';
-import Count from '../CountSection/Count';
-import HomeMemories from '../HomeCurrentResearchers/CurrentResearchers';
-import FormerComment from '../FormerComments/FormerComment';
-import ContactUs from '../ContactUs/ContactUs';
-
+import About from '../../Components/Home/AboutSection/About';
+import Count from '../../Components/CountSection/Count';
+import HomeMemories from '../../Components/HomeCurrentResearchers/CurrentResearchers';
+import FormerComment from '../../Components/FormerComments/FormerComment';
+import ContactUs from '../../Components/Home/ContactUs/ContactUs';
 
 const Home = () => {
     $('.header').removeClass("bg-color-1");
     $('.header .logo').removeClass("bg-color-1");
+    
     return (
         <div>
             <Helmet>

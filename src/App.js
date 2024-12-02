@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
-import Home from './Components/Home/Home';
+import Home from './Pages/Home/Home';
 import CreditDiv from './Components/CreditDiv/CreditDiv';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 function App() {
   return (

@@ -1,8 +1,10 @@
 .header{
-    background-color:transparent;
+    background-color:transparent !important;
+    
+    /* background-color: #0c2461; */
     padding: 0px 15px;
     height: 80px;
-    position: fixed;
+    position: absolute;
     top: 0%;
     width: 100%;
     transition: all .5s;
@@ -73,6 +75,7 @@
 
 @media (max-width: 947px){
     .header .menu-btn{
+        position: relative;
         display: block;
         z-index: 9;
         font-size: 30px;
@@ -80,17 +83,17 @@
     }
     .menu-btn i.active:before{
         content: "\f00d";
-        z-index: 9;
+        z-index: 15;
     }
     .header .menu{
-        position: fixed;
+        position: absolute;
         height: 100vh;
-        width: 100%;
-        left: -100%;
+        width: 100vw;
+        left: -1.2%;
         background: #132055;
         text-align: center;
         transition: all 0.3s ease;
-        z-index: 5;
+        z-index: 11;
         overflow-y: auto;
     }
     .header .menu.active{
@@ -98,7 +101,7 @@
     }
     .header .menu li{
         display: block;
-        margin-left: -12px;
+        /* margin-left: -12px; */
     }
     .header .menu li a{
         padding: 20px;
