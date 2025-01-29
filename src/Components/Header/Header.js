@@ -2,27 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from '../../Images/Logo/logo.svg';
+import Box from '@mui/material/Box';
 
-const Header = () => {
-    let menuList = ["Director","Researches","Teaching","Projects","Researchers","Latest"]
+const Header = ({isScrolled}) => {
+    const menuList = ["Director","Researches","Teaching","Projects","Team","Partners","Latest"]
+
     return (
-        <div className="header">
+        <Box className={`header ${isScrolled ? "bg-color-1 scrollChange" : ""}`}>
             <Link to="/"><img className="logo" src={logo} alt="logo"/></Link>
-            <div className="text-md-right">
+            <Box className="text-md-right">
                 <ul className="menu ml-0 mb-5 pr-1">
-                    <div className="col-10 mx-auto">
+                    <Box className="col-10 mx-auto">
                         <img className="menu-btn mx-auto" width="120px" src={logo} alt="logo"/>
                         <hr className="menu-btn mt-3 mx-auto"/>
-                    </div>
+                    </Box>
                     {
                      menuList.map(LinkName => <li className="ml-0"><Link to={"/"+LinkName} className="menu-btn">{LinkName}</Link></li>)
                     }
                 </ul>
-                <div className="menu-btn py-2 float-right">
+                <Box className="menu-btn py-2 float-right">
                     <i className="fas fa-bars"></i>
-                </div>
-            </div>
-        </div>
+                </Box>
+            </Box>
+        </Box>
     );
 };
 

@@ -1,5 +1,5 @@
 .header{
-    background-color:transparent !important;
+    background-color:transparent;
     
     /* background-color: #0c2461; */
     padding: 0px 15px;
@@ -29,6 +29,7 @@
     background-color: #0c2461;
 }
 .scrollChange{
+    position: fixed;
     background-color: #0c2461;
     padding: 0px 10px;
     height: 60px;
@@ -60,7 +61,7 @@
     font-size: 18px;
     font-weight: 500;
     margin-top: 0px;
-    padding:26px 30px;
+    padding: 25px 20px;
     transition: color 0.2s ease;
     transition: background-color .8s ease;
 }
@@ -74,27 +75,40 @@
 
 
 @media (max-width: 947px){
+    .header{
+        height: 100vh;
+        width: 100vw;
+        margin-left: -2%;
+        overflow: hidden;
+        z-index: 12;
+    }
     .header .menu-btn{
         position: relative;
         display: block;
-        z-index: 9;
+        z-index: 11;
         font-size: 30px;
         margin-top: 2%;
+        text-align: center;
+        margin: auto;
+    }
+    .header .logo{
+        display: none;
     }
     .menu-btn i.active:before{
         content: "\f00d";
         z-index: 15;
     }
     .header .menu{
-        position: absolute;
+        /* position: absolute; */
         height: 100vh;
         width: 100vw;
         left: -1.2%;
+        margin: auto;
         background: #132055;
         text-align: center;
         transition: all 0.3s ease;
-        z-index: 11;
-        overflow-y: auto;
+        z-index: 10;
+        overflow-y: scroll;
     }
     .header .menu.active{
         left: 0%;
@@ -106,9 +120,11 @@
     .header .menu li a{
         padding: 20px;
         font-size: 25px;
+        margin: 1px;
     }
     .scrollChange .menu-btn{
         margin-top: 0%;
         padding: 10px;
+        z-index: 12;
     }
 }

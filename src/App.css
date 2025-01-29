@@ -40,25 +40,25 @@ a{
   height: 45px;
   width: 42px;
   background: #1f3f7a;
-  right: 30px;
-  bottom: 10px;
+  right: 2%;
+  bottom: 2%;
   text-align: center;
   line-height: 45px;
   color: #fff;
-  z-index: 3;
   font-size: 30px;
+  border:0px;
   border-radius: 6px;
   border-bottom-width: 2px;
   cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
   transition: all 0.3s ease;
+  z-index: 6;
+  display: none;
 }
-.scroll-up-btn.show{
+.scroll-up-btn-show{
+  display: block;
   bottom: 30px;
-  opacity: 1;
   pointer-events: auto;
 }
-.scroll-up-btn:hover{
+.scroll-up-btn-show:hover{
   filter: brightness(70%);
 }

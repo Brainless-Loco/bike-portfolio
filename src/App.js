@@ -6,16 +6,37 @@ import CreditDiv from './Components/CreditDiv/CreditDiv';
 import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Box from '@mui/material/Box';
+import { useEffect, useState } from 'react';
 
 function App() {
+  // console log using jQuery
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <Box>
       <Router>
-        <div className="scroll-up-btn">
+        <div className={`scroll-up-btn ${scrolled && " scroll-up-btn-show"}`}  onClick={scrollToTop}>
           <i className="fas fa-angle-up"></i>
         </div>
         <ScrollToTop />
-        <Header/>
+        <Header isScrolled={scrolled}/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           {/* <Route path={["/Contact-us" , "/join-us" , "/Join-BIKE","/Latest"]} exact element={<ContactUs/>}/> */}

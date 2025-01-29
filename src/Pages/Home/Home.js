@@ -5,7 +5,7 @@ import './Home.css';
 import $ from "jquery";
 import About from '../../Components/Home/AboutSection/About';
 import Count from '../../Components/CountSection/Count';
-import HomeCurrentResearchers from '../../Components/Home/HomeCurrentResearchers/HomeCurrentResearchers';
+import HomeCurrentResearchers from '../../Components/Home/HomeCurrentTeam/HomeCurrentTeam';
 import OthersComments from '../../Components/Home/OthersComments/OthersComment';
 import ContactUs from '../../Components/Home/ContactUs/ContactUs';
 
