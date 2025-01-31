@@ -7,10 +7,13 @@ import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
+import Researches from './Pages/Researches/Researches';
 
 function App() {
   // console log using jQuery
   const [scrolled, setScrolled] = useState(false);
+  
+  const [nonHomePath, setNonHomePath] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,6 +32,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+
   return (
     <Box>
       <Router>
@@ -36,9 +40,10 @@ function App() {
           <i className="fas fa-angle-up"></i>
         </div>
         <ScrollToTop />
-        <Header isScrolled={scrolled}/>
+        <Header isScrolled={scrolled} nonHomePath={nonHomePath}/>
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<Home setNonHomePath={setNonHomePath}/>}/>
+          <Route path="/Researches" element={<Researches setNonHomePath={setNonHomePath}/>}/>
           {/* <Route path={["/Contact-us" , "/join-us" , "/Join-BIKE","/Latest"]} exact element={<ContactUs/>}/> */}
         </Routes>
         <Footer/>

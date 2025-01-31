@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import './Home.css';
@@ -8,7 +8,11 @@ import HomeCurrentResearchers from '../../Components/Home/HomeCurrentTeam/HomeCu
 import OthersComments from '../../Components/Home/OthersComments/OthersComment';
 import ContactUs from '../../Components/Home/ContactUs/ContactUs';
 
-const Home = () => {
+const Home = ({setNonHomePath}) => {
+
+    useEffect(()=>{
+        setNonHomePath(false)
+    },[])
     
     return (
         <div>

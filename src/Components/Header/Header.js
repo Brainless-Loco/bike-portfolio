@@ -4,11 +4,11 @@ import './Header.css';
 import logo from '../../Images/Logo/logo.svg';
 import Box from '@mui/material/Box';
 
-const Header = ({isScrolled}) => {
+const Header = ({isScrolled, nonHomePath}) => {
     const menuList = ["Director","Researches","Teaching","Projects","Team","Partners","Latest"]
 
     return (
-        <Box className={`header ${isScrolled ? "bg-color-1 scrollChange" : ""}`}>
+        <Box className={`header ${isScrolled ? "bg-color-1 scrollChange" : ""} ${nonHomePath && "bg-color-1"}`}>
             <Link to="/"><img className="logo" src={logo} alt="logo"/></Link>
             <Box className="text-md-right">
                 <ul className="menu ml-0 mb-5 pr-1">
