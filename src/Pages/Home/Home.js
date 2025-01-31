@@ -7,6 +7,7 @@ import Count from '../../Components/CountSection/Count';
 import HomeCurrentResearchers from '../../Components/Home/HomeCurrentTeam/HomeCurrentTeam';
 import OthersComments from '../../Components/Home/OthersComments/OthersComment';
 import ContactUs from '../../Components/Home/ContactUs/ContactUs';
+import ActivitiesTimeline from '../../Components/Home/ActivitiesTimeline/ActivitiesTimeline';
 
 const Home = ({setNonHomePath}) => {
 
@@ -35,6 +36,7 @@ const Home = ({setNonHomePath}) => {
             <Count/>
             {/* <HomeEvents/> */}
             <HomeCurrentResearchers/>
+            <ActivitiesTimeline />
             <OthersComments/>
             <ContactUs/>
         </div>
