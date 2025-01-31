@@ -12,7 +12,8 @@ const Home = ({setNonHomePath}) => {
 
     useEffect(()=>{
         setNonHomePath(false)
-    },[])
+    
+    },[setNonHomePath])
     
     return (
         <div>

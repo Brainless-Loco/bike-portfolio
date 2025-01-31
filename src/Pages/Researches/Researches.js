@@ -9,6 +9,7 @@ import { db } from "../../Utils/Firebase";
 import ResearchModal from "../../Components/Modal/ResearchModal";
 
 const Researches = ({setNonHomePath}) => {
+  // eslint-disable-next-line
   const [researches, setResearches] = useState([]);
   const [groupedResearches, setGroupedResearches] = useState({});
   const [selectedResearch, setSelectedResearch] = useState(null);
@@ -75,7 +76,7 @@ const Researches = ({setNonHomePath}) => {
           </Typography>
             <Box key={publicationType} className={"d-flex flex-wrap"} gap={5}>
                 {items.map((research) => (
-                    <Card key={research.id} sx={{ mb: 2, width:'31%' }}>
+                    <Card key={research.id} sx={{ mb: 2, bgcolor: '#fff', borderRadius: 2, boxShadow: 3,  width:'31%' }}>
                         <CardContent>
                             <Typography variant="h6">{research.title}</Typography>
 

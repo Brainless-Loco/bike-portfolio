@@ -3,7 +3,7 @@ import { Box, Button, Typography } from "@mui/material";
 
 const CourseItem = ({ course }) => {
   return (
-    <Box sx={{ p: 2, bgcolor: "#f9f9f9", borderRadius: 2, width: "90%", mx:'auto' }}>
+    <Box sx={{ p: 2, bgcolor: '#fff', boxShadow: 3,  borderRadius: 2, width: "90%", mx:'auto' }}>
       <Typography variant="h6" sx={{ fontWeight: "bold" }}>
         {course.courseTitle}
       </Typography>

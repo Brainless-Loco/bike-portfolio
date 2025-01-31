@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
 import Researches from './Pages/Researches/Researches';
 import Teaching from './Pages/Teaching/Teaching';
+import Partners from './Pages/Partners/Partners';
 
 function App() {
   // console log using jQuery
@@ -46,6 +47,7 @@ function App() {
           <Route path="/" element={<Home setNonHomePath={setNonHomePath}/>}/>
           <Route path="/Researches" element={<Researches setNonHomePath={setNonHomePath}/>}/>
           <Route path="/Teaching" element={<Teaching setNonHomePath={setNonHomePath}/>}/>
+          <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath}/>}/>
           {/* <Route path={["/Contact-us" , "/join-us" , "/Join-BIKE","/Latest"]} exact element={<ContactUs/>}/> */}
         </Routes>
         <Footer/>
