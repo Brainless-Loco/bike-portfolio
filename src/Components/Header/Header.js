@@ -17,7 +17,7 @@ const Header = ({isScrolled}) => {
                         <hr className="menu-btn mt-3 mx-auto"/>
                     </Box>
                     {
-                     menuList.map(LinkName => <li className="ml-0"><Link to={"/"+LinkName} className="menu-btn">{LinkName}</Link></li>)
+                     menuList.map(LinkName => <li key={LinkName} className="ml-0"><Link to={"/"+LinkName} className="menu-btn">{LinkName}</Link></li>)
                     }
                 </ul>
                 <Box className="menu-btn py-2 float-right">
