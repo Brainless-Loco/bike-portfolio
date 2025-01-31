@@ -10,7 +10,7 @@ const Footer = () => {
                     <img src="Image/logo.png" className="footerLogo" alt="" />
                     <h2 className="text-white mt-1 py-0 h2">Big Data, Information and Knowledge & Engineering</h2>
                     <p className="my-1 py-0">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo harum sequi est autem, impedit veniam!
+                        Advancing data-driven solutions by integrating, analyzing, and exploring Big (Linked) Data for intelligent decision-making.
                     </p>
                 </Box>
                 <Box className="col-md-5 mx-auto px-md-5 mt-5 text-left float-left">
