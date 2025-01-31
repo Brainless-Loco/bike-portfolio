@@ -1,19 +1,22 @@
 import React from 'react';
 import './HomeSingleTeamMember.css';
+import { Box, Typography } from '@mui/material';
 
-const HomeSingleTeamMember = (props) => {
+const HomeSingleTeamMember = ({name, educationLevel, position, shortDescription, profilePhoto}) => {
     return (
-        <div className="EachResearcher mb-4 mx-3" >
-            <img src={props.imageURL} alt=""/>
-            <p className="ResearcherName py-0 my-0">Name of the Researcher</p>
-            <a className="uk-inline ResearcherDescDiv" href={props.imageURL} data-type="image" data-caption={props.Caption} /* Ekhane Caption or behind the story Hobe */>
-                <div className="ResearcherDescription">
-                    <p className="title py-0 my-0">Name of the Member</p>
-                    <p className="date py-0 mt-1">A Rank</p>
+        <Box className="EachResearcher mb-4 mx-3" >
+            <img src={profilePhoto} alt=""/>
+            <Typography variant='h5' className="py-0 my-0">{name}</Typography>
+            <i className="ResearcherName py-0 my-0">{position}</i>
+            <a className="uk-inline ResearcherDescDiv" href={profilePhoto} data-type="image" data-caption={shortDescription} /* Ekhane Caption or behind the story Hobe */>
+                <Box className="ResearcherDescription">
+                    <p className="title py-0 my-0">{name}</p>
+                    <p className="date py-0 mt-1 mb-0">{position}</p>
+                    <p className="date py-0 mt-1">{educationLevel}</p>
                     <p className="text-white my-0"> <i className="fas fa-link"></i> Preview </p>
-                </div>
+                </Box>
             </a>
-        </div>
+        </Box>
     );
 };
 

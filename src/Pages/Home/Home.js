@@ -2,7 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import './Home.css';
-import $ from "jquery";
 import About from '../../Components/Home/AboutSection/About';
 import Count from '../../Components/CountSection/Count';
 import HomeCurrentResearchers from '../../Components/Home/HomeCurrentTeam/HomeCurrentTeam';
@@ -10,8 +9,6 @@ import OthersComments from '../../Components/Home/OthersComments/OthersComment';
 import ContactUs from '../../Components/Home/ContactUs/ContactUs';
 
 const Home = () => {
-    $('.header').removeClass("bg-color-1");
-    $('.header .logo').removeClass("bg-color-1");
     
     return (
         <div>

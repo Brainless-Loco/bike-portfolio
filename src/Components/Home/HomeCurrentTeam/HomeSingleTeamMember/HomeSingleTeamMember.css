@@ -19,7 +19,7 @@
     height: 80%;
     width: 90%;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
 }
 .EachResearcher .ResearcherName{
     color: #242a41;
