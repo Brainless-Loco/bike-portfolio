@@ -39,7 +39,7 @@ const Researches = ({setNonHomePath}) => {
     };
 
     fetchResearches();
-  }, []);
+  }, [setNonHomePath]);
 
   // Open modal with selected research
   const handleOpen = (research) => {
@@ -98,11 +98,11 @@ const Researches = ({setNonHomePath}) => {
                             ))}
                             </Typography>
 
-                            <Typography variant="body2" sx={{ mt: 1 }}>
+                            {/* <Typography variant="body2" sx={{ mt: 1 }}>
                             {research.longDescription.length > 100
                                 ? research.longDescription.substring(0, 100) + "..."
                                 : research.longDescription}
-                            </Typography>
+                            </Typography> */}
 
                             <Button variant="outlined" sx={{ mt: 2 }} onClick={() => handleOpen(research)}>
                             Read More

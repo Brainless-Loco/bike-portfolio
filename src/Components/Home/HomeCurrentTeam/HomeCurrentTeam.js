@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import HomeSingleTeamMember from './HomeSingleTeamMember/HomeSingleTeamMember';
 import './HomeCurrentTeam.css';
-import fakeData from './MOCK_DATA.json';
 import { Link } from 'react-router-dom';
 import { db } from './../../../Utils/Firebase';
 import { collection, getDocs, limit, query } from 'firebase/firestore';
