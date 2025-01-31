@@ -8,7 +8,7 @@ const Header = ({isScrolled, nonHomePath}) => {
     const menuList = ["Director","Researches","Teaching","Projects","Team","Partners","Latest"]
 
     return (
-        <Box className={`header ${isScrolled ? "bg-color-1 scrollChange" : ""} ${nonHomePath && "bg-color-1"}`}>
+        <Box className={`header ${isScrolled || nonHomePath ? "bg-color-1 scrollChange" : ""}`}>
             <Link to="/"><img className="logo" src={logo} alt="logo"/></Link>
             <Box className="text-md-right">
                 <ul className="menu ml-0 mb-5 pr-1">
