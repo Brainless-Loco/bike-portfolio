@@ -33,6 +33,7 @@ const HomeCurrentTeam = () => {
         }, []);
 
 
+
     return (
         <div className="pb-5 pt-3 text-center svg-bg">
             <h1 className="display-4 text-center text-white glipse-title">Proud Team of BIKE</h1>
