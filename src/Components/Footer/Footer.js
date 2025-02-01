@@ -15,8 +15,8 @@ const Footer = () => {
                 </Box>
                 <Box className="col-md-5 mx-auto px-md-5 mt-5 text-left float-left">
                     <Typography variant='h5' className="text-white mb-4">Important Links</Typography>
-                    <a href="http://" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-at"></i> Email</a>
-                    <a href="http://" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube"></i> Youtube</a>
+                    <a href="mailto::bikecsecu@gmail.com" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-at"></i> Email</a>
+                    <a href="https://www.youtube.com/channel/UCFHW8AK9v-5A51AMmcqeHnA" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube"></i> Youtube</a>
                     <a href="http://" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-square"></i> Facebook Page</a>
                     <a href="http://" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-users"></i> Facebook Community</a>
                 </Box>
