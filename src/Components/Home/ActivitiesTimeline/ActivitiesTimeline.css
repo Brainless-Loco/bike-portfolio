@@ -1,0 +1,18 @@
+.see-more-button{
+    background-color: rgb(12, 42, 141);
+    padding:20px;
+    margin:20px 0px;
+    color: white;
+    font-weight: 500;
+    font-size: 30px;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    transition: all .5s;
+}
+
+.see-more-button:hover{
+    text-decoration: none;
+    color:rgb(12, 42, 141);
+    background-color: white;
+    border: 3px solid rgb(12, 42, 141);
+}
