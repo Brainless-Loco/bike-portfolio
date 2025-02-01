@@ -29,7 +29,7 @@ const ActivitiesTimeline = () => {
       <Typography variant="h4" sx={{color:'#102772', fontWeight:'bold'}} className="text-center py-2">Latest Activities</Typography>
       <Box className="pt-2 pb-2" sx={{height:'100%'}}>
           <VerticalTimeline>
-          {[...activities, ...activities].map((activity, index) => (
+          {activities.map((activity, index) => (
               <VerticalTimelineElement
               key={activity.id}
               date={activity.activityDate?.toDate().toLocaleDateString("en-US", { day:'numeric', month: "short", year: "numeric" })}
