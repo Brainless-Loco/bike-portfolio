@@ -12,6 +12,7 @@ import Teaching from './Pages/Teaching/Teaching';
 import Partners from './Pages/Partners/Partners';
 import LatestActivities from './Pages/LatestActivities/LatestActivities';
 import TeamSection from './Pages/Team/TeamSection';
+import Projects from './Pages/Projects/Projects';
 
 function App() {
   // console log using jQuery
@@ -52,6 +53,8 @@ function App() {
           <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Latest" element={<LatestActivities setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Team" element={<TeamSection setNonHomePath={setNonHomePath}/>}/>
+          <Route path= "/Projects" element={<Projects setNonHomePath={setNonHomePath}/>}/>
+
           {/* <Route path={["/Contact-us" , "/join-us" , "/Join-BIKE","/Latest"]} exact element={<ContactUs/>}/> */}
         </Routes>
         <Footer/>
