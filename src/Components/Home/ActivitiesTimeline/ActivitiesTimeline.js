@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy, limit } from "firebase/firestore";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import { Typography, Chip, Stack, Box } from "@mui/material";
@@ -12,7 +12,7 @@ const ActivitiesTimeline = () => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "Activities"), orderBy("activityDate", "desc")); // Get activities sorted by date
+    const q = query(collection(db, "Activities"), orderBy("activityDate", "desc"), limit(4)); // Get activities sorted by date
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedActivities = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -44,7 +44,7 @@ const ActivitiesTimeline = () => {
               }}
               contentArrowStyle={{ borderRight: "20px solid #102772" }}
             >
-              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              <Typography variant="h6" color="#0c2461" sx={{ fontWeight: "bold" }}>
                 {activity.title}
               </Typography>
               <Stack direction="row" spacing={1} sx={{ mt: 1, mb: 2 }}>

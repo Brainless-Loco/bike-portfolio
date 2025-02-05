@@ -16,7 +16,7 @@ const SingleActivity = ({ activity, onOpenModal }) => {
 
       {/* Date */}
       <Typography variant="body2" sx={{ color: "gray", py:1 }}>
-        {new Date(activity.activityDate.seconds * 1000).toLocaleString("en-US", { month: "short", year: "numeric", day: "numeric" })}
+        {new Date(activity.activityDate.seconds * 1000).toLocaleString("en-US", { month: "short", year: "numeric" })}
       </Typography>
 
       {/* Short Description */}
