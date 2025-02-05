@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../Utils/Firebase';
+// eslint-disable-next-line
 import PartnerItem from '../../Components/Partners/PartnerItem';
 
 const Partners = ({setNonHomePath}) => {
+  // eslint-disable-next-line
   const [partners, setPartners] = useState([]);
 
+  
   useEffect(() => {
     setNonHomePath(true)
     const fetchPartners = async () => {
