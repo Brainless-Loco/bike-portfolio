@@ -3,7 +3,7 @@ import { Box, Typography, Button, Chip, Stack } from "@mui/material";
 
 const SingleActivity = ({ activity, onOpenModal }) => {
   return (
-    <Box sx={{ p: 2, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "30%", marginBottom: 2 }}>
+    <Box sx={{ p: 2, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "90%", marginBottom: 2 }}>
       {/* Activity Title and Labels */}
       <Stack direction="column" alignItems="center" spacing={1}>
         <Typography variant="subtitle1" sx={{textAlign: "justify", fontWeight:'600', lineHeight:'110%', color:'#0c2461', minHeight:'70px'}}>{activity.title}</Typography>
