@@ -26,7 +26,7 @@ const LatestActivities = ({setNonHomePath}) => {
       <Typography variant="h3" sx={{ color: "blue" }} gutterBottom>
         Latest Activities
       </Typography>
-      <Stack spacing={2} direction="row" flexWrap="wrap" justifyContent="space-between">
+      <Stack spacing={2} direction="row" flexWrap="wrap" justifyContent="flex-start">
         {activities.map((activity) => (
           <SingleActivity key={activity.id} activity={activity} onOpenModal={setSelectedActivity} />
         ))}

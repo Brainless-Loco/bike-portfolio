@@ -9,7 +9,7 @@ const ActivityModal = ({ activity, onClose }) => {
     sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
       <Box sx={{ width: "85%", bgcolor: "white", p: 4, borderRadius: 2, boxShadow: 3, mx: "auto", height:'95vh', overflow:'scroll' }}>
         {/* Title */}
-        <Typography variant="h5" sx={{ mb: 1 }}>
+        <Typography variant="h5" sx={{ mb: 1, color:'#0c2461' }}>
           {activity.title}
         </Typography>
 
@@ -26,12 +26,12 @@ const ActivityModal = ({ activity, onClose }) => {
         </Typography>
 
         {/* Long Description */}
-        <Box sx={{ mb: 2, height:'65%', overflow:'scroll' }} dangerouslySetInnerHTML={{ __html: activity.longDescription }} />
+        <Box sx={{ mb: 2, minHeight:'65%', overflow:'scroll' }} dangerouslySetInnerHTML={{ __html: activity.longDescription }} />
 
         {/* External Links */}
         <Stack direction="row" spacing={1} mb={2} flexWrap="wrap">
           {activity.externalLinks?.map((link, index) => (
-            <Button key={index} variant="outlined" href={link.url} target="_blank" sx={{ borderRadius: 20 }}>
+            <Button key={index} variant="outlined" href={link.url} target="_blank" sx={{ borderRadius: 20, color:'#0c2461', borderColor:'#0c2461', fontWeight:'600' }}>
               {link.title}
             </Button>
           ))}
