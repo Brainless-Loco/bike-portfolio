@@ -20,7 +20,7 @@ export default function ProjectModal({ open, handleClose, project }) {
         }}
       >
         {/* Project Title */}
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2, color:'#0c2461' }}>
           {project.title}
         </Typography>
 

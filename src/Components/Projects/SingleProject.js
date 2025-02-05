@@ -1,20 +1,15 @@
 import { Box, Button, Chip, Typography } from '@mui/material'
 import React from 'react'
 
-export default function SingleProject({project, setSelectedProject}) {
+export default function SingleProject({ project, setSelectedProject }) {
     return (
         <Box
             key={project.id}
             sx={{
-                p: 3,
-                bgcolor: "#fff",
-                borderRadius: 2,
-                boxShadow: 3,
-                width: "45%",
-                marginBottom: 2,
+                p: 3, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "45%", marginBottom: 2,
             }}>
             {/* Project Title */}
-            <Typography variant="h6">{project.title}</Typography>
+            <Typography variant="h6" color='#0c2461' textAlign='justify' fontWeight={600}>{project.title}</Typography>
 
             {/* Labels */}
             <Box sx={{ mt: 1, mb: 2, display: "flex", flexWrap: "wrap", gap: 1 }}>
@@ -24,12 +19,14 @@ export default function SingleProject({project, setSelectedProject}) {
             </Box>
 
             {/* Short Description */}
-            <Typography variant="body2" sx={{ mb: 2 }}>
-                {project.shortDescription}
+            <Typography variant="body2" sx={{ mb: 2, height:'80px', textAlign:'justify' }}>
+                {project.shortDescription.length > 100
+                    ? `${project.shortDescription.substring(0, 100)}...`
+                    : project.shortDescription}
             </Typography>
 
             {/* Details Button */}
-            <Button variant="contained" onClick={()=>{setSelectedProject(project)}}>
+            <Button variant="contained" onClick={() => { setSelectedProject(project) }}>
                 Details
             </Button>
         </Box>

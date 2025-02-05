@@ -4,6 +4,7 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { Link } from "react-router-dom";
 
 const ResearchModal = ({ open, handleClose, research }) => {
   if (!research) return null;
@@ -22,29 +23,32 @@ const ResearchModal = ({ open, handleClose, research }) => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: "90%",
-            height:'95vh',
-            maxWidth:'90vw',
+            height: '95vh',
+            maxWidth: '90vw',
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
             overflowY: "auto",
           }}
         >
-          <Typography variant="h4" gutterBottom>
+          {/* Title */}
+          <Typography variant="h4" color="#0c2461" gutterBottom>
             {research.title}
           </Typography>
 
+          {/* Date */}
           <Typography variant="subtitle1" color="textSecondary">
             {new Date(research.publicationDate?.seconds * 1000).toDateString()}
           </Typography>
 
-          <Typography variant="body1" sx={{ my:2 }}>
+          {/* Authors */}
+          <Typography variant="body1" sx={{ my: 2 }}>
             {research.authors.map((author, index) => (
               <span key={index}>
-                {author.profileLink ? (
-                  <a href={author.profileLink} target="_blank" rel="noopener noreferrer">
+                {author.id ? (
+                  <Link to={'/Team'} state={{id:author.id}} >
                     {author.name}
-                  </a>
+                  </Link>
                 ) : (
                   author.name
                 )}
@@ -68,13 +72,13 @@ const ResearchModal = ({ open, handleClose, research }) => {
             )}
           </Typography>
 
-          <div style={{minHeight:'60%'}} dangerouslySetInnerHTML={{ __html: research.longDescription }} />
-            <Box className="text-right">
-                    <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
-                    Close
-                </Button>
-            </Box>
-          
+          <div style={{ minHeight: '60%' }} dangerouslySetInnerHTML={{ __html: research.longDescription }} />
+          <Box className="text-right">
+            <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
+              Close
+            </Button>
+          </Box>
+
         </Box>
       </Fade>
     </Modal>

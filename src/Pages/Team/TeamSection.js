@@ -4,11 +4,16 @@ import { Box, Typography } from "@mui/material";
 import { db } from "../../Utils/Firebase";
 import TeamMemberModal from './../../Components/Modal/TeamMemberModal';
 import TeamMemberCard from './../../Components/Team/TeamMemberCard';
+import { useLocation } from "react-router-dom";
 
 const TeamSection = ({setNonHomePath}) => {
   const [teamMembers, setTeamMembers] = useState([]);
   const [selectedMember, setSelectedMember] = useState(null);
   const [open, setOpen] = useState(false);
+
+  const { state }= useLocation();
+
+
 
   useEffect(() => {
     const fetchTeamMembers = async () => {
@@ -26,6 +31,17 @@ const TeamSection = ({setNonHomePath}) => {
     setNonHomePath(true)
     fetchTeamMembers();
   }, [setNonHomePath]);
+
+  useEffect(()=>{
+    if(state?.id){
+      setSelectedMember(teamMembers.find((member) => member.id === state.id));
+      setOpen(true);
+    }else{
+      setSelectedMember(null);
+      setOpen(false);
+    }
+    // eslint-disable-next-line
+  },[state.id])
 
   const groupedMembers = {
     Current: teamMembers.filter((member) => !member.isFormer),
