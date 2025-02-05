@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button, Modal, Stack, Chip } from "@mui/material";
+import { Box, Typography, Button, Modal, Stack, Chip, Divider } from "@mui/material";
 
 const ActivityModal = ({ activity, onClose }) => {
   if (!activity) return null;
@@ -12,6 +12,7 @@ const ActivityModal = ({ activity, onClose }) => {
         <Typography variant="h5" sx={{ mb: 1, color:'#0c2461' }}>
           {activity.title}
         </Typography>
+        <Divider sx={{mb:2}} />
 
         {/* Labels */}
         <Stack direction="row" spacing={1} mb={2}>

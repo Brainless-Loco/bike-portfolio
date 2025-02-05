@@ -3,10 +3,10 @@ import { Box, Typography, Button, Chip, Stack } from "@mui/material";
 
 const SingleActivity = ({ activity, onOpenModal }) => {
   return (
-    <Box sx={{ p: 2, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "90%", marginBottom: 2 }}>
+    <Box sx={{ p: 2, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "85%", marginBottom: 2 }}>
       {/* Activity Title and Labels */}
-      <Stack direction="column" alignItems="center" spacing={1}>
-        <Typography variant="subtitle1" sx={{textAlign: "justify", fontWeight:'600', lineHeight:'110%', color:'#0c2461', minHeight:'70px'}}>{activity.title}</Typography>
+      <Stack direction="column" alignItems="flex-start" spacing={1}>
+        <Typography variant="subtitle1" sx={{textAlign: "justify", fontWeight:'600', lineHeight:'110%', color:'#0c2461', minHeight:'20px'}}>{activity.title}</Typography>
         <Box display={"flex"} gap={0.5} className="py-2" flexWrap={'wrap'}>
           {activity.labels?.map((label, index) => (
             <Chip key={index} label={label} sx={{ borderRadius: "16px", bgcolor: "lightblue", fontSize: '12px', fontWeight: '600' }} />
@@ -20,7 +20,7 @@ const SingleActivity = ({ activity, onOpenModal }) => {
       </Typography>
 
       {/* Short Description */}
-      <Typography variant="body2" sx={{ mb: 1, minHeight:'120px',  textAlign: "justify" }}>
+      <Typography variant="body2" sx={{ mb: 1, minHeight:'50px',  textAlign: "justify" }}>
         {activity.shortDescription.length > 350
           ? `${activity.shortDescription.substring(0, 350)}...`
           : activity.shortDescription}
