@@ -33,7 +33,7 @@ const TeamSection = ({setNonHomePath}) => {
   }, [setNonHomePath]);
 
   useEffect(()=>{
-    if(state?.id){
+    if(state && state.id){
       setSelectedMember(teamMembers.find((member) => member.id === state.id));
       setOpen(true);
     }else{
@@ -41,7 +41,7 @@ const TeamSection = ({setNonHomePath}) => {
       setOpen(false);
     }
     // eslint-disable-next-line
-  },[state.id])
+  },[state])
 
   const groupedMembers = {
     Current: teamMembers.filter((member) => !member.isFormer),
