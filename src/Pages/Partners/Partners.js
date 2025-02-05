@@ -28,10 +28,11 @@ const Partners = ({setNonHomePath}) => {
       <Typography variant="h4" sx={{ color: 'blue' }} gutterBottom>
         Our Partners
       </Typography>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
-        {partners.map((partner, index) => (
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, minHeight:'250px' }}>
+        {/* {partners.map((partner, index) => (
           <PartnerItem key={index} partner={partner} />
-        ))}
+        ))} */}
+        <Typography variant="h4">To be updated soon...</Typography>
       </Box>
     </Box>
   );
