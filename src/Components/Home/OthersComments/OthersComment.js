@@ -46,7 +46,7 @@ const OthersComments = () => {
                 {/* Ekhane ekta map cholbe Json Data er upore and OneComment e props jabe */}
                 {
                     comments.map(comment => ( 
-                                <SwiperSlide  className="NoteSlide">
+                                <SwiperSlide key={comment.id} className="NoteSlide">
                                     <OneComment commentInfo={comment}/>
                                 </SwiperSlide>
                     ))
