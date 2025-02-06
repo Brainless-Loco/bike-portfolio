@@ -1,4 +1,5 @@
 import { Card, CardContent, Typography, Avatar, Button, Box } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const TeamMemberCard = ({ member, onClick }) => {
   return (
@@ -16,9 +17,10 @@ const TeamMemberCard = ({ member, onClick }) => {
 
         <Typography variant="body2">{member.shortDescription}</Typography>
 
-        <Button variant="contained" sx={{ mt: 2, display: "block", mx: "auto" }} onClick={onClick}>
-          Know More
-        </Button>
+        
+          <Link to={"/Team/"+member.id}>
+            <Button variant="contained" sx={{ mt: 2, display: "block", mx: "auto" }}>Know More</Button>
+          </Link>
       </CardContent>
     </Card>
   );

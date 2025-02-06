@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
-import Button from "@mui/material/Button";
 import { db } from "../../Utils/Firebase";
 import ResearchModal from "../../Components/Modal/ResearchModal";
 import { Link, useParams } from "react-router-dom";
@@ -47,18 +46,24 @@ const Researches = ({ setNonHomePath }) => {
   }, [setNonHomePath]);
 
   useEffect(()=>{
-    if(researchID){
-
+    if(researchID && groupedResearches){
+      // console.log(researchID)
+      const tempResearches = []
+      Object.entries(groupedResearches).forEach(([publicationType, publications])=>{
+          
+        tempResearches.push(...publications)
+      });
+      setSelectedResearch(tempResearches.filter(research=>research.id===researchID)[0])
+      setOpen(true)
     }
   },[researchID, groupedResearches])
 
-  console.log(groupedResearches)
 
   // Open modal with selected research
-  const handleOpen = (research) => {
-    setSelectedResearch(research);
-    setOpen(true);
-  };
+  // const handleOpen = (research) => {
+  //   setSelectedResearch(research);
+  //   setOpen(true);
+  // };
 
   // Close modal
   const handleClose = () => {
@@ -112,9 +117,9 @@ const Researches = ({ setNonHomePath }) => {
                   <Typography variant="body2">{
                     research.otherInfo.length>300? research.otherInfo.substring(0,300)+"...":research.otherInfo
                     }</Typography>
-                  <Button variant="outlined" sx={{ mt: 2 }} onClick={() => handleOpen(research)}>
+                  <Link to={"/Researches/"+research.id}>
                     Read More
-                  </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}

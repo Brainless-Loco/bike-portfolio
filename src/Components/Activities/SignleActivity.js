@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography, Button, Chip, Stack } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const SingleActivity = ({ activity, onOpenModal }) => {
   return (
@@ -36,9 +37,12 @@ const SingleActivity = ({ activity, onOpenModal }) => {
       </Stack> */}
 
       {/* Details Button */}
-      <Button variant="contained" sx={{backgroundColor:'#0c2461'}} onClick={() => onOpenModal(activity)}>
-        Details
-      </Button>
+      <Link to={"/Latest/"+activity.id}> 
+        <Button  variant="contained" sx={{backgroundColor:'#0c2461', color:'white'}}>
+          Details
+        </Button>
+      </Link>
+      
     </Box>
   );
 };
