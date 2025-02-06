@@ -9,6 +9,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Link from "@mui/material/Link";
 import rudraImage from '../../Images/rudranath.jpg'
+import { Helmet } from "react-helmet";
 
 const Director = ({ setNonHomePath }) => {
   // const [description, setDescription] = useState("");
@@ -31,6 +32,10 @@ const Director = ({ setNonHomePath }) => {
 
   return (
     <Box paddingX={3} paddingY={15}>
+      <Helmet>
+        <title>Director | BIKE Lab</title>
+        <meta name="description" content="Dr. Rudra Pratap Deb Nath, Director of BIKE Lab at CSE CU is a distinguished asscoiate professor in the field of computer science and engineering. He is known for his contributions in the fields of big data, information, and knowledge engineering." />
+      </Helmet>
       <Typography variant="h2" color="#0c2461" gutterBottom>
         Director of BIKE Lab
       </Typography>

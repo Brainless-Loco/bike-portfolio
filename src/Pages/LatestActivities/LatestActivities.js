@@ -4,6 +4,7 @@ import { Box, Typography, Stack } from "@mui/material";
 import { db } from "../../Utils/Firebase";
 import ActivityModal from './../../Components/Modal/ActivityModal';
 import SingleActivity from './../../Components/Activities/SignleActivity';
+import { Helmet } from "react-helmet";
 
 const LatestActivities = ({setNonHomePath}) => {
   const [activities, setActivities] = useState([]);
@@ -23,6 +24,10 @@ const LatestActivities = ({setNonHomePath}) => {
 
   return (
     <Box sx={{ paddingTop: "100px", paddingX: "5%",paddingBottom:'50px', minHeight:'50vh' }}>
+      <Helmet>
+        <title>Latest Activities | BIKE Lab</title>
+        <meta name="description" content="Latest BIKE Lab related activities from the University of Chittagong." />
+      </Helmet>
       <Typography variant="h3" sx={{ color: "blue" }} gutterBottom>
         Latest Activities
       </Typography>
