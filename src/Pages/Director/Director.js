@@ -2,7 +2,12 @@ import { useEffect } from "react";
 // import { doc, getDoc, getFirestore } from "firebase/firestore";
 import Box from '@mui/material/Box';
 // import { app } from "../../Utils/Firebase";
-import { Card, CardContent, Typography, List, ListItem, Link } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Link from "@mui/material/Link";
 import rudraImage from '../../Images/rudranath.jpg'
 
 const Director = ({ setNonHomePath }) => {
