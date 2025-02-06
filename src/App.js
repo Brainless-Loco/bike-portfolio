@@ -49,9 +49,13 @@ function App() {
         <Header isScrolled={scrolled} nonHomePath={nonHomePath}/>
         <Routes>
           <Route path="/" element={<Home setNonHomePath={setNonHomePath}/>}/>
+
           <Route path="/Researches" element={<Researches setNonHomePath={setNonHomePath}/>}/>
+          <Route path="/Researches/:researchID" element={<Researches setNonHomePath={setNonHomePath}/>}/>
+          
           <Route path="/Teaching" element={<Teaching setNonHomePath={setNonHomePath}/>}/>
           <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath}/>}/>
+
           <Route path= "/Latest" element={<LatestActivities setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Latest/:activityID" element={<LatestActivities setNonHomePath={setNonHomePath}/>}/>
 

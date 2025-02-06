@@ -63,11 +63,11 @@ const TeamSection = ({ setNonHomePath }) => {
     const category = member.isFormer ? "Former" : "Current";
     const position = member.position || "Others";
 
-    if (position!=='Co Author' && !categorizedMembers[category][position]) {
+    if (position!=='Co Author' && position!=='Supervisor' && !categorizedMembers[category][position]) {
       categorizedMembers[category][position] = [];
     }
 
-    if(position!=='Co Author') categorizedMembers[category][position].push(member);
+    if(position!=='Co Author' && position!=='Supervisor') categorizedMembers[category][position].push(member);
   });
 
   // Sorting order for positions
@@ -110,7 +110,7 @@ const TeamSection = ({ setNonHomePath }) => {
 
       categorizedMembers[category]["Researcher"] = groupedResearchers;
 
-      console.log(categorizedMembers[category]["Researcher"]);
+      // console.log(categorizedMembers[category]["Researcher"]);
 
     }
   });

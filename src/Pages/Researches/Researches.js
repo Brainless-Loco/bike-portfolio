@@ -7,7 +7,7 @@ import Card from "@mui/material/Card";
 import Button from "@mui/material/Button";
 import { db } from "../../Utils/Firebase";
 import ResearchModal from "../../Components/Modal/ResearchModal";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const Researches = ({ setNonHomePath }) => {
@@ -16,6 +16,8 @@ const Researches = ({ setNonHomePath }) => {
   const [groupedResearches, setGroupedResearches] = useState({});
   const [selectedResearch, setSelectedResearch] = useState(null);
   const [open, setOpen] = useState(false);
+
+  const {researchID} = useParams()
 
   useEffect(() => {
     setNonHomePath(true)
@@ -43,6 +45,14 @@ const Researches = ({ setNonHomePath }) => {
 
     fetchResearches();
   }, [setNonHomePath]);
+
+  useEffect(()=>{
+    if(researchID){
+
+    }
+  },[researchID, groupedResearches])
+
+  console.log(groupedResearches)
 
   // Open modal with selected research
   const handleOpen = (research) => {
