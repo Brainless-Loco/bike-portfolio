@@ -53,8 +53,11 @@ function App() {
           <Route path="/Teaching" element={<Teaching setNonHomePath={setNonHomePath}/>}/>
           <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Latest" element={<LatestActivities setNonHomePath={setNonHomePath}/>}/>
+          <Route path= "/Latest/:activityID" element={<LatestActivities setNonHomePath={setNonHomePath}/>}/>
+
           <Route path= "/Team" element={<TeamSection setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Team/:profileID" element={<TeamSection setNonHomePath={setNonHomePath}/>}/>
+
           <Route path= "/Projects" element={<Projects setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Director" element={<Director setNonHomePath={setNonHomePath}/>}/>
 

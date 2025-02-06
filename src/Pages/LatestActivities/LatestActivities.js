@@ -5,10 +5,19 @@ import { db } from "../../Utils/Firebase";
 import ActivityModal from './../../Components/Modal/ActivityModal';
 import SingleActivity from './../../Components/Activities/SignleActivity';
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 const LatestActivities = ({setNonHomePath}) => {
   const [activities, setActivities] = useState([]);
   const [selectedActivity, setSelectedActivity] = useState(null);
+
+  const {activityID} = useParams()
+
+  useEffect(()=>{
+    if(activityID) {
+      setSelectedActivity(activities.find((activity) => activity.id === activityID))
+    }
+  },[activityID, activities])
 
   useEffect(() => {
     setNonHomePath(true)
