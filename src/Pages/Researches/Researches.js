@@ -76,10 +76,10 @@ const Researches = ({ setNonHomePath }) => {
             {publicationType}
           </Typography>
           <Box key={publicationType} className={"d-flex flex-wrap"} gap={5}>
-            {/* {items.map((research) => (
+            {items.map((research) => (
               <Card key={research.id} sx={{ mb: 2, bgcolor: '#fff', borderRadius: 2, boxShadow: 3, width: '31%' }}>
                 <CardContent>
-                  <Typography variant="h6" color="#0c2461" fontWeight={600}>{research.title}</Typography>
+                  <Typography variant="subtitle1" lineHeight={1.1} color="#0c2461" fontWeight={600}>{research.title}</Typography>
 
                   <Typography variant="subtitle2" color="textSecondary">
                     {new Date(research.publicationDate?.seconds * 1000).toDateString()}
@@ -99,13 +99,16 @@ const Researches = ({ setNonHomePath }) => {
                       </span>
                     ))}
                   </Typography>
+                  <Typography variant="body2">{
+                    research.otherInfo.length>300? research.otherInfo.substring(0,300)+"...":research.otherInfo
+                    }</Typography>
                   <Button variant="outlined" sx={{ mt: 2 }} onClick={() => handleOpen(research)}>
                     Read More
                   </Button>
                 </CardContent>
               </Card>
-            ))} */}
-            <Typography variant="h5">To be updated...</Typography>
+            ))}
+            {/* <Typography variant="h5">To be updated...</Typography> */}
           </Box>
         </Box>
       ))}
