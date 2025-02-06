@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+// eslint-disable-next-line
 import { Link } from 'react-router-dom';
 import './Home.css';
 import About from '../../Components/Home/AboutSection/About';

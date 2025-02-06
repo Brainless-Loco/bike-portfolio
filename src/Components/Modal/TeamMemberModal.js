@@ -1,4 +1,5 @@
 import { Modal, Box, Typography, Avatar, Button } from "@mui/material";
+import CoAuthorList from "../Team/CoAuthorList";
 
 const TeamMemberModal = ({ open, handleClose, member }) => {
   return (
@@ -34,6 +35,8 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
           <strong>Description:</strong>
         </Typography>
         <Box sx={{ mt: 1, minHeight: '60%', textAlign:'justify' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
+
+        <CoAuthorList id={member.id} />
 
         <Button variant="contained" sx={{ mt: 3, display: "block", mx: "auto" }} onClick={handleClose}>
           Close

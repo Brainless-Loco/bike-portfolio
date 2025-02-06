@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box"
 import Typography from "@mui/material/Typography";
 import { getDocs, collection } from "firebase/firestore";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { db } from "../../Utils/Firebase";
 import TeamMemberModal from './../../Components/Modal/TeamMemberModal';
 import TeamMemberCard from './../../Components/Team/TeamMemberCard';
@@ -12,6 +12,8 @@ const TeamSection = ({ setNonHomePath }) => {
   const [selectedMember, setSelectedMember] = useState(null);
   const [open, setOpen] = useState(false);
   const { state } = useLocation();
+
+  const { profileID } = useParams();
 
   useEffect(() => {
     const fetchTeamMembers = async () => {
@@ -39,6 +41,14 @@ const TeamSection = ({ setNonHomePath }) => {
       setOpen(false);
     }
   }, [state, teamMembers]);
+
+  useEffect(()=>{
+    if(profileID){
+      const member = teamMembers.find((member) => member.id === profileID);
+      setSelectedMember(member);
+      setOpen(true);
+    }
+  },[profileID,teamMembers])
 
 
   const positionOrder = ["Director", "Research Assistant", "Teacher", "Researcher", "Student", "Others"];
