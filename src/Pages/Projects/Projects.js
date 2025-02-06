@@ -4,6 +4,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import ProjectModal from "../../Components/Modal/ProjectModal";
 import SingleProject from "../../Components/Projects/SingleProject";
+import { Helmet } from "react-helmet";
 const Projects = ({setNonHomePath}) => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -34,6 +35,9 @@ const Projects = ({setNonHomePath}) => {
 
   return (
     <Box sx={{ paddingTop: "100px", paddingX: "5%" }}>
+      <Helmet>
+        <title>Projects | BIKE Lab</title>
+      </Helmet>
       <Typography variant="h4" sx={{ color: "blue" }} gutterBottom>
         Research Projects
       </Typography>

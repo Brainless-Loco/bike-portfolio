@@ -4,6 +4,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../Utils/Firebase';
 // eslint-disable-next-line
 import PartnerItem from '../../Components/Partners/PartnerItem';
+import { Helmet } from 'react-helmet';
 
 const Partners = ({setNonHomePath}) => {
   // eslint-disable-next-line
@@ -28,6 +29,9 @@ const Partners = ({setNonHomePath}) => {
 
   return (
     <Box sx={{ paddingTop: '100px', paddingX: '5%' }}>
+      <Helmet>
+        <title>Partners | BIKE Lab</title>
+      </Helmet>
       <Typography variant="h4" sx={{ color: 'blue' }} gutterBottom>
         Our Partners
       </Typography>

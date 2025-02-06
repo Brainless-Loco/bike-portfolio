@@ -3,6 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import CoursesSection from "../../Components/Teaching/CoursesSection";
+import { Helmet } from "react-helmet";
 
 const Teaching = ({setNonHomePath}) => {
   const [activeTab, setActiveTab] = useState("statement"); // "statement" or "courses"
@@ -46,6 +47,9 @@ const Teaching = ({setNonHomePath}) => {
 
   return (
     <Box sx={{ paddingTop: "100px", paddingX: "5%" }}>
+      <Helmet>
+        <title>Teaching | BIKE Lab</title>
+      </Helmet>
       <Typography variant="h3" sx={{ color: "blue" }} gutterBottom>
         Teaching
       </Typography>

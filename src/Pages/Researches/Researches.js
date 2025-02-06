@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import { db } from "../../Utils/Firebase";
 import ResearchModal from "../../Components/Modal/ResearchModal";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Researches = ({ setNonHomePath }) => {
   // eslint-disable-next-line
@@ -57,6 +58,10 @@ const Researches = ({ setNonHomePath }) => {
 
   return (
     <Box sx={{ paddingTop: '100px', paddingX: '5%' }}>
+      <Helmet>
+        <title>Research Publications | BIKE Lab</title>
+        <meta name="description" content="Research publications of the BIKE Lab" />
+      </Helmet>
       <Typography variant="h4" sx={{ color: 'blue' }} gutterBottom>
         Research Publications
       </Typography>
