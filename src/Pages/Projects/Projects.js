@@ -4,9 +4,11 @@ import Typography from "@mui/material/Typography";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import ProjectModal from "../../Components/Modal/ProjectModal";
+// eslint-disable-next-line
 import SingleProject from "../../Components/Projects/SingleProject";
 import { Helmet } from "react-helmet";
 const Projects = ({setNonHomePath}) => {
+  // eslint-disable-next-line
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [open, setOpen] = useState(false);

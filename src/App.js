@@ -14,6 +14,7 @@ import LatestActivities from './Pages/LatestActivities/LatestActivities';
 import TeamSection from './Pages/Team/TeamSection';
 import Projects from './Pages/Projects/Projects';
 import Director from './Pages/Director/Director';
+import AuthorGraphVisualization from './Pages/AuthorGraph/AuthorGraphVisualization';
 
 function App() {
   // console log using jQuery
@@ -52,7 +53,7 @@ function App() {
 
           <Route path="/Researches" element={<Researches setNonHomePath={setNonHomePath}/>}/>
           <Route path="/Researches/:researchID" element={<Researches setNonHomePath={setNonHomePath}/>}/>
-          
+
           <Route path="/Teaching" element={<Teaching setNonHomePath={setNonHomePath}/>}/>
           <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath}/>}/>
 
@@ -64,6 +65,8 @@ function App() {
 
           <Route path= "/Projects" element={<Projects setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Director" element={<Director setNonHomePath={setNonHomePath}/>}/>
+
+          <Route path="/AuthorGraph" element={<AuthorGraphVisualization setNonHomePath={setNonHomePath}/>}/>
 
           {/* <Route path={["/Contact-us" , "/join-us" , "/Join-BIKE","/Latest"]} exact element={<ContactUs/>}/> */}
         </Routes>
