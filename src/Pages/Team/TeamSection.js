@@ -63,11 +63,11 @@ const TeamSection = ({ setNonHomePath }) => {
     const category = member.isFormer ? "Former" : "Current";
     const position = member.position || "Others";
 
-    if (!categorizedMembers[category][position]) {
+    if (position!=='Co Author' && !categorizedMembers[category][position]) {
       categorizedMembers[category][position] = [];
     }
 
-    categorizedMembers[category][position].push(member);
+    if(position!=='Co Author') categorizedMembers[category][position].push(member);
   });
 
   // Sorting order for positions
