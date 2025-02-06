@@ -60,7 +60,7 @@ const Researches = ({ setNonHomePath }) => {
     <Box sx={{ paddingTop: '100px', paddingX: '5%' }}>
       <Helmet>
         <title>Research Publications | BIKE Lab</title>
-        <meta name="description" content="Research publications of the BIKE Lab" />
+        <meta name="description" content="Research publications of the BIKE" />
       </Helmet>
       <Typography variant="h4" sx={{ color: 'blue' }} gutterBottom>
         Research Publications
@@ -70,18 +70,13 @@ const Researches = ({ setNonHomePath }) => {
         <Box key={publicationType} sx={{ my: 4 }}>
           <Typography
             variant="h5"
-            sx={{
-              mb: 2,
-              pb: 1,
-              borderBottom: "2px solid #1976d2",
-              display: "inline-block",
-              width: '100%'
+            sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: '100%'
             }}
           >
             {publicationType}
           </Typography>
           <Box key={publicationType} className={"d-flex flex-wrap"} gap={5}>
-            {items.map((research) => (
+            {/* {items.map((research) => (
               <Card key={research.id} sx={{ mb: 2, bgcolor: '#fff', borderRadius: 2, boxShadow: 3, width: '31%' }}>
                 <CardContent>
                   <Typography variant="h6" color="#0c2461" fontWeight={600}>{research.title}</Typography>
@@ -104,19 +99,13 @@ const Researches = ({ setNonHomePath }) => {
                       </span>
                     ))}
                   </Typography>
-
-                  {/* <Typography variant="body2" sx={{ mt: 1 }}>
-                            {research.longDescription.length > 100
-                                ? research.longDescription.substring(0, 100) + "..."
-                                : research.longDescription}
-                            </Typography> */}
-
                   <Button variant="outlined" sx={{ mt: 2 }} onClick={() => handleOpen(research)}>
                     Read More
                   </Button>
                 </CardContent>
               </Card>
-            ))}
+            ))} */}
+            <Typography variant="h5">To be updated...</Typography>
           </Box>
         </Box>
       ))}

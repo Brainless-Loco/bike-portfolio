@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography";
 import { getDocs, collection } from "firebase/firestore";
 import { useLocation } from "react-router-dom";
 import { db } from "../../Utils/Firebase";
@@ -133,7 +134,7 @@ const TeamSection = ({ setNonHomePath }) => {
                 {position}
               </Typography>
 
-              {position != "Researcher" ? (
+              {position !== "Researcher" ? (
                 <Box className="d-flex flex-wrap" gap={5}>
                   {members.map((member) => (
                     <TeamMemberCard key={member.id} member={member} onClick={() => {

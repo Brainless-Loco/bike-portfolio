@@ -28,7 +28,7 @@ const Home = ({setNonHomePath}) => {
                         Big Data, Information, and Knowledge Engineering Lab
                     </p>
                     <br/>
-                    <Link to="/Join-us" className="join-us-button">Connect with us</Link>
+                    {/* <Link to="/Join-us" className="join-us-button">Connect with us</Link> */}
                 </div>
                 
             </div>

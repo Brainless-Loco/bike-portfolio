@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import ProjectModal from "../../Components/Modal/ProjectModal";
@@ -34,7 +35,7 @@ const Projects = ({setNonHomePath}) => {
   },[selectedProject])
 
   return (
-    <Box sx={{ paddingTop: "100px", paddingX: "5%" }}>
+    <Box sx={{ paddingY: "100px", minHeight:'50vh', paddingX: "5%" }}>
       <Helmet>
         <title>Projects | BIKE Lab</title>
       </Helmet>
@@ -43,9 +44,10 @@ const Projects = ({setNonHomePath}) => {
       </Typography>
 
       <Box className="d-flex flex-wrap" gap={5}>
-        {projects.map((project) => (
+        {/* {projects.map((project) => (
           <SingleProject key={project.title} project={project} setSelectedProject={(e)=>{setSelectedProject(e)}}/>
-        ))}
+        ))} */}
+        <Typography variant="h4">To be Updated...</Typography>
       </Box>
 
       {/* Project Details Modal */}
