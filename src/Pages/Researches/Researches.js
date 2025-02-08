@@ -16,7 +16,7 @@ const Researches = ({ setNonHomePath }) => {
   const [selectedResearch, setSelectedResearch] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const {researchID} = useParams()
+  const {publicationID} = useParams()
 
   useEffect(() => {
     setNonHomePath(true)
@@ -46,17 +46,17 @@ const Researches = ({ setNonHomePath }) => {
   }, [setNonHomePath]);
 
   useEffect(()=>{
-    if(researchID && groupedResearches){
-      // console.log(researchID)
+    if(publicationID && groupedResearches){
+      // console.log(publicationID)
       const tempResearches = []
       Object.entries(groupedResearches).forEach(([publicationType, publications])=>{
           
         tempResearches.push(...publications)
       });
-      setSelectedResearch(tempResearches.filter(research=>research.id===researchID)[0])
+      setSelectedResearch(tempResearches.filter(research=>research.id===publicationID)[0])
       setOpen(true)
     }
-  },[researchID, groupedResearches])
+  },[publicationID, groupedResearches])
 
 
   // Open modal with selected research

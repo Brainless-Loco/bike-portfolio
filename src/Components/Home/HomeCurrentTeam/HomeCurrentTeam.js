@@ -103,7 +103,7 @@ const HomeCurrentTeam = () => {
                     loading && <CircularProgress size={100} sx={{color:'#fff'}}/>
                 }
             </div>
-            <Link to="/Researchers" className="see-all-button">See All</Link>
+            <Link to="/Team" className="see-all-button">See All</Link>
         </div>
     );
 };
