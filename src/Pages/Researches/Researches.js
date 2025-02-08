@@ -117,7 +117,7 @@ const Researches = ({ setNonHomePath }) => {
                   <Typography variant="body2">{
                     research.otherInfo.length>300? research.otherInfo.substring(0,300)+"...":research.otherInfo
                     }</Typography>
-                  <Link to={"/Researches/"+research.id}>
+                  <Link to={"/Publications/"+research.id}>
                     Read More
                   </Link>
                 </CardContent>
