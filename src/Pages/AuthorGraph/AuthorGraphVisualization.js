@@ -4,7 +4,7 @@ import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { app } from "./../../Utils/Firebase";
 import { ForceGraph2D } from "react-force-graph";
 import { Box } from "@mui/material";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 
 const db = getFirestore(app);
 
@@ -16,7 +16,7 @@ const fetchAuthorsGraph = async () => {
     }));
 };
 
-const AuthorGraphVisualization = ({setNonHomePath}) => {
+const AuthorGraphVisualization = ({id, setNonHomePath}) => {
     const [graphData, setGraphData] = useState({ nodes: [], links: [] });
     const [imageCache, setImageCache] = useState({}); // Cache to store loaded images
 
@@ -51,20 +51,23 @@ const AuthorGraphVisualization = ({setNonHomePath}) => {
         };
 
         loadGraphData();
-        setNonHomePath(true)
-    }, [setNonHomePath]);
+    }, []);
+
+    useEffect(()=>{
+        if(setNonHomePath) setNonHomePath(true)
+    },[setNonHomePath])
 
     return (
-        <Box sx={{ width: "100%", height: "600px", borderRadius: 2, px:2, py:5 }}>
-            <Helmet>
+        <Box sx={{ borderRadius: 2, overflow:'hidden', border:'1px solid green' }}>
+            {/* <Helmet>
                 <title>Author Graph | BIKE Lab</title>
                 <meta name="description" content="Visualize the connections between authors in the BIKE Lab research." />
-            </Helmet>
+            </Helmet> */}
             <ForceGraph2D
                 graphData={graphData}
                 enableNodeDrag={true} // Allow dragging nodes
                 nodeCanvasObject={(node, ctx) => {
-                    const size = 10;
+                    const size = id ? node.id === id ?20: 10:10;
                     if (!imageCache[node.id]) {
                         loadImage(node);
                         return;
@@ -78,7 +81,7 @@ const AuthorGraphVisualization = ({setNonHomePath}) => {
                     ctx.restore();
                 }}
                 nodePointerAreaPaint={(node, color, ctx) => {
-                    const size = 10;
+                    const size = id ? node.id === id ?20: 10:10;
                     ctx.fillStyle = color;
                     ctx.fillRect(node.x - size, node.y - size, size * 2, size * 2);
                 }}
