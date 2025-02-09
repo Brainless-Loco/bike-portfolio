@@ -85,14 +85,16 @@ const Researches = ({ setNonHomePath }) => {
         <Box key={publicationType} sx={{ my: 4 }}>
           <Typography
             variant="h5"
-            sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: '100%'
+            color="#0c2461"
+            fontWeight={600}
+            sx={{ mb: 2, pb: 1, borderBottom: "2px solid #0c2461", display: "inline-block", width: '100%'
             }}
           >
             {publicationType}
           </Typography>
-          <Box key={publicationType} className={"d-flex flex-wrap"} gap={5}>
+          <Box key={publicationType} className={"d-flex flex-wrap justify-content-center"} gap={1}>
             {items.map((research) => (
-              <Card key={research.id} sx={{ mb: 2, bgcolor: '#fff', borderRadius: 2, boxShadow: 3, width: '31%' }}>
+              <Card key={research.id} sx={{ bgcolor: '#fff', borderRadius: 2, boxShadow: 3, width: '90%' }}>
                 <CardContent>
                   <Typography variant="subtitle1" lineHeight={1.1} color="#0c2461" fontWeight={600}>{research.title}</Typography>
 
@@ -114,11 +116,12 @@ const Researches = ({ setNonHomePath }) => {
                       </span>
                     ))}
                   </Typography>
-                  <Typography variant="body2">{
+                  {/* <Typography variant="body2">{
                     research.otherInfo.length>300? research.otherInfo.substring(0,300)+"...":research.otherInfo
-                    }</Typography>
-                  <Link to={"/Publications/"+research.id}>
-                    Read More
+                    }</Typography> */}
+                  <Link to={"/Publications/"+research.id} >
+                    <Typography color="#0c2461" fontWeight={700}>Details</Typography>
+                    
                   </Link>
                 </CardContent>
               </Card>

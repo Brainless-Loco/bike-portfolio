@@ -74,9 +74,11 @@ const ResearchModal = ({ open, handleClose, research }) => {
 
           <div style={{ minHeight: '60%' }} dangerouslySetInnerHTML={{ __html: research.longDescription }} />
           <Box className="text-right">
-            <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
+            <Link to="/Publications">
+              <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
               Close
             </Button>
+            </Link>
           </Box>
 
         </Box>
