@@ -40,6 +40,7 @@ const Projects = ({setNonHomePath}) => {
     <Box sx={{ paddingY: "100px", minHeight:'50vh', paddingX: "5%" }}>
       <Helmet>
         <title>Projects | BIKE Lab</title>
+        <meta name="description" content="Research projects from the BIKE Lab." />
       </Helmet>
       <Typography variant="h4" sx={{ color: "blue" }} gutterBottom>
         Research Projects

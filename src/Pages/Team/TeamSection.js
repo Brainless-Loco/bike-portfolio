@@ -6,6 +6,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { db } from "../../Utils/Firebase";
 import TeamMemberModal from './../../Components/Modal/TeamMemberModal';
 import TeamMemberCard from './../../Components/Team/TeamMemberCard';
+import { Helmet } from "react-helmet";
 
 const TeamSection = ({ setNonHomePath }) => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -51,7 +52,7 @@ const TeamSection = ({ setNonHomePath }) => {
   },[profileID,teamMembers])
 
 
-  const positionOrder = ["Director", "Research Assistant", "Teacher", "Researcher", "Student", "Others"];
+  const positionOrder = ["Director", "Research Assistant", "Teacher", "Researcher",  "Others"];
 
   const categorizedMembers = {
     Current: {},
@@ -118,72 +119,78 @@ const TeamSection = ({ setNonHomePath }) => {
 
   return (
     <Box sx={{ paddingTop: "100px", paddingX: "5%" }}>
+      <Helmet>
+        <title>Team Members | BIKE Lab</title>
+        <meta name="description" content="Meet the team members of the BIKE Lab" />
+      </Helmet>
       <Typography variant="h3" sx={{ color: "#0c2461" }} gutterBottom>
         Meet Our Team
       </Typography>
 
-      {Object.entries(categorizedMembers).map(([category, positions]) => (
-        <Box key={category} sx={{ my: 4 }}>
+      {Object.entries(categorizedMembers).map(([category, positions]) => {
+        return <Box key={category} sx={{ my: 4 }}>
           <Typography
-            variant="h4"
+            variant="h4" color="#0c2461" fontWeight={600}
             sx={{
               mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
             }}
-            color="#0c2461"
-            fontWeight={600}
           >
             {category} Members
           </Typography>
-          {Object.entries(positions).sort().map(([position, members]) => (
-            <Box key={position} sx={{ my: 2 }}>
-              <Typography
-                variant="h6" color="#0c2461" fontWeight={600} sx={{
-                  mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
-                }}
-              >
-                {position}
-              </Typography>
-
-              {position !== "Researcher" ? (
-                <Box className="d-flex flex-wrap" gap={5}>
-                  {members.map((member) => (
-                    <TeamMemberCard key={member.id} member={member} onClick={() => {
-                      setSelectedMember(member); setOpen(true);
-                    }}
-                    />
-                  ))}
-                </Box>
-              ) : (
-                  researcherOrder.filter((eduLevel)=> members[eduLevel]).map((eduLevel)=>(
-                    <Box key={eduLevel} sx={{ my: 2 }}>
+          {Object.entries(positions).sort().map(([position, members]) => {
+            if(category === 'Former' && position === 'Student'){
+              // console.log(position);
+              return <></>
+            }
+            return <Box key={position} sx={{ my: 2 }}>
                       <Typography
-                        variant="subtitle1"
-                        fontWeight={600}
-                        sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2",
-                          display: "inline-block", width: "100%",
-                        }} >
-                        {eduLevel}
+                        variant="h6" color="#0c2461" fontWeight={600} sx={{
+                          mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
+                        }}
+                      >
+                        {position}
                       </Typography>
-                      <Box className={"d-flex flex-wrap"} gap={5}>
-                        {members[eduLevel].map((member) => 
-                          (<TeamMemberCard
-                            key={member.id}
-                            member={member}
-                            onClick={() => {
-                              setSelectedMember(member);
-                              setOpen(true);
+
+                      {position !== "Researcher" ? (
+                        <Box className="d-flex flex-wrap" gap={5}>
+                          {members.map((member) => (
+                            <TeamMemberCard key={member.id} member={member} onClick={() => {
+                              setSelectedMember(member); setOpen(true);
                             }}
-                          />)
-                        )}
-                      </Box>
-                    </Box>
-                  ))
-                  
-              )}
+                            />
+                          ))}
+                        </Box>
+                      ) : (
+                          researcherOrder.filter((eduLevel)=> members[eduLevel]).map((eduLevel)=>(
+                            <Box key={eduLevel} sx={{ my: 2 }}>
+                              <Typography
+                                variant="subtitle1"
+                                fontWeight={600}
+                                sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2",
+                                  display: "inline-block", width: "100%",
+                                }} >
+                                {eduLevel}
+                              </Typography>
+                              <Box className={"d-flex flex-wrap"} gap={5}>
+                                {members[eduLevel].map((member) => 
+                                  (<TeamMemberCard
+                                    key={member.id}
+                                    member={member}
+                                    onClick={() => {
+                                      setSelectedMember(member);
+                                      setOpen(true);
+                                    }}
+                                  />)
+                                )}
+                              </Box>
+                            </Box>
+                          ))
+                          
+                      )}
             </Box>
-          ))}
+          })}
         </Box>
-      ))}
+      })}
 
       {/* Modal for showing details */}
       {selectedMember && (
