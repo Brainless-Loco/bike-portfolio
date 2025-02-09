@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, Button, Modal, Stack, Chip, Divider } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import Stack from "@mui/material/Stack";
+import Chip from "@mui/material/Chip";
+import Divider from "@mui/material/Divider";
+import { Link } from "react-router-dom";
 
 const ActivityModal = ({ activity, onClose }) => {
   if (!activity) return null;
@@ -40,9 +47,11 @@ const ActivityModal = ({ activity, onClose }) => {
 
         {/* Close Button */}
         <Box className="text-right">
+          <Link to={"/Latest"}>
           <Button variant="contained" onClick={onClose}>
             Close
           </Button>
+          </Link>
         </Box>
         
       </Box>
