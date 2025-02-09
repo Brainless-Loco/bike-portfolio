@@ -1,5 +1,9 @@
 import React from "react";
-import { Box, Typography, Button, Chip, Stack } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Chip from "@mui/material/Chip";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 const SingleActivity = ({ activity, onOpenModal }) => {
@@ -7,9 +11,9 @@ const SingleActivity = ({ activity, onOpenModal }) => {
     <Box sx={{ p: 2, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "85%", marginBottom: 2 }}>
       {/* Activity Title and Labels */}
       <Stack direction="column" alignItems="flex-start" spacing={1}>
-        <Link to={"/Latest/" + activity.id}>
-          <Typography variant="subtitle1" sx={{ textAlign: "justify", fontWeight: '600', lineHeight: '110%', color: '#0c2461', minHeight: '20px', textDecoration: 'none', borderBottom: '1px solid #0c2461', pb: 1, }}>{activity.title}</Typography>
-        </Link>
+        {/* <Link to={"/Latest/" + activity.id}> */}
+          <Typography variant="subtitle1" sx={{ textAlign: "justify", fontWeight: '600', lineHeight: '110%', color: '#0c2461', minHeight: '20px', textDecoration: 'none', pb: 1, }}>{activity.title}</Typography>
+        {/* </Link> */}
         <Box display={"flex"} gap={0.5} flexWrap={'wrap'}>
           {activity.labels?.map((label, index) => (
             <Chip key={index} label={label} sx={{ borderRadius: "16px", bgcolor: "lightblue", fontSize: '12px', fontWeight: '600' }} />
@@ -39,11 +43,11 @@ const SingleActivity = ({ activity, onOpenModal }) => {
       </Stack> */}
 
       {/* Details Button */}
-      {/* <Link to={"/Latest/"+activity.id}> 
+      <Link to={"/Latest/"+activity.id}> 
         <Button  variant="contained" sx={{backgroundColor:'#0c2461', color:'white'}}>
           Details
         </Button>
-      </Link> */}
+      </Link>
 
     </Box>
   );

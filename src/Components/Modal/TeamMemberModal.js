@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import AuthorGraphVisualization from "../../Pages/AuthorGraph/AuthorGraphVisualization";
+// import AuthorGraphVisualization from "../../Pages/AuthorGraph/AuthorGraphVisualization";
 import { Link } from "react-router-dom";
 import AuthorPublications from "../Team/AuthorPublications";
 

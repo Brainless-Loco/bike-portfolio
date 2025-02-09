@@ -12,7 +12,7 @@ const ActivitiesTimeline = () => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "Activities"), orderBy("activityDate", "desc"), limit(4)); // Get activities sorted by date
+    const q = query(collection(db, "Activities"), orderBy("activityDate", "desc"), limit(10)); // Get activities sorted by date
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedActivities = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -27,7 +27,7 @@ const ActivitiesTimeline = () => {
   return (
     <Box sx={{ backgroundColor: 'transparent', height: '100%' }}>
       <Typography variant="h4" sx={{ color: '#102772', fontWeight: 'bold' }} className="text-center py-2">Latest Activities</Typography>
-      <Box className="pt-2 pb-2" sx={{ height: '100%' }}>
+      <Box className="py-1" sx={{ height: '100%' }}>
         <VerticalTimeline>
           {activities.map((activity, index) => (
             <VerticalTimelineElement
@@ -42,19 +42,20 @@ const ActivitiesTimeline = () => {
                 boxShadow: "3px 3px 10px rgba(0,0,0,0.5)",
                 borderRadius: "10px",
               }}
-              contentArrowStyle={{ borderRight: "20px solid #102772" }}
-            >
-              <Typography variant="h6" color="#0c2461" sx={{ fontWeight: "bold" }}>
+              contentArrowStyle={{ borderRight: "20px solid #102772" }}>
+              <Link to={"/Latest/"+activity.id}>
+              <Typography variant="subtitle1" color="#0c2461" sx={{ fontWeight: 600, lineHeight:1.1, textDecoration:'underline' }}>
                 {activity.title}
               </Typography>
-              <Stack direction="row" spacing={1} sx={{ mt: 1, mb: 2 }}>
+              </Link>
+              <Stack direction="row" spacing={1} sx={{ mt: 1, }}>
                 {activity.labels?.map((label, index) => (
                   <Chip key={index} label={label} color="primary" />
                 ))}
               </Stack>
-              <Typography variant="body2" sx={{ color: "gray" }}>
+              {/* <Typography variant="body2" sx={{ color: "gray" }}>
                 {activity.shortDescription}
-              </Typography>
+              </Typography> */}
             </VerticalTimelineElement>
           ))}
         </VerticalTimeline>
