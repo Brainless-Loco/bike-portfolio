@@ -22,9 +22,9 @@ const About = () => {
                         Our primary focus areas include <strong>Big (Linked) data management, integration, analysis, knowledge graph generation, and exploration</strong>.
                     </p>
 
-                    <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '20px', fontWeight:500 }}>
-                        <p><strong style={{color:"#0c2461",fontWeight:800 }}>Vision:</strong> Providing data-driven solutions for societal challenges.</p>
-                        <p><strong style={{color:"#0c2461",fontWeight:800 }}>Mission:</strong> BIKE conducts research, ranging from near-term applicability to exploratory research. We:</p>
+                    <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '20px', fontWeight: 500 }}>
+                        <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Vision:</strong> Providing data-driven solutions for societal challenges.</p>
+                        <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Mission:</strong> BIKE conducts research, ranging from near-term applicability to exploratory research. We:</p>
                         <ul style={{ paddingLeft: '20px' }}>
                             <li>🔗 Are passionate and committed to going the extra mile.</li>
                             <li>🔗 Seek collaboration.</li>
@@ -33,15 +33,15 @@ const About = () => {
                     </div>
 
                     <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '18px' }}>
-                        <p><strong style={{color:"#0c2461",fontWeight:800 }}> Research Areas:</strong> We focus on the following key areas:</p>
-                        <ul style={{ paddingLeft: '20px', listStyle:'square' }}>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Semantic Data Integration:</strong> Enabling seamless integration of heterogeneous data sources.</li>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Knowledge Graph Exploration:</strong> Creating and exploring structured knowledge representations.</li>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Enabling Semantic Integration Over Bangladesh Open Data:</strong> Connecting and enriching national open data.</li>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Business Analytics Over COVID-19 Data:</strong> Creating a multidimensional semantic data warehouse and enabling OLAP-style analysis over COVID-19 data.</li>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Sentiment Analysis:</strong> Extracting insights from textual data to understand public perception.</li>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Data-Intensive Systems:</strong> Handling large-scale data processing and storage challenges.</li>
-                            <li><strong style={{color:"#0c2461",fontWeight:700 }}>Time Series Data Analysis:</strong> Analyzing and predicting trends over time using complex datasets.</li>
+                        <p><strong style={{ color: "#0c2461", fontWeight: 800 }}> Research Areas:</strong> We focus on the following key areas:</p>
+                        <ul style={{ paddingLeft: '20px', listStyle: 'square' }}>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Semantic Data Integration:</strong> Enabling seamless integration of heterogeneous data sources.</li>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Knowledge Graph Exploration:</strong> Creating and exploring structured knowledge representations.</li>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Enabling Semantic Integration Over Bangladesh Open Data:</strong> Connecting and enriching national open data.</li>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Business Analytics Over COVID-19 Data:</strong> Creating a multidimensional semantic data warehouse and enabling OLAP-style analysis over COVID-19 data.</li>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Sentiment Analysis:</strong> Extracting insights from textual data to understand public perception.</li>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Data-Intensive Systems:</strong> Handling large-scale data processing and storage challenges.</li>
+                            <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Time Series Data Analysis:</strong> Analyzing and predicting trends over time using complex datasets.</li>
                         </ul>
                     </div>
                 </div>
