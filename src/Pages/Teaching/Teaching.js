@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import CoursesSection from "../../Components/Teaching/CoursesSection";

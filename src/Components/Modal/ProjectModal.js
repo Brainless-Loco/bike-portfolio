@@ -1,5 +1,9 @@
 import React from "react";
-import { Box, Button, Typography, Modal, Chip } from "@mui/material";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export default function ProjectModal({ open, handleClose, project }) {
   return (

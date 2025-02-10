@@ -1,4 +1,9 @@
-import { Card, CardContent, Typography, Avatar, Button, Box } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 
 const TeamMemberCard = ({ member, onClick }) => {

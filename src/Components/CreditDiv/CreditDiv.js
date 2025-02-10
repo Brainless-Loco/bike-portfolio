@@ -1,6 +1,6 @@
 import React from 'react';
 import './CreditDiv.css';
-import { Box } from '@mui/material';
+import Box from "@mui/material/Box";
 
 const CreditDiv = () => {
     return (

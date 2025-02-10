@@ -1,5 +1,8 @@
 import React from 'react'
-import { Box, Button, Typography, Modal } from '@mui/material';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 export default function PartnerModal({open, handleClose, partner}) {
   return (

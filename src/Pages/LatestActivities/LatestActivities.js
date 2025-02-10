@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { Box, Typography, Stack } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
 import { db } from "../../Utils/Firebase";
 import ActivityModal from './../../Components/Modal/ActivityModal';
 import SingleActivity from './../../Components/Activities/SignleActivity';

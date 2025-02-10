@@ -1,4 +1,7 @@
-import { Box, Button, Chip, Typography } from '@mui/material'
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import React from 'react'
 
 export default function SingleProject({ project, setSelectedProject }) {
