@@ -18,7 +18,8 @@ const fetchAuthorsGraph = async () => {
 
 const AuthorGraphVisualization = ({id, setNonHomePath}) => {
     const [graphData, setGraphData] = useState({ nodes: [], links: [] });
-    const [imageCache, setImageCache] = useState({}); // Cache to store loaded images
+    const [imageCache, setImageCache] = useState({}); 
+    const [noGraphData, setNoGraphData] = useState(false);
 
     const loadImage = (node) => {
         if (!imageCache[node.id]) {
@@ -32,7 +33,7 @@ const AuthorGraphVisualization = ({id, setNonHomePath}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const loadGraphData = async () => {
+        const loadGraphDataWithoutId = async () => {
             const authors = await fetchAuthorsGraph();
             const nodes = authors.map(author => ({
                 id: author.id,
@@ -50,7 +51,17 @@ const AuthorGraphVisualization = ({id, setNonHomePath}) => {
             setGraphData({ nodes, links });
         };
 
-        loadGraphData();
+        const loadGraphDataWithId = async (authorId) => {
+            const querySnapshot = await getDocs(collection(db, "AuthorGraph").doc(authorId));
+            if (querySnapshot.exists()) {
+                const author = querySnapshot.data();
+                setGraphData({ nodes: [{ id: author.id, name: author.name, profilePhoto: author.profilePhoto }], links: author.coAuthors });
+            } else {
+                setNoGraphData(true);
+            }
+        }
+
+        id ? loadGraphDataWithId(id): loadGraphDataWithoutId();
     }, []);
 
     useEffect(()=>{
