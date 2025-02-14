@@ -3,10 +3,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-// import AuthorGraphVisualization from "../../Pages/AuthorGraph/AuthorGraphVisualization";
 import { Link, useNavigate } from "react-router-dom";
 import AuthorPublications from "../Team/AuthorPublications";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import { useEffect, useRef, useState } from "react";
 import { ForceGraph2D } from "react-force-graph";
@@ -14,7 +13,8 @@ import { ForceGraph2D } from "react-force-graph";
 const TeamMemberModal = ({ open, handleClose, member }) => {
 
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
-  const [imageCache, setImageCache] = useState({}); // Cache to store loaded images
+  const [imageCache, setImageCache] = useState({});
+  const [noGraphData, setNoGraphData] = useState(false);
 
   const navigate = useNavigate();
 
@@ -54,9 +54,16 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
           target: coAuthor.id
         }))
       );
+      // Check if member.id exists in the nodes
+      const memberExists = nodes.some(node => node.id === member.id);
 
-      setGraphData({ nodes, links });
-    };
+      if (!memberExists) {
+        setNoGraphData(true);
+      } else {
+        setNoGraphData(false);
+        setGraphData({ nodes, links });
+      }
+    }
 
     loadGraphData();
   }, [member]);
@@ -67,7 +74,7 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
       fgRef.current.d3ReheatSimulation(); // Restart simulation to apply the change
     }
   }, [graphData]);
-  
+
 
   return (
     <Modal open={open} onClose={handleClose} aria-labelledby="team-member-modal">
@@ -93,48 +100,53 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
         <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Description</Typography>
         <Box sx={{ mt: 1, minHeight: '40%', textAlign: 'justify' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
 
-        <Box my={2} minHeight={'200px'} width={'100%'} >
+        <Box my={2} minHeight={'100px'} width={'100%'} >
           <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Publications</Typography>
           <AuthorPublications id={member.id} />
         </Box>
 
-        <Box my={2} display={'flex'} flexDirection={"column"} height={'400px'} width={'100%'}>
+        <Box my={2} display={'flex'} flexDirection={"column"} minHeight={'100px'} width={'100%'}>
           <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Co Author Graph</Typography>
           <Box display={"flex"} justifyContent={"center"} width={"100%"}>
-          <ForceGraph2D
-            ref={fgRef}
-            graphData={graphData}
-            enableNodeDrag={true}
-            nodeCanvasObject={(node, ctx) => {
-              const size = node.id === member.id ? 20 : 10;
-              loadImage(node);
+            {
+              noGraphData ?
+                <Typography variant="h6" my={4} color="textSecondary">No co-authors found for this author.</Typography>
+                :
+                <ForceGraph2D
+                  ref={fgRef}
+                  graphData={graphData}
+                  enableNodeDrag={true}
+                  nodeCanvasObject={(node, ctx) => {
+                    const size = node.id === member.id ? 20 : 10;
+                    loadImage(node);
 
-              if (!imageCache[node.id]) return;
+                    if (!imageCache[node.id]) return;
 
-              ctx.save();
-              ctx.beginPath();
-              ctx.arc(node.x, node.y, size, 0, 2 * Math.PI, false);
-              ctx.clip();
-              ctx.drawImage(imageCache[node.id], node.x - size, node.y - size, size * 2, size * 2);
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, size, 0, 2 * Math.PI, false);
+                    ctx.clip();
+                    ctx.drawImage(imageCache[node.id], node.x - size, node.y - size, size * 2, size * 2);
 
-              // Add border
-              ctx.strokeStyle = "#0c2461";
-              ctx.lineWidth = 1;
-              ctx.stroke();
-              ctx.restore();
-            }}
-            nodePointerAreaPaint={(node, color, ctx) => {
-              const size = node.id === member.id ? 20 : 10;
-              ctx.fillStyle = color;
-              ctx.fillRect(node.x - size, node.y - size, size * 2, size * 2);
-            }}
-            width={600} // Ensure proper width
-            height={400} // Ensure proper height
-            nodeLabel={node => node.name}
-            onNodeClick={node => navigate(`/Team/${node.id}`)}
-            linkColor={() => "gray"}
-            linkWidth={1}
-          />
+                    // Add border
+                    ctx.strokeStyle = "#0c2461";
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    ctx.restore();
+                  }}
+                  nodePointerAreaPaint={(node, color, ctx) => {
+                    const size = node.id === member.id ? 20 : 10;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(node.x - size, node.y - size, size * 2, size * 2);
+                  }}
+                  width={600} // Ensure proper width
+                  height={400} // Ensure proper height
+                  nodeLabel={node => node.name}
+                  onNodeClick={node => navigate(`/Team/${node.id}`)}
+                  linkColor={() => "gray"}
+                  linkWidth={1}
+                />
+            }
           </Box>
 
         </Box>

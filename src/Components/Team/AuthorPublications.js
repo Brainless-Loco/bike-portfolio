@@ -29,8 +29,18 @@ const AuthorPublications = ({id}) => {
         fetchPublications();
     }, [id, db]);
 
+    if(publications.length < 1) {
+        return (
+            <Box display="flex" justifyContent="center" my={4}>
+                <Typography variant="h6" color="textSecondary">No publications found for this author.</Typography>
+            </Box>
+        )
+    }
+
+
     return (
         <Box display="flex" flexDirection="column" alignItems="center" gap={2} mt={2}>
+            
             {publications.map((publication) => (
                 <Card key={publication.id} sx={{ width: "90%", }}>
                     <CardContent>

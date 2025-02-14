@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
 import { app } from "./../../Utils/Firebase";
 import { ForceGraph2D } from "react-force-graph";
-import Box  from "@mui/material/Box";
+import Box from "@mui/material/Box";
 // import { Helmet } from "react-helmet";
 
 const db = getFirestore(app);
@@ -16,9 +16,10 @@ const fetchAuthorsGraph = async () => {
     }));
 };
 
-const AuthorGraphVisualization = ({id, setNonHomePath}) => {
+const AuthorGraphVisualization = ({ id, setNonHomePath }) => {
     const [graphData, setGraphData] = useState({ nodes: [], links: [] });
-    const [imageCache, setImageCache] = useState({}); 
+    const [imageCache, setImageCache] = useState({});
+    // eslint-disable-next-line
     const [noGraphData, setNoGraphData] = useState(false);
 
     const loadImage = (node) => {
@@ -48,28 +49,23 @@ const AuthorGraphVisualization = ({id, setNonHomePath}) => {
                 }))
             );
 
+            // console.log(links)
+
             setGraphData({ nodes, links });
         };
 
-        const loadGraphDataWithId = async (authorId) => {
-            const querySnapshot = await getDocs(collection(db, "AuthorGraph").doc(authorId));
-            if (querySnapshot.exists()) {
-                const author = querySnapshot.data();
-                setGraphData({ nodes: [{ id: author.id, name: author.name, profilePhoto: author.profilePhoto }], links: author.coAuthors });
-            } else {
-                setNoGraphData(true);
-            }
-        }
+        
+        // id ? loadGraphDataWithId(id) : 
+            loadGraphDataWithoutId();
+    }, [id]);
+    
 
-        id ? loadGraphDataWithId(id): loadGraphDataWithoutId();
-    }, []);
-
-    useEffect(()=>{
-        if(setNonHomePath) setNonHomePath(true)
-    },[setNonHomePath])
+    useEffect(() => {
+        if (setNonHomePath) setNonHomePath(true)
+    }, [setNonHomePath])
 
     return (
-        <Box sx={{ borderRadius: 2, overflow:'hidden', border:'1px solid green' }}>
+        <Box sx={{ borderRadius: 2, overflow: 'hidden', border: '1px solid green' }}>
             {/* <Helmet>
                 <title>Author Graph | BIKE Lab</title>
                 <meta name="description" content="Visualize the connections between authors in the BIKE Lab research." />
@@ -78,12 +74,12 @@ const AuthorGraphVisualization = ({id, setNonHomePath}) => {
                 graphData={graphData}
                 enableNodeDrag={true} // Allow dragging nodes
                 nodeCanvasObject={(node, ctx) => {
-                    const size = id ? node.id === id ?20: 10:10;
+                    const size = id ? node.id === id ? 20 : 10 : 10;
                     if (!imageCache[node.id]) {
                         loadImage(node);
                         return;
                     }
-            
+
                     ctx.save();
                     ctx.beginPath();
                     ctx.arc(node.x, node.y, size, 0, 2 * Math.PI, false);
@@ -92,7 +88,7 @@ const AuthorGraphVisualization = ({id, setNonHomePath}) => {
                     ctx.restore();
                 }}
                 nodePointerAreaPaint={(node, color, ctx) => {
-                    const size = id ? node.id === id ?20: 10:10;
+                    const size = id ? node.id === id ? 20 : 10 : 10;
                     ctx.fillStyle = color;
                     ctx.fillRect(node.x - size, node.y - size, size * 2, size * 2);
                 }}

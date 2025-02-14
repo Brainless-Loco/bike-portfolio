@@ -127,9 +127,9 @@ const TeamSection = ({ setNonHomePath }) => {
         Meet Our Team
       </Typography>
 
-      {Object.entries(categorizedMembers).map(([category, positions]) => {
+      {Object.entries(categorizedMembers).map(([category, positions], idx) => {
         return (
-          <Box key={category} sx={{ my: 4 }}>
+          <Box key={idx} sx={{ my: 4 }}>
             <Typography
               variant="h4" color="#0c2461" fontWeight={600}
               sx={{
@@ -143,7 +143,7 @@ const TeamSection = ({ setNonHomePath }) => {
                 // console.log(position);
                 return <></>
               }
-              return <Box key={position} sx={{ my: 2 }}>
+              return <Box key={category+position} sx={{ my: 2 }}>
                 <Typography
                   variant="h6" color="#0c2461" fontWeight={600} sx={{
                     mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
