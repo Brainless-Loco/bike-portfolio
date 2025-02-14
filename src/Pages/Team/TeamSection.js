@@ -43,16 +43,16 @@ const TeamSection = ({ setNonHomePath }) => {
     }
   }, [state, teamMembers]);
 
-  useEffect(()=>{
-    if(profileID){
+  useEffect(() => {
+    if (profileID) {
       const member = teamMembers.find((member) => member.id === profileID);
       setSelectedMember(member);
       setOpen(true);
     }
-  },[profileID,teamMembers])
+  }, [profileID, teamMembers])
 
 
-  const positionOrder = ["Director", "Research Assistant", "Teacher", "Researcher",  "Others"];
+  const positionOrder = ["Director", "Research Assistant", "Teacher", "Researcher", "Others"];
 
   const categorizedMembers = {
     Current: {},
@@ -64,11 +64,11 @@ const TeamSection = ({ setNonHomePath }) => {
     const category = member.isFormer ? "Former" : "Current";
     const position = member.position || "Others";
 
-    if (position!=='Co Author' && position!=='Supervisor' && !categorizedMembers[category][position]) {
+    if (position !== 'Co Author' && position !== 'Supervisor' && !categorizedMembers[category][position]) {
       categorizedMembers[category][position] = [];
     }
 
-    if(position!=='Co Author' && position!=='Supervisor') categorizedMembers[category][position].push(member);
+    if (position !== 'Co Author' && position !== 'Supervisor') categorizedMembers[category][position].push(member);
   });
 
   // Sorting order for positions
@@ -128,68 +128,66 @@ const TeamSection = ({ setNonHomePath }) => {
       </Typography>
 
       {Object.entries(categorizedMembers).map(([category, positions]) => {
-        return <Box key={category} sx={{ my: 4 }}>
-          <Typography
-            variant="h4" color="#0c2461" fontWeight={600}
-            sx={{
-              mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
-            }}
-          >
-            {category} Members
-          </Typography>
-          {Object.entries(positions).sort().map(([position, members]) => {
-            if(category === 'Former' && position === 'Student'){
-              // console.log(position);
-              return <></>
-            }
-            return <Box key={position} sx={{ my: 2 }}>
-                      <Typography
-                        variant="h6" color="#0c2461" fontWeight={600} sx={{
-                          mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
-                        }}
-                      >
-                        {position}
-                      </Typography>
+        return (
+          <Box key={category} sx={{ my: 4 }}>
+            <Typography
+              variant="h4" color="#0c2461" fontWeight={600}
+              sx={{
+                mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
+              }}
+            >
+              {category} Members
+            </Typography>
+            {Object.entries(positions).sort().map(([position, members]) => {
+              if (category === 'Former' && position === 'Student') {
+                // console.log(position);
+                return <></>
+              }
+              return <Box key={position} sx={{ my: 2 }}>
+                <Typography
+                  variant="h6" color="#0c2461" fontWeight={600} sx={{
+                    mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%",
+                  }}
+                >
+                  {position}
+                </Typography>
 
-                      {position !== "Researcher" ? (
-                        <Box className="d-flex flex-wrap" gap={5}>
-                          {members.map((member) => (
-                            <TeamMemberCard key={member.id} member={member} onClick={() => {
-                              setSelectedMember(member); setOpen(true);
-                            }}
-                            />
-                          ))}
-                        </Box>
-                      ) : (
-                          researcherOrder.filter((eduLevel)=> members[eduLevel]).map((eduLevel)=>(
-                            <Box key={eduLevel} sx={{ my: 2 }}>
-                              <Typography
-                                variant="subtitle1"
-                                fontWeight={600}
-                                sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2",
-                                  display: "inline-block", width: "100%",
-                                }} >
-                                {eduLevel}
-                              </Typography>
-                              <Box className={"d-flex flex-wrap"} gap={5}>
-                                {members[eduLevel].map((member) => 
-                                  (<TeamMemberCard
-                                    key={member.id}
-                                    member={member}
-                                    onClick={() => {
-                                      setSelectedMember(member);
-                                      setOpen(true);
-                                    }}
-                                  />)
-                                )}
-                              </Box>
-                            </Box>
-                          ))
-                          
-                      )}
-            </Box>
-          })}
-        </Box>
+                {position !== "Researcher" ? (
+                  <Box className="d-flex flex-wrap justify-content-between" gap={5}>
+                    {members.map((member) => (
+                      <TeamMemberCard key={member.id} member={member} onClick={() => {
+                        setSelectedMember(member); setOpen(true);
+                      }}
+                      />
+                    ))}
+                  </Box>
+                ) : (
+                  researcherOrder.filter((eduLevel) => members[eduLevel]).map((eduLevel) => (
+                    <Box key={eduLevel} sx={{ my: 2 }}>
+                      <Typography variant="subtitle1" fontWeight={600}
+                        sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%", }} >
+                        {eduLevel}
+                      </Typography>
+                      <Box className={"d-flex flex-wrap justify-content-start"}>
+                        {members[eduLevel].map((member) =>
+                        (<TeamMemberCard
+                          key={member.id}
+                          member={member}
+                          onClick={() => {
+                            setSelectedMember(member);
+                            setOpen(true);
+                          }}
+                        />)
+                        )}
+                      </Box>
+                    </Box>
+                  ))
+
+                )}
+              </Box>
+            })}
+          </Box>
+        )
       })}
 
       {/* Modal for showing details */}
