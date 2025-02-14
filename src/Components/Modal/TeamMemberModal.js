@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import AuthorPublications from "../Team/AuthorPublications";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import { useEffect, useRef, useState } from "react";
 import { ForceGraph2D } from "react-force-graph";
