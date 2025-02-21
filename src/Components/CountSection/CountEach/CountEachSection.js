@@ -8,7 +8,7 @@ const CountEachSection = (props) => {
             <p className="countUp mb-0"><CountUp start={0} end={props.EndCount} duration={15} />+</p>
             <h1 className="text-white mt-0 countTitle">{props.Name}</h1>
             <p className="countDesc">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ab facere beatae veritatis minima voluptate?
+                {props.shortDescrption}
             </p>
         </div>
     );
