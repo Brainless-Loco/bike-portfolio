@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,47 +16,43 @@ const Researches = ({ setNonHomePath }) => {
   const [selectedResearch, setSelectedResearch] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const {publicationID} = useParams()
+  const { publicationID } = useParams()
 
   useEffect(() => {
     setNonHomePath(true)
     const fetchResearches = async () => {
-      const querySnapshot = await getDocs(collection(db, "Researches"));
-      const fetchedResearches = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-
-      setResearches(fetchedResearches);
-
-      // Grouping by publicationType
-      const grouped = fetchedResearches.reduce((acc, research) => {
-        const type = research.publicationType || "Others";
-        if (!acc[type]) acc[type] = [];
-        acc[type].push(research);
-        return acc;
-      }, {});
-
-
-
-      setGroupedResearches(grouped);
+      const q = query(collection(db, "Researches"), orderBy("publicationDate", "desc"));
+      onSnapshot(q, (snapshot) => {
+        const fetchedResearches = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setResearches(fetchedResearches);
+        const grouped = fetchedResearches.reduce((acc, research) => {
+          const type = research.publicationType || "Others";
+          if (!acc[type]) acc[type] = [];
+          acc[type].push(research);
+          return acc;
+        }, {});
+        setGroupedResearches(grouped);
+      });
     };
 
     fetchResearches();
   }, [setNonHomePath]);
 
-  useEffect(()=>{
-    if(publicationID && groupedResearches){
+  useEffect(() => {
+    if (publicationID && groupedResearches) {
       // console.log(publicationID)
       const tempResearches = []
-      Object.entries(groupedResearches).forEach(([publicationType, publications])=>{
-          
+      Object.entries(groupedResearches).forEach(([publicationType, publications]) => {
+
         tempResearches.push(...publications)
       });
-      setSelectedResearch(tempResearches.filter(research=>research.id===publicationID)[0])
+      setSelectedResearch(tempResearches.filter(research => research.id === publicationID)[0])
       setOpen(true)
     }
-  },[publicationID, groupedResearches])
+  }, [publicationID, groupedResearches])
 
 
   // Open modal with selected research
@@ -87,7 +83,8 @@ const Researches = ({ setNonHomePath }) => {
             variant="h5"
             color="#0c2461"
             fontWeight={600}
-            sx={{ mb: 2, pb: 1, borderBottom: "2px solid #0c2461", display: "inline-block", width: '100%'
+            sx={{
+              mb: 2, pb: 1, borderBottom: "2px solid #0c2461", display: "inline-block", width: '100%'
             }}
           >
             {publicationType}
@@ -106,7 +103,7 @@ const Researches = ({ setNonHomePath }) => {
                     {research.authors.map((author, index) => (
                       <span key={index}>
                         {author.id ? (
-                          <Link  to={'/Team/'+author.id}>
+                          <Link to={'/Team/' + author.id}>
                             {author.name}
                           </Link>
                         ) : (
@@ -119,9 +116,9 @@ const Researches = ({ setNonHomePath }) => {
                   {/* <Typography variant="body2">{
                     research.otherInfo.length>300? research.otherInfo.substring(0,300)+"...":research.otherInfo
                     }</Typography> */}
-                  <Link to={"/Publications/"+research.id} >
+                  <Link to={"/Publications/" + research.id} >
                     <Typography color="#0c2461" fontWeight={700}>Details</Typography>
-                    
+
                   </Link>
                 </CardContent>
               </Card>
