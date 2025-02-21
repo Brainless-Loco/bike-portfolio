@@ -29,7 +29,7 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
       };
     }
   };
-  
+
   const fetchAuthorGraphById = async (authorId) => {
     const docRef = doc(db, "AuthorGraph", authorId);
     const docSnap = await getDoc(docRef);

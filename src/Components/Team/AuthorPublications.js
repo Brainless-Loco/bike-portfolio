@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { collection, getDocs, getFirestore } from "firebase/firestore";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { app } from "../../Utils/Firebase";
+import SinglePublication from "./SinglePublication";
+import Button from "@mui/material/Button";
 
-const AuthorPublications = ({id}) => {
+const AuthorPublications = ({ id }) => {
     const [publications, setPublications] = useState([]);
+    const [visibleCount, setVisibleCount] = useState(3);
     const db = getFirestore(app);
 
     useEffect(() => {
@@ -29,7 +29,11 @@ const AuthorPublications = ({id}) => {
         fetchPublications();
     }, [id, db]);
 
-    if(publications.length < 1) {
+    const handleLoadMore = () => {
+        setVisibleCount((prevCount) => prevCount + 5);
+    };
+
+    if (publications.length < 1) {
         return (
             <Box display="flex" justifyContent="center" my={4}>
                 <Typography variant="h6" color="textSecondary">No publications found for this author.</Typography>
@@ -37,33 +41,18 @@ const AuthorPublications = ({id}) => {
         )
     }
 
-
     return (
         <Box display="flex" flexDirection="column" alignItems="center" gap={2} mt={2}>
-            
-            {publications.map((publication) => (
-                <Card key={publication.id} sx={{ width: "90%", }}>
-                    <CardContent>
-                        <Typography variant="subtitle1" fontWeight={600} component={Link} to={`/Publications/${publication.id}`} textDecoration="none" color="#0c2461" lineHeight={1} >
-                            {publication.title}
-                        </Typography>
-                        <Typography my={0} py={0} variant="body2" sx={{ color: "gray"}}>
-                            {new Date(publication.publicationDate?.seconds * 1000).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
-                        </Typography>
-
-                        <Typography variant="body2">
-                            {publication.authors.map((author, index) => (
-                                <React.Fragment key={author.id}>
-                                    <Link to={`/Team/${author.id}`} style={{color:'blue', fontWeight: author.id === id ? 700 : "normal"  }} >
-                                        {author.name}
-                                    </Link>
-                                    {index < publication.authors.length - 1 && ", "}
-                                </React.Fragment>
-                            ))}
-                        </Typography>
-                    </CardContent>
-                </Card>
+            {publications.slice(0, visibleCount).map((publication, index) => (
+                <SinglePublication key={index} publication={publication} id={id} />
             ))}
+            {visibleCount < publications.length && (
+                <Box textAlign="center" mt={2}>
+                    <Button variant="outlined" sx={{ borderColor: '#0c2461', color: '#0c2461' }} onClick={handleLoadMore}>
+                        Load More
+                    </Button>
+                </Box>
+            )}
         </Box>
     );
 };
