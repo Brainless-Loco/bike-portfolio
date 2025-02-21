@@ -96,7 +96,7 @@ const Researches = ({ setNonHomePath }) => {
             {items.map((research) => (
               <Card key={research.id} sx={{ bgcolor: '#fff', borderRadius: 2, boxShadow: 3, width: '90%' }}>
                 <CardContent>
-                  <Typography variant="subtitle1" lineHeight={1.1} color="#0c2461" fontWeight={600}>{research.title}</Typography>
+                  <Typography variant="subtitle1" lineHeight={1.1} color="#0c2461" fontWeight={600}>{research.title} | <a href={research.publisher.externalLink}>{research.publisher.title}</a> </Typography>
 
                   <Typography variant="subtitle2" color="textSecondary">
                     {new Date(research.publicationDate?.seconds * 1000).toDateString()}
@@ -106,7 +106,7 @@ const Researches = ({ setNonHomePath }) => {
                     {research.authors.map((author, index) => (
                       <span key={index}>
                         {author.id ? (
-                          <Link  to={'/Team'} state={{id:author.id}} >
+                          <Link  to={'/Team/'+author.id}>
                             {author.name}
                           </Link>
                         ) : (
