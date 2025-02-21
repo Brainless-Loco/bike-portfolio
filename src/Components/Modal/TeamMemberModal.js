@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import { Link, useNavigate } from "react-router-dom";
 import AuthorPublications from "../Team/AuthorPublications";
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import { useEffect, useRef, useState } from "react";
 import { ForceGraph2D } from "react-force-graph";
@@ -29,44 +29,53 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
       };
     }
   };
+  
+  const fetchAuthorGraphById = async (authorId) => {
+    const docRef = doc(db, "AuthorGraph", authorId);
+    const docSnap = await getDoc(docRef);
 
-  const fetchAuthorsGraph = async () => {
-    const querySnapshot = await getDocs(collection(db, "AuthorGraph"));
-    return querySnapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }));
+    if (!docSnap.exists()) return null;
+
+    return { id: docSnap.id, ...docSnap.data() };
   };
 
   useEffect(() => {
     if (!member) return;
+
     const loadGraphData = async () => {
-      const authors = await fetchAuthorsGraph();
-      const nodes = authors.map(author => ({
-        id: author.id,
-        name: author.name,
-        profilePhoto: author.profilePhoto
+      const author = await fetchAuthorGraphById(member.id);
+
+      if (!author) {
+        setNoGraphData(true);
+        return;
+      }
+
+      setNoGraphData(false);
+
+      const nodes = [
+        {
+          id: author.id,
+          name: author.name,
+          profilePhoto: author.profilePhoto
+        },
+        ...author.coAuthors.map(coAuthor => ({
+          id: coAuthor.id,
+          name: coAuthor.name,
+          profilePhoto: coAuthor.profilePhoto
+        }))
+      ];
+
+      const links = author.coAuthors.map(coAuthor => ({
+        source: author.id,
+        target: coAuthor.id
       }));
 
-      const links = authors.flatMap(author =>
-        author.coAuthors.map(coAuthor => ({
-          source: author.id,
-          target: coAuthor.id
-        }))
-      );
-      // Check if member.id exists in the nodes
-      const memberExists = nodes.some(node => node.id === member.id);
-
-      if (!memberExists) {
-        setNoGraphData(true);
-      } else {
-        setNoGraphData(false);
-        setGraphData({ nodes, links });
-      }
-    }
+      setGraphData({ nodes, links });
+    };
 
     loadGraphData();
   }, [member]);
+
 
   useEffect(() => {
     if (fgRef.current) {
@@ -139,7 +148,7 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
                     ctx.fillStyle = color;
                     ctx.fillRect(node.x - size, node.y - size, size * 2, size * 2);
                   }}
-                  width={600} // Ensure proper width
+                  width={800} // Ensure proper width
                   height={400} // Ensure proper height
                   nodeLabel={node => node.name}
                   onNodeClick={node => navigate(`/Team/${node.id}`)}
