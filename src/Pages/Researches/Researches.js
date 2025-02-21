@@ -6,11 +6,9 @@ import { db } from "../../Utils/Firebase";
 import ResearchModal from "../../Components/Modal/ResearchModal";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import SingleResearchComponent from "../../Components/Researches/SingleResearchComponent";
+import GroupedResearches from "../../Components/Researches/GroupedResearches";
 
 const Researches = ({ setNonHomePath }) => {
-  // eslint-disable-next-line
-  const [researches, setResearches] = useState([]);
   const [groupedResearches, setGroupedResearches] = useState({});
   const [selectedResearch, setSelectedResearch] = useState(null);
   const [open, setOpen] = useState(false);
@@ -26,7 +24,6 @@ const Researches = ({ setNonHomePath }) => {
           id: doc.id,
           ...doc.data(),
         }));
-        setResearches(fetchedResearches);
         const grouped = fetchedResearches.reduce((acc, research) => {
           const type = research.publicationType || "Others";
           if (!acc[type]) acc[type] = [];
@@ -77,24 +74,7 @@ const Researches = ({ setNonHomePath }) => {
       </Typography>
 
       {Object.entries(groupedResearches).map(([publicationType, items]) => (
-        <Box key={publicationType} sx={{ my: 4 }}>
-          <Typography
-            variant="h5"
-            color="#0c2461"
-            fontWeight={600}
-            sx={{
-              mb: 2, pb: 1, borderBottom: "2px solid #0c2461", display: "inline-block", width: '100%'
-            }}
-          >
-            {publicationType}
-          </Typography>
-          <Box key={publicationType} className={"d-flex flex-wrap justify-content-center"} gap={1}>
-            {items.map((research) => (
-              <SingleResearchComponent research={research}/>
-            ))}
-            {/* <Typography variant="h5">To be updated...</Typography> */}
-          </Box>
-        </Box>
+        <GroupedResearches publicationType={publicationType} items={items} />
       ))}
 
       {/* Research Modal */}
