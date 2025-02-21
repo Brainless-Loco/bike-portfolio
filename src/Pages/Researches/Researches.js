@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Box from "@mui/material/Box";
-import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
 import { db } from "../../Utils/Firebase";
 import ResearchModal from "../../Components/Modal/ResearchModal";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import SingleResearchComponent from "../../Components/Researches/SingleResearchComponent";
 
 const Researches = ({ setNonHomePath }) => {
   // eslint-disable-next-line
@@ -91,37 +90,7 @@ const Researches = ({ setNonHomePath }) => {
           </Typography>
           <Box key={publicationType} className={"d-flex flex-wrap justify-content-center"} gap={1}>
             {items.map((research) => (
-              <Card key={research.id} sx={{ bgcolor: '#fff', borderRadius: 2, boxShadow: 3, width: '90%' }}>
-                <CardContent>
-                  <Typography variant="subtitle1" lineHeight={1.1} color="#0c2461" fontWeight={600}>{research.title} | <a href={research.publisher.externalLink}>{research.publisher.title}</a> </Typography>
-
-                  <Typography variant="subtitle2" color="textSecondary">
-                    {new Date(research.publicationDate?.seconds * 1000).toDateString()}
-                  </Typography>
-
-                  <Typography variant="body2">
-                    {research.authors.map((author, index) => (
-                      <span key={index}>
-                        {author.id ? (
-                          <Link to={'/Team/' + author.id}>
-                            {author.name}
-                          </Link>
-                        ) : (
-                          author.name
-                        )}
-                        {index < research.authors.length - 1 ? ", " : ""}
-                      </span>
-                    ))}
-                  </Typography>
-                  {/* <Typography variant="body2">{
-                    research.otherInfo.length>300? research.otherInfo.substring(0,300)+"...":research.otherInfo
-                    }</Typography> */}
-                  <Link to={"/Publications/" + research.id} >
-                    <Typography color="#0c2461" fontWeight={700}>Details</Typography>
-
-                  </Link>
-                </CardContent>
-              </Card>
+              <SingleResearchComponent research={research}/>
             ))}
             {/* <Typography variant="h5">To be updated...</Typography> */}
           </Box>
