@@ -58,7 +58,7 @@ const ResearchModal = ({ open, handleClose, research }) => {
           </Typography>
 
           <Typography variant="body1" sx={{ my: 2 }}>
-            <strong>Publisher:</strong>{" "}
+            <strong>Journal/Conference:</strong>{" "}
             {research.publisher?.externalLink ? (
               <a
                 href={research.publisher.externalLink}
