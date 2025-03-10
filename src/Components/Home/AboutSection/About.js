@@ -25,16 +25,16 @@ const About = () => {
                     <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '20px', fontWeight: 500 }}>
                         <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Vision:</strong> Providing data-driven solutions for societal challenges.</p>
                         <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Mission:</strong> BIKE conducts research, ranging from near-term applicability to exploratory research. We:</p>
-                        <ul style={{ paddingLeft: '20px' }}>
-                            <li>🔗 Are passionate and committed to going the extra mile.</li>
-                            <li>🔗 Seek collaboration.</li>
-                            <li>🔗 Provide trustworthy and sustainable solutions to stakeholders.</li>
+                        <ul style={{listStyle: 'square'}}>
+                            <li> Are passionate and committed to going the extra mile.</li>
+                            <li> Seek collaboration.</li>
+                            <li> Provide trustworthy and sustainable solutions to stakeholders.</li>
                         </ul>
                     </div>
 
                     <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '18px' }}>
                         <p><strong style={{ color: "#0c2461", fontWeight: 800 }}> Research Areas:</strong> We focus on the following key areas:</p>
-                        <ul style={{ paddingLeft: '20px', listStyle: 'square' }}>
+                        <ul style={{ listStyle: 'square' }}>
                             <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Semantic Data Integration:</strong> Enabling seamless integration of heterogeneous data sources.</li>
                             <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Knowledge Graph Exploration:</strong> Creating and exploring structured knowledge representations.</li>
                             <li><strong style={{ color: "#0c2461", fontWeight: 700 }}>Enabling Semantic Integration Over Bangladesh Open Data:</strong> Connecting and enriching national open data.</li>
