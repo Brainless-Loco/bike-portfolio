@@ -65,6 +65,7 @@ function App() {
           <Route path= "/Team/:profileID" element={<TeamSection setNonHomePath={setNonHomePath}/>}/>
 
           <Route path= "/Projects" element={<Projects setNonHomePath={setNonHomePath}/>}/>
+          
           <Route path= "/Director" element={<Director setNonHomePath={setNonHomePath}/>}/>
 
           <Route path="/AuthorGraph" element={<AuthorGraphVisualization setNonHomePath={setNonHomePath}/>}/>
