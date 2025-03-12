@@ -21,24 +21,27 @@ export default function Vacancies({ setNonHomePath }) {
             const querySnapshot = await getDocs(collection(db, "Vacancies"));
             const types = new Set();
             const namesMap = {};
-
+    
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
                 types.add(data.position_type);
-
+    
                 if (!namesMap[data.position_type]) {
                     namesMap[data.position_type] = [];
                 }
-                namesMap[data.position_type].push(data.position_name);
+                
+                // Store position_name along with its document ID
+                namesMap[data.position_type].push({ position_name: data.position_name, id: doc.id });
             });
-
+    
             setPositionTypes(Array.from(types));
             setPositionNames(namesMap);
         };
-
+    
         fetchPositions();
-        setNonHomePath(true)
+        setNonHomePath(true);
     }, [setNonHomePath]);
+    
 
     const handleOpenModal = (type) => {
         setSelectedType(type);

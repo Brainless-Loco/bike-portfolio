@@ -26,6 +26,7 @@ const modalStyle = {
 };
 
 export default function VacancyModal({ open, handleClose, positionType, positionNames }) {
+
     return (
         <Modal open={open} onClose={handleClose} aria-labelledby="vacancy-modal">
             <Box sx={modalStyle}>
@@ -41,15 +42,15 @@ export default function VacancyModal({ open, handleClose, positionType, position
 
                 {/* Position Name List */}
                 <List>
-                    {positionNames.map((name) => (
-                        <ListItem key={name}>
+                    {positionNames.map((pos) => (
+                        <ListItem key={pos.id}>
                             <ListItemIcon>
                                 <RadioButtonCheckedOutlinedIcon color="primary" />
                             </ListItemIcon>
                             <ListItemText
                                 primary={
-                                    <Link to={`/Vacancies/${name}`} className="text-decoration-none text-primary fw-bold">
-                                        {name}
+                                    <Link to={`/Vacancies/${pos.id}`} className="text-decoration-none text-primary fw-bold">
+                                        {pos.position_name}
                                     </Link>
                                 }
                             />

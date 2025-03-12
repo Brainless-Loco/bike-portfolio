@@ -16,6 +16,7 @@ import Projects from './Pages/Projects/Projects';
 import Director from './Pages/Director/Director';
 import AuthorGraphVisualization from './Pages/AuthorGraph/AuthorGraphVisualization';
 import Vacancies from './Pages/Vacancies/Vacancies';
+import VacancyDetails from './Pages/Vacancies/VacancyDetails';
 
 function App() {
   // console log using jQuery
@@ -68,6 +69,7 @@ function App() {
           <Route path= "/Projects" element={<Projects setNonHomePath={setNonHomePath}/>}/>
           
           <Route path= "/Vacancies" element={<Vacancies setNonHomePath={setNonHomePath}/>}/>
+          <Route path= "/Vacancies/:id" element={<VacancyDetails setNonHomePath={setNonHomePath}/>}/>
           
           <Route path= "/Director" element={<Director setNonHomePath={setNonHomePath}/>}/>
 
