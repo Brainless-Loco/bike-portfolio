@@ -7,23 +7,43 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
 import { collection, getDocs } from "firebase/firestore";
-import { Link } from "react-router-dom";
 import { db } from "../../Utils/Firebase";
+import VacancyModal from "../../Components/Modal/VacanciesModal";
 
 export default function Vacancies({ setNonHomePath }) {
     const [positionTypes, setPositionTypes] = useState([]);
+    const [positionNames, setPositionNames] = useState({});
+    const [selectedType, setSelectedType] = useState("");
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         const fetchPositions = async () => {
             const querySnapshot = await getDocs(collection(db, "Vacancies"));
             const types = new Set();
-            querySnapshot.forEach((doc) => types.add(doc.data().position_type));
+            const namesMap = {};
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                types.add(data.position_type);
+
+                if (!namesMap[data.position_type]) {
+                    namesMap[data.position_type] = [];
+                }
+                namesMap[data.position_type].push(data.position_name);
+            });
+
             setPositionTypes(Array.from(types));
+            setPositionNames(namesMap);
         };
-        setNonHomePath(true)
 
         fetchPositions();
+        setNonHomePath(true)
     }, [setNonHomePath]);
+
+    const handleOpenModal = (type) => {
+        setSelectedType(type);
+        setOpenModal(true);
+    };
 
     return (
         <div className="container my-5 pt-5">
@@ -40,20 +60,18 @@ export default function Vacancies({ setNonHomePath }) {
             <Box className="bg-light p-4 rounded">
                 <List>
                     {positionTypes.map((type) => (
-                        <Link to={`/Vacancies/${type}`}>
-                            <ListItem key={type} sx={{ mb: 1 }}>
-                                <ListItemIcon >
-                                    <ArrowCircleRightOutlinedIcon sx={{ fontSize: 30 }} color="primary" />
-                                </ListItemIcon>
-                                <ListItemText
-                                    primary={
-                                        <Typography fontSize={22} className="text-decoration-none text-primary fw-bold" >
-                                            See vacant for {type} positions
-                                        </Typography>
-                                    }
-                                />
-                            </ListItem>
-                        </Link>
+                        <ListItem key={type} sx={{ mb: 1, cursor:'pointer' }} button onClick={() => handleOpenModal(type)}>
+                            <ListItemIcon >
+                                <ArrowCircleRightOutlinedIcon sx={{ fontSize: 30 }} color="primary" />
+                            </ListItemIcon>
+                            <ListItemText
+                                primary={
+                                    <Typography fontSize={22} className="text-decoration-none text-primary fw-bold" >
+                                        See vacant for {type} positions
+                                    </Typography>
+                                }
+                            />
+                        </ListItem>
                     ))}
                 </List>
             </Box>
@@ -62,7 +80,7 @@ export default function Vacancies({ setNonHomePath }) {
             <Box className="row mt-5 align-items-center">
                 {/* Culture */}
                 <Box className="col-md-6 p-4">
-                    <Typography variant="h4" fontWeight="bold" color="#0c2461">
+                    <Typography variant="h3" fontWeight="bold" color="#0c2461">
                         Our Culture
                     </Typography>
                     <Typography variant="body1">
@@ -85,7 +103,7 @@ export default function Vacancies({ setNonHomePath }) {
             {/* Vision */}
             <Box className="row mt-5 align-items-center flex-md-row-reverse">
                 <Box className="col-md-6 p-4">
-                    <Typography variant="h4" fontWeight="bold" color="#0c2461">
+                    <Typography variant="h3" fontWeight="bold" color="#0c2461">
                         Our Vision
                     </Typography>
                     <Typography variant="body1">
@@ -106,13 +124,13 @@ export default function Vacancies({ setNonHomePath }) {
             {/* Mission */}
             <Box className="row mt-5 align-items-center">
                 <Box className="col-md-6 p-4">
-                    <Typography variant="h4" color="#0c2461" fontWeight="bold">
+                    <Typography variant="h3" color="#0c2461" fontWeight="bold">
                         Our Mission
                     </Typography>
                     <Typography variant="body1">
                         BIKE Lab conducts research that ranges from near-term applications to long-term exploratory projects. Our mission is to:
                     </Typography>
-                    <ul className="ps-3" style={{listStyle:'square'}}>
+                    <ul className="ps-3" style={{ listStyle: 'square' }}>
                         <li> Passionately commit to going the extra mile.</li>
                         <li> Actively seek collaborations for innovative solutions.</li>
                         <li> Provide trustworthy and sustainable research-driven solutions.</li>
@@ -127,6 +145,14 @@ export default function Vacancies({ setNonHomePath }) {
                     />
                 </Box>
             </Box>
+
+            {/* Vacancy Modal */}
+            <VacancyModal
+                open={openModal}
+                handleClose={() => setOpenModal(false)}
+                positionType={selectedType}
+                positionNames={positionNames[selectedType] || []}
+            />
         </div>
     );
 }
