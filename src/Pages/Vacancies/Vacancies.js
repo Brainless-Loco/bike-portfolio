@@ -73,7 +73,7 @@ export default function Vacancies({ setNonHomePath }) {
                 </Box>
                 <Box className="col-md-6 text-center overflow-hidden" sx={{ height: "430px" }}>
                     <img
-                        src="/culture.jpg"
+                        src="/Image/culture.jpg"
                         alt="Culture of BIKE Lab"
                         className="rounded shadow w-100"
                         style={{ height: "100%", objectFit: "cover" }}
@@ -95,7 +95,7 @@ export default function Vacancies({ setNonHomePath }) {
                 </Box>
                 <Box className="col-md-6 text-center overflow-hidden" sx={{ height: "430px" }}>
                     <img
-                        src="/vision.jpg"
+                        src="/Image/vision.jpg"
                         alt="Vision of BIKE Lab"
                         className="rounded shadow w-100"
                         style={{ height: "100%", objectFit: "cover" }}
@@ -120,7 +120,7 @@ export default function Vacancies({ setNonHomePath }) {
                 </Box>
                 <Box className="col-md-6 text-center overflow-hidden" sx={{ height: "430px" }}>
                     <img
-                        src="/mission.png"
+                        src="/Image/mission.png"
                         alt="Mision of BIKE Lab"
                         className="rounded shadow w-100 bg-light"
                         style={{ height: "100%", objectFit: "cover" }}
