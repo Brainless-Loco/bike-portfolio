@@ -17,6 +17,7 @@ import Director from './Pages/Director/Director';
 import AuthorGraphVisualization from './Pages/AuthorGraph/AuthorGraphVisualization';
 import Vacancies from './Pages/Vacancies/Vacancies';
 import VacancyDetails from './Pages/Vacancies/VacancyDetails';
+import ApplicationForm from './Pages/Apply/ApplicationForm';
 
 function App() {
   // console log using jQuery
@@ -70,6 +71,8 @@ function App() {
           
           <Route path= "/Vacancies" element={<Vacancies setNonHomePath={setNonHomePath}/>}/>
           <Route path= "/Vacancies/:id" element={<VacancyDetails setNonHomePath={setNonHomePath}/>}/>
+
+          <Route path= "/Apply/:id" element={<ApplicationForm setNonHomePath={setNonHomePath}/>}/>
           
           <Route path= "/Director" element={<Director setNonHomePath={setNonHomePath}/>}/>
 
