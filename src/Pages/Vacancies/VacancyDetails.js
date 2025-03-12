@@ -8,8 +8,8 @@ import Divider from "@mui/material/Divider";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import { db } from "../../Utils/Firebase";
-import "quill/dist/quill.snow.css";
 import SectionTitle from "../../Components/Vacancy/SectionTitle";
+
 export default function VacancyDetails({ setNonHomePath }) {
     const { id } = useParams(); // Get the vacancy ID from URL
     const [vacancy, setVacancy] = useState(null);
