@@ -9,7 +9,7 @@ const Count = () => {
             <div className="row text-center">
                 <CountEachSection shortDescrption={"A dynamic team driving innovation across diverse scientific fields."}  EndCount={15} Name="Active Researchers" />
                 <CountEachSection shortDescrption={"Published works contributing to cutting-edge advancements."}  EndCount={55} Name="Research Publications" />
-                <CountEachSection shortDescrption={"Exploring new frontiers with groundbreaking studies in progress."}  EndCount={12} Name="Ongoing Researches" />
+                <CountEachSection shortDescrption={"Exploring new frontiers with groundbreaking studies in progress."}  EndCount={12} Name="Ongoing Research" />
             </div>
             
         </div>
