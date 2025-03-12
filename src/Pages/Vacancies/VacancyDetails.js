@@ -38,13 +38,8 @@ export default function VacancyDetails({ setNonHomePath }) {
     }, [id, setNonHomePath]);
 
     // Function to format date & time
-    const formatDateTime = (timestamp) => {
-        if (!timestamp || !timestamp.seconds) return "N/A"; // Handle missing values
-
-        // Convert Firestore Timestamp to JavaScript Date
-        const date = new Date(timestamp.seconds * 1000);
-
-        return date.toLocaleString("en-US", {
+    const formatDateTime = (datetime) => {
+        return new Date(datetime).toLocaleString("en-US", {
             weekday: "long",
             year: "numeric",
             month: "long",
