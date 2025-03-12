@@ -46,7 +46,7 @@ const ResearchModal = ({ open, handleClose, research }) => {
             {research.authors.map((author, index) => (
               <span key={index}>
                 {author.id ? (
-                  <Link to={'/Team'} state={{id:author.id}} >
+                  <Link to={'/Team'} state={{ id: author.id }} >
                     {author.name}
                   </Link>
                 ) : (
@@ -71,13 +71,14 @@ const ResearchModal = ({ open, handleClose, research }) => {
               research.publisher?.title
             )}
           </Typography>
-
-          <div style={{ minHeight: '60%' }} dangerouslySetInnerHTML={{ __html: research.longDescription }} />
+          <Box className="ql-editor">
+            <div style={{ minHeight: '60%' }} dangerouslySetInnerHTML={{ __html: research.longDescription }} />
+          </Box>
           <Box className="text-right">
             <Link to="/Publications">
               <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
-              Close
-            </Button>
+                Close
+              </Button>
             </Link>
           </Box>
 

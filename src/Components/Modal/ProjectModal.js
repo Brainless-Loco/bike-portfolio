@@ -24,7 +24,7 @@ export default function ProjectModal({ open, handleClose, project }) {
         }}
       >
         {/* Project Title */}
-        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2, color:'#0c2461' }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2, color: '#0c2461' }}>
           {project.title}
         </Typography>
 
@@ -36,13 +36,14 @@ export default function ProjectModal({ open, handleClose, project }) {
         </Box>
 
         {/* Broad Description (HTML) */}
-        <Typography
-          variant="body1"
-          component="div"
-          sx={{ mb: 2, height: "55%" }}
-          dangerouslySetInnerHTML={{ __html: project.broadDescription }}
-        />
-
+        <Box className="ql-editor">
+          <Typography
+            variant="body1"
+            component="div"
+            sx={{ mb: 2, height: "55%" }}
+            dangerouslySetInnerHTML={{ __html: project.broadDescription }}
+          />
+        </Box>
         {/* External Links */}
         {project.externalLinks?.length > 0 && (
           <Box sx={{ mt: 3 }}>

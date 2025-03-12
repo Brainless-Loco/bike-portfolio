@@ -88,7 +88,7 @@ const Teaching = ({setNonHomePath}) => {
 
       {/* Content */}
       {activeTab === "statement" ? (
-        <Box sx={{ bgcolor: "#fff", p: 2, borderRadius: 2, my:5 }}>
+        <Box sx={{ bgcolor: "#fff", p: 2, borderRadius: 2, my:5 }} className="ql-editor">
           <Typography variant="body1" component="div" dangerouslySetInnerHTML={{ __html: teachingStatement }} />
         </Box>
       ) : (

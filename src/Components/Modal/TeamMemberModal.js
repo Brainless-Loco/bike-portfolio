@@ -105,10 +105,11 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
         <Typography variant="body1">
           <strong>Education:</strong> {member.educationLevel}
         </Typography>
-
         <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Description</Typography>
-        <Box sx={{ mt: 1, minHeight: '40%', textAlign: 'justify' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
 
+        <Box className="ql-editor">
+          <Box sx={{ mt: 1, minHeight: '40%', textAlign: 'justify' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
+        </Box>
         <Box my={2} minHeight={'100px'} width={'100%'} >
           <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Publications</Typography>
           <AuthorPublications id={member.id} />
