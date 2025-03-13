@@ -1,187 +1,121 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Select from "@mui/material/Select";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox"
+import Swal from "sweetalert2";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import Swal from "sweetalert2";
-import { db, storage } from "../../Utils/Firebase";
+import { db, storage } from './../../Utils/Firebase';
+import PersonalData from "../../Components/ApplicationForm/PersonalData";
+import Education from "../../Components/ApplicationForm/Education";
+import JobHistory from "../../Components/ApplicationForm/JobHistory";
+import Advertisement from "../../Components/ApplicationForm/Advertisement";
+import ApplicationDocs from "../../Components/ApplicationForm/ApplicationDocs";
+import OtherDocs from "../../Components/ApplicationForm/OtherDocs";
+import References from "../../Components/ApplicationForm/References";
+import Publications from "../../Components/ApplicationForm/Publications";
+import TermsOfUse from "../../Components/ApplicationForm/TermsOfUse";
 
-const ApplicationForm = () => {
-    const { id: vacancyId } = useParams(); // Get Vacancy ID from URL
-    const [formData, setFormData] = useState({
-        firstName: "",
-        lastName: "",
-        address: "",
-        postalCode: "",
-        city: "",
-        country: "",
-        email: "",
-        phone: "",
-        mobile: "",
-        nationality: "",
-        bachelorYear: "",
-        bachelorUniversity: "",
-        masterYear: "",
-        masterField: "",
-        masterUniversity: "",
-        finalProjectTitle: "",
-        phdCompletionYear: "",
-        phdUniversity: "",
-        phdThesisTitle: "",
-        previousWorkplace: "",
-        previousOccupation: "",
-        howDidYouFindUs: "",
-        termsAccepted: false,
-    });
 
-    const [countries, setCountries] = useState([]);
-    const [selectedFiles, setSelectedFiles] = useState({});
-    const [filePreviews, setFilePreviews] = useState({});
+const ApplicationForm = ({ setNonHomePath }) => {
+    const { id: vacancyId } = useParams();
+    const [personalData, setPersonalData] = useState({});
+    const [educationList, setEducationList] = useState([]);
+    const [jobHistory, setJobHistory] = useState({});
+    const [advertisement, setAdvertisement] = useState({});
+    const [applicationDocs, setApplicationDocs] = useState({});
+    const [otherDocs, setOtherDocs] = useState([]);
+    const [references, setReferences] = useState([]);
+    const [publications, setPublications] = useState([]);
+    const [termsAccepted, setTermsAccepted] = useState(false);
 
-    // Fetch country list
-    useEffect(() => {
-        fetch("https://restcountries.com/v3.1/all?fields=name")
-            .then((res) => res.json())
-            .then((data) => setCountries(data.map((country) => country.name.common)))
-            .catch((error) => console.error("Error fetching countries:", error));
-    }, []);
-
-    // Handle Input Change
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
-
-    // Handle File Upload Change
-    const handleFileChange = (e, fieldName) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        // Store the file for upload
-        setSelectedFiles((prev) => ({ ...prev, [fieldName]: file }));
-
-        // Generate preview if image
-        if (file.type.startsWith("image/")) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFilePreviews((prev) => ({ ...prev, [fieldName]: reader.result }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
-    // Upload files and return URLs
-    const uploadFiles = async () => {
-        const uploadPromises = Object.entries(selectedFiles).map(async ([fieldName, file]) => {
-            const filePath = `Applications/${vacancyId}/${Date.now()}/${fieldName}`;
+    // Upload Files & Get URLs
+    const uploadFiles = async (files) => {
+        const uploadPromises = Object.entries(files).map(async ([key, file]) => {
+            const filePath = `Applications/${vacancyId}/${Date.now()}/${key}`;
             const storageRef = ref(storage, filePath);
             await uploadBytes(storageRef, file);
-            return { fieldName, url: await getDownloadURL(storageRef) };
+            return { key, url: await getDownloadURL(storageRef) };
         });
 
         const fileUrls = await Promise.all(uploadPromises);
-        return fileUrls.reduce((acc, { fieldName, url }) => ({ ...acc, [fieldName]: url }), {});
+        return fileUrls.reduce((acc, { key, url }) => ({ ...acc, [key]: url }), {});
     };
 
-    // Handle Form Submission
+    // Handle Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.termsAccepted) {
+        if (!termsAccepted) {
             Swal.fire("Error", "You must accept the terms of use.", "error");
             return;
         }
 
         try {
-            // Upload files and get URLs
-            const fileUrls = await uploadFiles();
+            const appFiles = { ...applicationDocs, ...otherDocs, ...references, ...publications };
 
-            // Merge file URLs with formData
-            const submissionData = { ...formData, ...fileUrls, timestamp: new Date() };
-
-            // Store in Firestore
-            await addDoc(collection(db, `Vacancies/${vacancyId}/Applications`), submissionData);
-
-            Swal.fire("Success", "Your application has been submitted!", "success");
-
-            // Reset Form
-            setFormData({
-                firstName: "",
-                lastName: "",
-                address: "",
-                postalCode: "",
-                city: "",
-                country: "",
-                email: "",
-                phone: "",
-                mobile: "",
-                nationality: "",
-                bachelorYear: "",
-                bachelorUniversity: "",
-                masterYear: "",
-                masterField: "",
-                masterUniversity: "",
-                finalProjectTitle: "",
-                phdCompletionYear: "",
-                phdUniversity: "",
-                phdThesisTitle: "",
-                previousWorkplace: "",
-                previousOccupation: "",
-                howDidYouFindUs: "",
-                termsAccepted: false,
+            // Show SweetAlert for uploading files
+            Swal.fire({
+                title: "Uploading Files",
+                text: "Please wait while we upload your files...",
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
             });
 
-            setSelectedFiles({});
-            setFilePreviews({});
+            const uploadedFiles = await uploadFiles(appFiles);
+
+            // Close the loading Swal after file upload
+            Swal.close();
+
+            const applicationData = {
+                personalData,
+                education: educationList,
+                jobHistory,
+                advertisement,
+                documents: uploadedFiles,
+                termsAccepted,
+                timestamp: new Date(),
+            };
+
+            await addDoc(collection(db, `Vacancies/${vacancyId}/Applications`), applicationData);
+
+            // Show success message after form submission
+            Swal.fire("Success", "Your application has been submitted!", "success");
         } catch (error) {
-            Swal.fire("Error", "Something went wrong!", "error");
+            // Handle errors during file upload or submission
+            Swal.fire("Error", "Submission failed! Please try again.", "error");
         }
     };
 
+
+    useEffect(() => {
+        setNonHomePath(true)
+    }, [setNonHomePath])
+
+
     return (
-        <Box className="container mb-5 py-5 bg-white" sx={{marginTop:'8vh', height:'auto'}}>
-            <Typography variant="h4" className="text-center">Apply for Position</Typography>
+        <Box className="container mt-4 py-5">
+            <Typography variant="h4" color="#0c2461">Application Form</Typography>
+            <PersonalData setData={setPersonalData} />
+            <Education setData={setEducationList} />
+            <JobHistory setData={setJobHistory} />
+            <ApplicationDocs setData={setApplicationDocs} />
+            <OtherDocs setData={setOtherDocs} />
+            <References setData={setReferences} />
+            <Publications setData={setPublications} />
+            <Advertisement setData={setAdvertisement} />
 
-            {/* Personal Data Section */}
-            <Box className="border p-3 my-3">
-                <Typography variant="h6" style={{ color: "#0c2461" }}>Personal Data</Typography>
-                <TextField label="First Name *" name="firstName" value={formData.firstName} onChange={handleChange} fullWidth className="mb-2" />
-                <TextField label="Last Name *" name="lastName" value={formData.lastName} onChange={handleChange} fullWidth className="mb-2" />
-                <TextField label="Address *" name="address" value={formData.address} onChange={handleChange} fullWidth className="mb-2" />
-                <FormControl fullWidth className="mb-2">
-                    <InputLabel>Country *</InputLabel>
-                    <Select name="country" value={formData.country} onChange={handleChange}>
-                        {countries.map((country) => <MenuItem key={country} value={country}>{country}</MenuItem>)}
-                    </Select>
-                </FormControl>
-                <TextField label="E-mail *" name="email" value={formData.email} onChange={handleChange} fullWidth className="mb-2" />
-                <TextField label="Phone" name="phone" value={formData.phone} onChange={handleChange} fullWidth className="mb-2" />
+            <FormControlLabel control={<Checkbox checked={termsAccepted} onChange={(e) => setTermsAccepted(e.target.checked)} />} label="I accept terms of use *" />
+            <Box fullwidth display={"flex"} justifyContent={"center"}>
+
+                <Button variant="contained" color="primary" sx={{ width: '80%' }} onClick={handleSubmit} className="mt-3">Submit Application</Button>
             </Box>
 
-            {/* Education Section */}
-            <Box className="border p-3 my-3">
-                <Typography variant="h6" style={{ color: "#0c2461" }}>Education</Typography>
-                <TextField label="Bachelor - Year of Completion *" name="bachelorYear" value={formData.bachelorYear} onChange={handleChange} fullWidth className="mb-2" />
-            </Box>
-
-            {/* File Uploads */}
-            <Box className="border p-3 my-3">
-                <Typography variant="h6" style={{ color: "#0c2461" }}>Application Documents</Typography>
-                <input type="file" onChange={(e) => handleFileChange(e, "resume")} className="mb-2" />
-                {filePreviews.resume && <img src={filePreviews.resume} alt="Preview" className="img-thumbnail" width="100" />}
-            </Box>
-
-            <FormControlLabel control={<Checkbox checked={formData.termsAccepted} onChange={(e) => setFormData({ ...formData, termsAccepted: e.target.checked })} />} label="I accept terms of use *" />
-
-            <Button variant="contained" color="primary" fullWidth onClick={handleSubmit} className="mt-3">Submit Application</Button>
+            <TermsOfUse />
         </Box>
     );
 };
