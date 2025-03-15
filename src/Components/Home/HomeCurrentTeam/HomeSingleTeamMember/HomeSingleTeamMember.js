@@ -7,7 +7,7 @@ const HomeSingleTeamMember = ({name, educationLevel, position, shortDescription,
     return (
         <Box className="EachResearcher mb-4 mx-3" >
             <img src={profilePhoto} alt=""/>
-            <Typography variant='h5' className="py-0 my-0">{name}</Typography>
+            <Typography variant='body2' className="py-0 my-0">{name}</Typography>
             <i className="ResearcherName py-0 my-0">{position}</i>
             <a className="uk-inline ResearcherDescDiv" href={profilePhoto} data-type="image" data-caption={shortDescription} /* Ekhane Caption or behind the story Hobe */>
                 <Box className="ResearcherDescription">

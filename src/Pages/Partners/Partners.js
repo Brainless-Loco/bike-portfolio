@@ -33,7 +33,7 @@ const Partners = ({setNonHomePath}) => {
       <Helmet>
         <title>Partners | BIKE Lab</title>
       </Helmet>
-      <Typography variant="h4" sx={{ color: 'blue' }} gutterBottom>
+      <Typography variant="h2" sx={{ color: '#0c2461' }} gutterBottom>
         Our Partners
       </Typography>
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, minHeight:'250px' }}>

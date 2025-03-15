@@ -23,7 +23,7 @@ const Director = ({ setNonHomePath }) => {
   }, [setNonHomePath]);
 
   return (
-    <Box paddingX={3} paddingY={15}>
+    <Box paddingX={3} paddingY={13}>
       <Helmet>
         <title>Director | BIKE Lab</title>
         <meta name="description" content="Dr. Rudra Pratap Deb Nath, Director of BIKE Lab at CSE CU is a distinguished asscoiate professor in the field of computer science and engineering. He is known for his contributions in the fields of big data, information, and knowledge engineering." />
@@ -35,7 +35,7 @@ const Director = ({ setNonHomePath }) => {
       <Card className="bg-light text-dark p-3 rounded">
 
         <CardContent>
-          <Box alignItems={'center'} className="d-flex flex-row-reverse flex-md-row justify-content-md-between">
+          <Box alignItems={'center'} className="d-flex flex-wrap-reverse flex-md-wrap justify-content-between">
             <Box className="col-12 col-md-7">
               <Typography variant="h3" fontWeight={600} className="mb-2" color="#0c2461">
                 Dr. Rudra Pratap Deb Nath

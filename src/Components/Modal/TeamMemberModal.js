@@ -94,21 +94,55 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
           overflow: 'auto', bgcolor: "background.paper", borderRadius: 2, boxShadow: 24, p: 4,
         }}
       >
-        <Box sx={{ textAlign: "center", mb: 2 }}>
+        {/* <Box sx={{ textAlign: "center", mb: 2, }}>
           <Avatar src={member.profilePhoto} alt={member.name} sx={{ width: 100, height: 100, mx: "auto", mb: 1, '& img': { objectFit: 'contain' }, border: '1px solid #0c2461' }} />
           <Typography variant="h6" color="#0c2461" fontWeight={600}>{member.name}</Typography>
           <Typography variant="subtitle1" color="textSecondary">
             {member.position}
           </Typography>
+        </Box> */}
+        <Box className="row align-items-center" sx={{ mb: 2 }}>
+          {/* Profile Photo - col-12 on mobile, col-4 on medium+ screens */}
+          <Box className="col-12 col-md-4" sx={{ textAlign: "center", height: "250px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Avatar
+              src={member.profilePhoto}
+              alt={member.name}
+              sx={{
+                maxWidth: "100%",  // Ensures it maintains aspect ratio
+                width: "auto",     // Auto width to keep aspect ratio
+                height: "100%",    // Auto height to keep aspect ratio
+                borderRadius: "10px",
+                border: "2px solid #0c2461",
+                objectFit: "contain" // Ensures full image is visible without cropping
+              }}
+            />
+          </Box>
+
+          {/* Name & Position - col-12 on mobile, col-7 on medium+ screens */}
+          <Box className="col-12 col-md-7">
+            <Typography
+              variant="h3"
+              sx={{ color: "#0c2461", fontWeight: 600 }}
+            >
+              {member.name}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ color: "text.secondary" }}
+            >
+              {member.position}
+            </Typography>
+          </Box>
         </Box>
+
 
         <Typography variant="body1">
           <strong>Education:</strong> {member.educationLevel}
         </Typography>
         <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Description</Typography>
 
-        <Box className="ql-editor">
-          <Box sx={{ mt: 1, minHeight: '40%', textAlign: 'justify' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
+        <Box className="ql-editor" sx={{height:'auto !important'}}>
+          <Box sx={{ height: 'auto' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
         </Box>
         <Box my={2} minHeight={'100px'} width={'100%'} >
           <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Publications</Typography>

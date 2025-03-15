@@ -9,7 +9,7 @@ const Footer = () => {
         <Box className="footerDiv text-white">
             <Box className="row text-center mt-4">
                 <Box className="col-md-5 mx-auto px-md-5 text-left float-left">
-                    <img src="Image/logo.png" className="footerLogo" alt="" />
+                    <img src="Image/logo.png" className="footerLogo mt-2" alt="" />
                     <h2 className="text-white mt-1 py-0 h2">Big Data, Information and Knowledge & Engineering</h2>
                     <p className="my-1 py-0">
                         Advancing data-driven solutions by integrating, analyzing, and exploring Big (Linked) Data for intelligent decision-making.

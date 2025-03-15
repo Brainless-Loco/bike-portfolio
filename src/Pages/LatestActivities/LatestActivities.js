@@ -39,7 +39,7 @@ const LatestActivities = ({setNonHomePath}) => {
         <title>Latest Activities | BIKE Lab</title>
         <meta name="description" content="Latest BIKE Lab related activities from the University of Chittagong." />
       </Helmet>
-      <Typography variant="h3" sx={{ color: "blue" }} gutterBottom>
+      <Typography variant="h2" sx={{ color: "#0c2461" }} gutterBottom>
         Latest Activities
       </Typography>
       <Stack direction="row" flexWrap="wrap" justifyContent="center">

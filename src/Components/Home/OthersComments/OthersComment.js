@@ -17,44 +17,42 @@ const OthersComments = () => {
 
     useEffect(() => {
         const fetchComments = async () => {
-        try {
-            const querySnapshot = await getDocs(collection(db, "OthersComments"));
-            const commentsData = querySnapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data(),
-            }));
-            setComments(commentsData);
-        } catch (error) {
-            console.error("Error fetching comments:", error);
-        } finally {
-            setLoading(false);
-        }
+            try {
+                const querySnapshot = await getDocs(collection(db, "OthersComments"));
+                const commentsData = querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+                setComments(commentsData);
+            } catch (error) {
+                console.error("Error fetching comments:", error);
+            } finally {
+                setLoading(false);
+            }
         };
 
         fetchComments();
     }, []);
 
-    if (loading) return <CircularProgress size={50} sx={{color:'rgba(19, 45, 122)', mx:'auto', my:'auto'}} />;
+    if (loading) return <CircularProgress size={50} sx={{ color: 'rgba(19, 45, 122)', mx: 'auto', my: 'auto' }} />;
 
 
     return (
         <div className="container-fluid text-center swiper-container formersNoteSection">
             <h1 className="text-white glipse-title pt-3">What Others Say about BIKE </h1>
 
-            <Swiper className="mySwiper" slidesPerView='auto' pagination={{"clickable":true}}>
-
-                {/* Ekhane ekta map cholbe Json Data er upore and OneComment e props jabe */}
+            <Swiper className="mySwiper" slidesPerView='auto' pagination={{ "clickable": true }}>
                 {
-                    comments.map(comment => ( 
-                                <SwiperSlide key={comment.id} className="NoteSlide">
-                                    <OneComment commentInfo={comment}/>
-                                </SwiperSlide>
+                    comments.map(comment => (
+                        <SwiperSlide key={comment.id} className="NoteSlide">
+                            <OneComment commentInfo={comment} />
+                        </SwiperSlide>
                     ))
                 }
 
             </Swiper>
-            
-            <br/>
+
+            <br />
         </div>
     );
 };

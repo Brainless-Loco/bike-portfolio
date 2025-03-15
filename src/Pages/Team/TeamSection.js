@@ -123,7 +123,7 @@ const TeamSection = ({ setNonHomePath }) => {
         <title>Team Members | BIKE Lab</title>
         <meta name="description" content="Meet the team members of the BIKE Lab" />
       </Helmet>
-      <Typography variant="h3" sx={{ color: "#0c2461" }} gutterBottom>
+      <Typography variant="h2" sx={{ color: "#0c2461" }} gutterBottom>
         Meet Our Team
       </Typography>
 

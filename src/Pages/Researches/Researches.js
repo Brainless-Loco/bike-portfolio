@@ -69,7 +69,7 @@ const Researches = ({ setNonHomePath }) => {
         <title>Research Publications | BIKE Lab</title>
         <meta name="description" content="Research publications of the BIKE" />
       </Helmet>
-      <Typography variant="h4" sx={{ color: 'blue' }} gutterBottom>
+      <Typography variant="h2" sx={{ color: '#0c2461' }} gutterBottom>
         Research Publications
       </Typography>
 

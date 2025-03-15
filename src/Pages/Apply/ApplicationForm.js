@@ -18,6 +18,7 @@ import OtherDocs from "../../Components/ApplicationForm/OtherDocs";
 import References from "../../Components/ApplicationForm/References";
 import Publications from "../../Components/ApplicationForm/Publications";
 import TermsOfUse from "../../Components/ApplicationForm/TermsOfUse";
+import { Helmet } from "react-helmet";
 
 
 const ApplicationForm = ({ setNonHomePath }) => {
@@ -99,6 +100,10 @@ const ApplicationForm = ({ setNonHomePath }) => {
 
     return (
         <Box className="container mt-4 py-5">
+            <Helmet>
+                <title>Apply | BIKE Lab</title>
+                <meta name="description" content="Apply to join BIKE Lab." />
+            </Helmet>
             <Typography variant="h4" color="#0c2461">Application Form</Typography>
             <PersonalData setData={setPersonalData} />
             <Education setData={setEducationList} />

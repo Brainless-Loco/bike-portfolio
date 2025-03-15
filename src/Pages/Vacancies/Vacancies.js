@@ -9,6 +9,7 @@ import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOu
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../Utils/Firebase";
 import VacancyModal from "../../Components/Modal/VacanciesModal";
+import { Helmet } from "react-helmet";
 
 export default function Vacancies({ setNonHomePath }) {
     const [positionTypes, setPositionTypes] = useState([]);
@@ -21,27 +22,27 @@ export default function Vacancies({ setNonHomePath }) {
             const querySnapshot = await getDocs(collection(db, "Vacancies"));
             const types = new Set();
             const namesMap = {};
-    
+
             querySnapshot.forEach((doc) => {
                 const data = doc.data();
                 types.add(data.position_type);
-    
+
                 if (!namesMap[data.position_type]) {
                     namesMap[data.position_type] = [];
                 }
-                
+
                 // Store position_name along with its document ID
                 namesMap[data.position_type].push({ position_name: data.position_name, id: doc.id });
             });
-    
+
             setPositionTypes(Array.from(types));
             setPositionNames(namesMap);
         };
-    
+
         fetchPositions();
         setNonHomePath(true);
     }, [setNonHomePath]);
-    
+
 
     const handleOpenModal = (type) => {
         setSelectedType(type);
@@ -50,6 +51,12 @@ export default function Vacancies({ setNonHomePath }) {
 
     return (
         <div className="container my-5 pt-5">
+            <Helmet>
+                <title>Vacancies | BIKE Lab</title>
+                <meta name="description" 
+                content="Vacant Positions in BIKE Lab" />
+            </Helmet>
+
             {/* Title Section */}
             <Typography color="#0c2461" variant="h2" fontWeight="bold" gutterBottom>
                 BIKE Lab Vacant Positions
@@ -63,7 +70,7 @@ export default function Vacancies({ setNonHomePath }) {
             <Box className="bg-light p-4 rounded">
                 <List>
                     {positionTypes.map((type) => (
-                        <ListItem key={type} sx={{ mb: 1, cursor:'pointer' }} button onClick={() => handleOpenModal(type)}>
+                        <ListItem key={type} sx={{ mb: 1, cursor: 'pointer' }} button onClick={() => handleOpenModal(type)}>
                             <ListItemIcon >
                                 <ArrowCircleRightOutlinedIcon sx={{ fontSize: 30 }} color="primary" />
                             </ListItemIcon>

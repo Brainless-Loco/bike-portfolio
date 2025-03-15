@@ -43,7 +43,7 @@ const Projects = ({ setNonHomePath }) => {
         <title>Projects | BIKE Lab</title>
         <meta name="description" content="Research projects from the BIKE Lab." />
       </Helmet>
-      <Typography variant="h4" sx={{ color: "blue" }} gutterBottom>
+      <Typography variant="h2" sx={{ color: "#0c2461" }} gutterBottom>
         Research Projects
       </Typography>
       <Typography variant="subtitle2" className="mb-5 text-justify">

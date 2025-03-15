@@ -43,12 +43,12 @@ const ActivitiesTimeline = () => {
                 borderRadius: "10px",
               }}
               contentArrowStyle={{ borderRight: "20px solid #102772" }}>
-              <Link to={"/Latest/"+activity.id}>
-              <Typography variant="subtitle1" color="#0c2461" sx={{ fontWeight: 600, lineHeight:1.1, textDecoration:'underline' }}>
-                {activity.title}
-              </Typography>
+              <Link to={"/Latest/" + activity.id}>
+                <Typography variant="subtitle1" color="#0c2461" sx={{ fontWeight: 600, lineHeight: 1.1, textDecoration: 'underline' }}>
+                  {activity.title}
+                </Typography>
               </Link>
-              <Stack direction="row" spacing={1} sx={{ mt: 1, }}>
+              <Stack direction="row" flexWrap={'wrap'} spacing={1} display={'flex'} sx={{ mt: 1, }}>
                 {activity.labels?.map((label, index) => (
                   <Chip key={index} label={label} color="primary" />
                 ))}

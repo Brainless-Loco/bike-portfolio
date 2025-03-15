@@ -14,7 +14,7 @@
     padding: 10px;
     width: 42% !important;
     margin: 10px 40px;
-    height: 330px !important;
+    min-height: 330px !important;
     cursor: pointer;
 }
 .NoteSlide:hover{

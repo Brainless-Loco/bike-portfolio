@@ -1,7 +1,5 @@
 .header{
     background-color:transparent;
-    
-    /* background-color: #0c2461; */
     padding: 0px 15px;
     height: 80px;
     position: absolute;
@@ -72,59 +70,45 @@
     color: #f1e5e5;
     background-color: #0f3083;
 }
+.display{
+    display: none;
+}
 
 
-@media (max-width: 947px){
+@media (max-width: 1100px){
     .header{
-        height: 100vh;
-        width: 100vw;
-        margin-left: -2%;
-        overflow: hidden;
-        z-index: 12;
+        display: flex;
+        justify-content: space-between;
+        padding: 0px;
     }
     .header .menu-btn{
-        position: relative;
-        display: block;
-        z-index: 11;
-        font-size: 30px;
-        margin-top: 2%;
-        text-align: center;
         margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    .header .logo{
-        display: none;
-    }
-    .menu-btn i.active:before{
-        content: "\f00d";
-        z-index: 15;
+    .logo{
+        z-index: 5 !important;
     }
     .header .menu{
-        /* position: absolute; */
-        height: 100vh;
+        display: none;
+        background-color: #0c2461;
         width: 100vw;
-        left: -1.2%;
-        margin: auto;
-        background: #132055;
-        text-align: center;
-        transition: all 0.3s ease;
-        z-index: 10;
-        overflow-y: scroll;
+        height: 100vh;
+        flex-direction: column;
+        /* justify-content: center; */
+        overflow-x:hidden;
+        overflow-y: auto;
+        z-index: 20;
+        padding: 0px 0px;
+        margin: 0px;
     }
-    .header .menu.active{
-        left: 0%;
-    }
-    .header .menu li{
-        display: block;
-        /* margin-left: -12px; */
-    }
-    .header .menu li a{
-        padding: 20px;
-        font-size: 25px;
-        margin: 1px;
-    }
-    .scrollChange .menu-btn{
-        margin-top: 0%;
+    .mobile-menu-logo{
         padding: 10px;
-        z-index: 12;
     }
+     .hambar{
+        display: block !important;
+     }
 }
+
+

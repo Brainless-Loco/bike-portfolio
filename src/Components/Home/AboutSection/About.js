@@ -5,12 +5,12 @@ const About = () => {
     return (
         <div className="about-section">
             <div className="row inner-div-of-about-section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="col-lg-4">
+                <div className="col-lg-4 p-4">
                     <img src="./Image/logo.png" className="about-image" alt="BIKE Logo" />
                 </div>
                 <div className="col-lg-8">
                     <h1 className="text-left display-4 mb-2 font-weight-bold" style={{ color: '#102772', borderBottom: '4px solid #102772', fontSize: '32px' }}>
-                        About BIKE
+                        About BIKE Lab
                     </h1>
                     <p className="about-desc text-justify" style={{ fontSize: '18px' }}>
                         Besides natural resources like land, oil, capital, and labor, data plays a key role in modern economic production and has become a raw material for business.
@@ -25,7 +25,7 @@ const About = () => {
                     <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '20px', fontWeight: 500 }}>
                         <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Vision:</strong> Providing data-driven solutions for societal challenges.</p>
                         <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Mission:</strong> BIKE conducts research, ranging from near-term applicability to exploratory research. We:</p>
-                        <ul style={{listStyle: 'square'}}>
+                        <ul style={{ listStyle: 'square' }}>
                             <li> Are passionate and committed to going the extra mile.</li>
                             <li> Seek collaboration.</li>
                             <li> Provide trustworthy and sustainable solutions to stakeholders.</li>
