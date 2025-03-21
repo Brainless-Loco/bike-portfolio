@@ -45,7 +45,7 @@ const Director = ({ setNonHomePath }) => {
               <Typography fontWeight={600}>PhD (AAU, Denmark) | PhD (UPC, Spain) | M.Engg. (TUT, Japan) | B.Sc (CU, Bangladesh)</Typography>
               <Typography fontWeight={600}>Fellowship: MEXT, Erasmus Mundus</Typography>
               <Typography fontWeight={600}>H-Index: <a href={"https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao"}>13</a></Typography>
-              <Box display={"flex"} gap={2}>
+              <Box display={"flex"} gap={2} flexWrap={'wrap'}>
                 <a className="py-2 px-3 rounded border border-primary" href={`https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao`}>Google Scholar</a>
                 <a className="py-2 px-3 rounded border border-primary" href={`https://sites.google.com/cu.ac.bd/rudranath/home?authuser=0`}>Google Site</a>
                 <a className="py-2 px-3 rounded border border-primary" href={`mailto::rudra@cu.ac.bd`}>Email</a>
