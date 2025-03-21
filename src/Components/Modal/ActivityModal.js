@@ -16,7 +16,7 @@ const ActivityModal = ({ activity, onClose }) => {
       sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
       <Box sx={{ width: "85%", bgcolor: "white", p: 4, borderRadius: 2, boxShadow: 3, mx: "auto", height: '95vh', overflow: 'scroll' }}>
         {/* Title */}
-        <Typography variant="h5" sx={{ mb: 1, color: '#0c2461' }}>
+        <Typography variant="h5" sx={{ mb: 1, color: '#0c2461' }} lineHeight={1}>
           {activity.title}
         </Typography>
         <Divider sx={{ mb: 2 }} />

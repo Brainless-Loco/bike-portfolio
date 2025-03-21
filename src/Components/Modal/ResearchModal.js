@@ -32,7 +32,7 @@ const ResearchModal = ({ open, handleClose, research }) => {
           }}
         >
           {/* Title */}
-          <Typography variant="h4" color="#0c2461" gutterBottom>
+          <Typography variant="h4" lineHeight={1} color="#0c2461" gutterBottom>
             {research.title}
           </Typography>
 

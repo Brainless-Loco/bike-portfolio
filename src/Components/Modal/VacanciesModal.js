@@ -36,7 +36,7 @@ export default function VacancyModal({ open, handleClose, positionType, position
                 </IconButton>
 
                 {/* Modal Title */}
-                <Typography variant="h3" color="#0c2461" fontWeight="bold" gutterBottom>
+                <Typography variant="h3" lineHeight={1} color="#0c2461" fontWeight="bold" gutterBottom>
                     All vacant {positionType} Positions at BIKE Lab
                 </Typography>
 
