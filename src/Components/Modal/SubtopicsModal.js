@@ -29,7 +29,7 @@ const SubtopicsModal = ({ topic, onClose }) => {
                 subtopicData.map((subtopic) => (subtopic.serial = parseInt(subtopic.serial)));
 
                 subtopicData.sort((a, b) =>
-                    b.serial.toString().localeCompare(a.serial.toString())
+                    a.serial.toString().localeCompare(b.serial.toString())
                 );
                 setSubtopics(subtopicData);
             } catch (error) {
