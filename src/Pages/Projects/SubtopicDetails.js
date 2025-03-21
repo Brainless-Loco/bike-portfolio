@@ -53,13 +53,13 @@ const SubtopicDetails = ({ setNonHomePath }) => {
     }
 
     return (
-        <Box px={5} pt={13} pb={15} >
+        <Box className="px-md-5 px-1" pt={13} pb={15} >
             <Helmet>
                 <title>{subtopic.subtopic_title} | BIKE Lab</title>
                 <meta name="description" content="See the current Project topics of the BIKE Lab" />
             </Helmet>
             {/* Subtopic Title */}
-            <Typography variant="h2" color="#0c2461" gutterBottom>
+            <Typography variant="h2" color="#0c2461" lineHeight={1} gutterBottom>
                 {subtopic.subtopic_title}
             </Typography>
 

@@ -9,8 +9,9 @@ const SubtopicCard = ({ subtopic, topicId }) => {
         <Link
             to={`/Projects/${topicId}/subtopics/${subtopic.id}`}
             key={subtopic.id}
-            style={{ marginBottom: 3, display: "flex", justifyContent: "center", alignItems: "center", width: "100%", textDecoration: "none" }}
-            className="shadow rounded border"
+            style={{ marginBottom: 10, display: "flex", justifyContent: "center", alignItems: "center", width: "100%", textDecoration: "none", 
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", }}
+            className=" rounded border"
         >
             <ListItem sx={{ textDecoration: "none !important" }}>
                 <ListItemIcon>

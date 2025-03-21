@@ -25,6 +25,12 @@ const SubtopicsModal = ({ topic, onClose }) => {
                     id: doc.id,
                     ...doc.data(),
                 }));
+                
+                subtopicData.map((subtopic) => (subtopic.serial = parseInt(subtopic.serial)));
+
+                subtopicData.sort((a, b) =>
+                    b.serial.toString().localeCompare(a.serial.toString())
+                );
                 setSubtopics(subtopicData);
             } catch (error) {
                 console.error("Error fetching subtopics:", error);
@@ -53,7 +59,7 @@ const SubtopicsModal = ({ topic, onClose }) => {
                 }}
             >
                 <Box display="flex" justifyContent="space-between" alignItems="center">
-                    <Typography variant="h3" color="#0c2461">
+                    <Typography variant="h3" color="#0c2461" lineHeight={1}>
                         {topic.topic_title}
                     </Typography>
                     <IconButton onClick={onClose}>
