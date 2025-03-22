@@ -1,47 +1,13 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
-import List from "@mui/material/List";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import { db } from "../../Utils/Firebase";
-import SubtopicCard from "../Projects/SubtopicCard";
+import { useNavigate } from "react-router-dom";
 
 const SubtopicsModal = ({ topic, onClose }) => {
-    const { topic_id } = useParams(); // Get the topic ID from the URL
-    const [subtopics, setSubtopics] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchSubtopics = async () => {
-            try {
-                const querySnapshot = await getDocs(collection(db, `Projects/${topic_id || topic.id}/SubTopics`));
-                const subtopicData = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                
-                subtopicData.map((subtopic) => (subtopic.serial = parseInt(subtopic.serial)));
-
-                subtopicData.sort((a, b) =>
-                    a.serial.toString().localeCompare(b.serial.toString())
-                );
-                setSubtopics(subtopicData);
-            } catch (error) {
-                console.error("Error fetching subtopics:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchSubtopics();
-    }, [topic_id, topic.id]);
-
+    const navigate = useNavigate()
     return (
         <Modal open={true} onClose={onClose}>
             <Box
@@ -63,22 +29,16 @@ const SubtopicsModal = ({ topic, onClose }) => {
                         {topic.topic_title}
                     </Typography>
                     <IconButton onClick={onClose}>
-                        <CloseIcon />
+                        <CloseIcon button onClick={()=>{
+                            navigate(`/Projects`)
+                        }} />
                     </IconButton>
                 </Box>
                 <Divider sx={{ my: 2 }} />
 
-                {loading ? (
-                    <Box display="flex" justifyContent="center" alignItems="center" height="80%">
-                        <CircularProgress />
-                    </Box>
-                ) : (
-                    <List>
-                        {subtopics.map((subtopic) => (
-                            <SubtopicCard subtopic={subtopic} topicId={topic_id??topic.id}/>
-                        ))}
-                    </List>
-                )}
+                {/* Description */}
+                <Box className="ql-editor" height={'auto'} dangerouslySetInnerHTML={{ __html: topic.short_description }} />
+
             </Box>
         </Modal>
     );
