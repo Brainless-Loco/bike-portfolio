@@ -15,6 +15,8 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
   const [graphData, setGraphData] = useState({ nodes: [], links: [] });
   const [imageCache, setImageCache] = useState({});
   const [noGraphData, setNoGraphData] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
+
 
   const navigate = useNavigate();
 
@@ -45,7 +47,7 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
     const loadGraphData = async () => {
       const author = await fetchAuthorGraphById(member.id);
 
-      if (!author) {
+      if (!author || !author.coAuthors || author.coAuthors.length === 0) {
         setNoGraphData(true);
         return;
       }
@@ -65,9 +67,16 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
         }))
       ];
 
+      // Find max count value for scaling
+      const maxCount = Math.max(...author.coAuthors.map(coAuthor => coAuthor.count || 1), 1);
+      const minDistance = 30;  // Min edge length
+      const maxDistance = 45;  // Default edge length
+
       const links = author.coAuthors.map(coAuthor => ({
         source: author.id,
-        target: coAuthor.id
+        target: coAuthor.id,
+        count: coAuthor.count,
+        distance: Math.max(minDistance, maxDistance * (maxCount / (coAuthor.count || 1))) // Scale distance
       }));
 
       setGraphData({ nodes, links });
@@ -76,13 +85,15 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
     loadGraphData();
   }, [member]);
 
-
+  // Apply dynamic distances
   useEffect(() => {
-    if (fgRef.current) {
-      fgRef.current.d3Force("link").distance(70); // Ensures min distance between nodes
-      fgRef.current.d3ReheatSimulation(); // Restart simulation to apply the change
+    if (fgRef.current && graphData.links.length > 0) {
+      fgRef.current.d3Force("link")
+        .distance(link => link.distance); // Apply computed distance
+      fgRef.current.d3ReheatSimulation(); // Restart simulation
     }
   }, [graphData]);
+
 
 
   return (
@@ -90,17 +101,10 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
       <Box
         sx={{
           position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)", width: '90vw', height: '90vh',
+          transform: "translate(-50%, -50%)", width: '95vw', height: '95vh',
           overflow: 'auto', bgcolor: "background.paper", borderRadius: 2, boxShadow: 24, p: 4,
         }}
       >
-        {/* <Box sx={{ textAlign: "center", mb: 2, }}>
-          <Avatar src={member.profilePhoto} alt={member.name} sx={{ width: 100, height: 100, mx: "auto", mb: 1, '& img': { objectFit: 'contain' }, border: '1px solid #0c2461' }} />
-          <Typography variant="h6" color="#0c2461" fontWeight={600}>{member.name}</Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {member.position}
-          </Typography>
-        </Box> */}
         <Box className="row align-items-center" sx={{ mb: 2 }}>
           {/* Profile Photo - col-12 on mobile, col-4 on medium+ screens */}
           <Box className="col-12 col-md-4" sx={{ textAlign: "center", height: "250px", display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -141,7 +145,7 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
         </Typography>
         <Typography variant="h6" fontWeight={600} color="#0c2461" borderBottom={"2px solid #0c2461"}>Description</Typography>
 
-        <Box className="ql-editor" sx={{height:'auto !important'}}>
+        <Box className="ql-editor" sx={{ height: 'auto !important' }}>
           <Box sx={{ height: 'auto' }} dangerouslySetInnerHTML={{ __html: member.broadDescription }} />
         </Box>
         <Box my={2} minHeight={'100px'} width={'100%'} >
@@ -161,7 +165,7 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
                   graphData={graphData}
                   enableNodeDrag={true}
                   nodeCanvasObject={(node, ctx) => {
-                    const size = node.id === member.id ? 20 : 10;
+                    const size = node.id === member.id ? 20 : 13;
                     loadImage(node);
 
                     if (!imageCache[node.id]) return;
@@ -179,16 +183,62 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
                     ctx.restore();
                   }}
                   nodePointerAreaPaint={(node, color, ctx) => {
-                    const size = node.id === member.id ? 20 : 10;
+                    const size = node.id === member.id ? 20 : 13;
                     ctx.fillStyle = color;
                     ctx.fillRect(node.x - size, node.y - size, size * 2, size * 2);
                   }}
-                  width={800} // Ensure proper width
-                  height={400} // Ensure proper height
+                  width={1000}
+                  height={600}
                   nodeLabel={node => node.name}
                   onNodeClick={node => navigate(`/Team/${node.id}`)}
                   linkColor={() => "gray"}
                   linkWidth={1}
+
+                  // 🔹 Handle Hover Effect
+                  onLinkHover={link => setHoveredLink(link)}
+
+                  // 🔹 Display "X Publications" on Hovered Edge
+                  linkCanvasObjectMode={() => "after"}
+                  linkCanvasObject={(link, ctx, globalScale) => {
+                    if (!link || link !== hoveredLink || !link.count) return;
+
+                    const { source, target } = link;
+                    const midpointX = (source.x + target.x) / 2;
+                    const midpointY = (source.y + target.y) / 2;
+
+                    ctx.save();
+                    // Set font style (Bold)
+                    ctx.font = `bold ${14 / globalScale}px Arial`;
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+
+                    // Measure text width for background padding
+                    const text = `${link.count} Publications`;
+                    const textWidth = ctx.measureText(text).width;
+                    const padding = 6;
+                    const backgroundHeight = 18 / globalScale; // Adjust background size
+
+                    // Draw black background with rounded edges
+                    ctx.fillStyle = "black";
+                    ctx.globalAlpha = 0.8; // Slight transparency for better visibility
+                    ctx.beginPath();
+                    ctx.roundRect(
+                      midpointX - textWidth / 2 - padding, // X position (centered)
+                      midpointY - backgroundHeight / 2, // Y position
+                      textWidth + padding * 2, // Width
+                      backgroundHeight, // Height
+                      4 // Border radius
+                    );
+                    ctx.fill();
+                    ctx.globalAlpha = 1; // Reset transparency
+
+                    // Draw white text over background
+                    ctx.fillStyle = "white";
+                    ctx.fillText(text, midpointX, midpointY);
+
+                    // Restore previous state
+                    ctx.restore();
+                  }}
                 />
             }
           </Box>
