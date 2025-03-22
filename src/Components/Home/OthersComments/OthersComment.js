@@ -39,7 +39,7 @@ const OthersComments = () => {
 
     return (
         <div className="container-fluid text-center swiper-container formersNoteSection">
-            <h1 className="text-white glipse-title pt-3">What Others Say about BIKE </h1>
+            <h1 className="text-white glipse-title pt-3">Words on BIKE Lab from others</h1>
 
             <Swiper className="mySwiper" slidesPerView='auto' pagination={{ "clickable": true }}>
                 {
