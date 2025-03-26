@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import GroupedResearches from "../../Components/Researches/GroupedResearches";
 
-const Researches = ({ setNonHomePath }) => {
+const Publications = ({ setNonHomePath }) => {
   const [groupedResearches, setGroupedResearches] = useState({});
   const [selectedResearch, setSelectedResearch] = useState(null);
   const [open, setOpen] = useState(false);
@@ -16,26 +16,41 @@ const Researches = ({ setNonHomePath }) => {
   const { publicationID } = useParams()
 
   useEffect(() => {
-    setNonHomePath(true)
+    setNonHomePath(true);
+    
     const fetchResearches = async () => {
       const q = query(collection(db, "Researches"), orderBy("publicationDate", "desc"));
+      
       onSnapshot(q, (snapshot) => {
         const fetchedResearches = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+  
+        // Define the fixed order for publication types
+        const publicationOrder = ["Book", "Book (Chapters)", "Journal", "Conference", "Others"];
+  
+        // Group and sort
         const grouped = fetchedResearches.reduce((acc, research) => {
           const type = research.publicationType || "Others";
           if (!acc[type]) acc[type] = [];
           acc[type].push(research);
           return acc;
         }, {});
-        setGroupedResearches(grouped);
+  
+        // Sort groups based on the predefined order
+        const sortedGrouped = Object.fromEntries(
+          Object.entries(grouped)
+            .sort(([a], [b]) => (publicationOrder.indexOf(a) - publicationOrder.indexOf(b)))
+        );
+  
+        setGroupedResearches(sortedGrouped);
       });
     };
-
+  
     fetchResearches();
   }, [setNonHomePath]);
+  
 
   useEffect(() => {
     if (publicationID && groupedResearches) {
@@ -50,14 +65,6 @@ const Researches = ({ setNonHomePath }) => {
     }
   }, [publicationID, groupedResearches])
 
-
-  // Open modal with selected research
-  // const handleOpen = (research) => {
-  //   setSelectedResearch(research);
-  //   setOpen(true);
-  // };
-
-  // Close modal
   const handleClose = () => {
     setOpen(false);
     setSelectedResearch(null);
@@ -83,4 +90,4 @@ const Researches = ({ setNonHomePath }) => {
   );
 };
 
-export default Researches;
+export default Publications;

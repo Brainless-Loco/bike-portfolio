@@ -7,7 +7,6 @@ import Footer from './Components/Footer/Footer';
 import Header from './Components/Header/Header';
 import Box from '@mui/material/Box';
 import { useEffect, useState } from 'react';
-import Researches from './Pages/Researches/Researches';
 import Teaching from './Pages/Teaching/Teaching';
 import Partners from './Pages/Partners/Partners';
 import LatestActivities from './Pages/LatestActivities/LatestActivities';
@@ -19,6 +18,7 @@ import Vacancies from './Pages/Vacancies/Vacancies';
 import VacancyDetails from './Pages/Vacancies/VacancyDetails';
 import ApplicationForm from './Pages/Apply/ApplicationForm';
 import SubtopicDetails from './Pages/Projects/SubtopicDetails';
+import Publications from './Pages/Publications/Publications';
 
 function App() {
   // console log using jQuery
@@ -56,8 +56,8 @@ function App() {
           <Route path="/" element={<Home setNonHomePath={setNonHomePath} />} />
           <Route path="/Home" element={<Home setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Publications" element={<Researches setNonHomePath={setNonHomePath} />} />
-          <Route path="/Publications/:publicationID" element={<Researches setNonHomePath={setNonHomePath} />} />
+          <Route path="/Publications" element={<Publications setNonHomePath={setNonHomePath} />} />
+          <Route path="/Publications/:publicationID" element={<Publications setNonHomePath={setNonHomePath} />} />
 
           <Route path="/Teaching" element={<Teaching setNonHomePath={setNonHomePath} />} />
           <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath} />} />
