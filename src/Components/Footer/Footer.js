@@ -20,10 +20,10 @@ const Footer = () => {
                     <Link to="/Vacancies" className="footerLinks" target="_blank" rel="noopener noreferrer">
                         <i className="fas fa-briefcase"></i> Career
                     </Link>
-                    <Link to="mailto::bikecsecu@gmail.com" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-at"></i> Email</Link>
+                    <Link to="mailto::contact@bike-csecu.com" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-at"></i> Email</Link>
                     <Link to="https://www.youtube.com/channel/UCFHW8AK9v-5A51AMmcqeHnA" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fab fa-youtube"></i> Youtube</Link>
-                    <Link to="http://" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-square"></i> Facebook Page</Link>
-                    <Link to="http://" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-users"></i> Facebook Community</Link>
+                    <Link to="https://www.facebook.com/groups/498871573515526" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-square"></i> Facebook Page</Link>
+                    <Link to="https://www.facebook.com/groups/498871573515526" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-users"></i> Facebook Community</Link>
                 </Box>
             </Box>
         </Box>
