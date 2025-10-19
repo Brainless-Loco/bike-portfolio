@@ -23,7 +23,9 @@ const AuthorPublications = ({ id }) => {
                 }
             });
 
-            setPublications(filteredPublications.sort((a, b) => new Date(b.publicationDate) - new Date(a.publicationDate)));
+            // console.log(filteredPublications);
+
+            setPublications(filteredPublications.sort((a, b) => b.publicationDate.seconds - a.publicationDate.seconds));
         };
 
         fetchPublications();
