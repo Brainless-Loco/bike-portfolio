@@ -39,8 +39,28 @@ const ApplicationForm = ({ setNonHomePath }) => {
         const entries = Object.entries(files || {}).filter(([, file]) => file && typeof file !== "string");
         if (entries.length === 0) return {};
 
+        // Create a unique folder name using personal data
+        const folderName = `${personalData.firstName}${personalData.lastName}${personalData.email}`
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, ''); // Remove all special characters
+        
+        const timestamp = Date.now(); // Single timestamp for all files
+        const basePath = `Applications/${vacancyId}/${timestamp}_${folderName}`;
+
         const uploadPromises = entries.map(async ([key, file]) => {
-            const filePath = `Applications/${vacancyId}/${Date.now()}/${key}`;
+            // Determine subfolder based on the file type
+            let subfolder = 'others';
+            if (key.startsWith('applicationDocs_')) {
+                subfolder = 'applicationDocs';
+            } else if (key.startsWith('otherDocs_')) {
+                subfolder = 'otherDocs';
+            } else if (key.startsWith('reference_')) {
+                subfolder = 'references';
+            } else if (key.startsWith('publication_')) {
+                subfolder = 'publications';
+            }
+
+            const filePath = `${basePath}/${subfolder}/${key}`;
             const storageRef = ref(storage, filePath);
             await uploadBytes(storageRef, file);
             return { key, url: await getDownloadURL(storageRef) };
