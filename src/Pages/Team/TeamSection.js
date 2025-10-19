@@ -7,6 +7,7 @@ import { db } from "../../Utils/Firebase";
 import TeamMemberModal from './../../Components/Modal/TeamMemberModal';
 import TeamMemberCard from './../../Components/Team/TeamMemberCard';
 import { Helmet } from "react-helmet";
+// import TeamMemberModal2 from "../../Components/Modal/TeamMemberModal.new";
 
 const TeamSection = ({ setNonHomePath }) => {
   const [teamMembers, setTeamMembers] = useState([]);
