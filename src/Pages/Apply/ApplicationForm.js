@@ -35,7 +35,11 @@ const ApplicationForm = ({ setNonHomePath }) => {
 
     // Upload Files & Get URLs
     const uploadFiles = async (files) => {
-        const uploadPromises = Object.entries(files).map(async ([key, file]) => {
+        // files: object where values are File instances
+        const entries = Object.entries(files || {}).filter(([, file]) => file && typeof file !== "string");
+        if (entries.length === 0) return {};
+
+        const uploadPromises = entries.map(async ([key, file]) => {
             const filePath = `Applications/${vacancyId}/${Date.now()}/${key}`;
             const storageRef = ref(storage, filePath);
             await uploadBytes(storageRef, file);
@@ -49,13 +53,57 @@ const ApplicationForm = ({ setNonHomePath }) => {
     // Handle Submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Validate mandatory fields
+        // 1. Personal Data: require all fields to be non-empty
+        const personalRequired = ["firstName", "lastName", "email", "mobile", "country", "address"];
+        const missingPersonal = personalRequired.filter(field => !personalData[field] || personalData[field].toString().trim() === "");
+
+        // 2. Application Documents: require all three
+        const missingAppDocs = ["motivationLetter", "cv", "cover_letter"].filter(key => !applicationDocs[key]);
+
+        // 3. Terms of Use
+        if (missingPersonal.length > 0) {
+            Swal.fire("Error", "Please fill all required personal data fields.", "error");
+            return;
+        }
+        if (missingAppDocs.length > 0) {
+            Swal.fire("Error", "Please upload all required application documents (Motivation Letter, CV, Cover Letter).", "error");
+            return;
+        }
         if (!termsAccepted) {
             Swal.fire("Error", "You must accept the terms of use.", "error");
             return;
         }
 
         try {
-            const appFiles = { ...applicationDocs, ...otherDocs, ...references, ...publications };
+            // Build a map of only actual File objects to upload with stable keys
+            const filesToUpload = {};
+
+            // Application documents (three fields)
+            if (applicationDocs) {
+                if (applicationDocs.motivationLetter) filesToUpload[`applicationDocs_motivationLetter`] = applicationDocs.motivationLetter;
+                if (applicationDocs.cv) filesToUpload[`applicationDocs_cv`] = applicationDocs.cv;
+                if (applicationDocs.cover_letter) filesToUpload[`applicationDocs_cover_letter`] = applicationDocs.cover_letter;
+            }
+
+            // Other documents (array of {title, file})
+            (otherDocs || []).forEach((doc, idx) => {
+                if (doc && doc.file) filesToUpload[`otherDocs_${idx}`] = doc.file;
+            });
+
+            // References (array of File or null)
+            (references || []).forEach((refFile, idx) => {
+                if (refFile) filesToUpload[`reference_${idx}`] = refFile;
+            });
+
+            // Publications (array of {title, file, coAuthorStatement})
+            (publications || []).forEach((pub, idx) => {
+                if (pub) {
+                    if (pub.file) filesToUpload[`publication_${idx}_file`] = pub.file;
+                    if (pub.coAuthorStatement) filesToUpload[`publication_${idx}_coAuthorStatement`] = pub.coAuthorStatement;
+                }
+            });
 
             // Show SweetAlert for uploading files
             Swal.fire({
@@ -67,17 +115,36 @@ const ApplicationForm = ({ setNonHomePath }) => {
                 }
             });
 
-            const uploadedFiles = await uploadFiles(appFiles);
+            const uploadedFiles = await uploadFiles(filesToUpload);
 
             // Close the loading Swal after file upload
             Swal.close();
+
+            // Build the structured documents JSON with empty strings for missing files
+            const documents = {
+                applicationDocs: {
+                    motivationLetter: uploadedFiles[`applicationDocs_motivationLetter`] || "",
+                    cv: uploadedFiles[`applicationDocs_cv`] || "",
+                    cover_letter: uploadedFiles[`applicationDocs_cover_letter`] || "",
+                },
+                otherDocs: (otherDocs || []).map((doc, idx) => ({
+                    title: (doc && doc.title) || "",
+                    url: uploadedFiles[`otherDocs_${idx}`] || "",
+                })),
+                references: (references || []).map((refFile, idx) => uploadedFiles[`reference_${idx}`] || ""),
+                publications: (publications || []).map((pub, idx) => ({
+                    title: (pub && pub.title) || "",
+                    file: uploadedFiles[`publication_${idx}_file`] || "",
+                    coAuthorStatement: uploadedFiles[`publication_${idx}_coAuthorStatement`] || "",
+                })),
+            };
 
             const applicationData = {
                 personalData,
                 education: educationList,
                 jobHistory,
                 advertisement,
-                documents: uploadedFiles,
+                documents,
                 termsAccepted,
                 timestamp: new Date(),
             };
@@ -85,7 +152,16 @@ const ApplicationForm = ({ setNonHomePath }) => {
             await addDoc(collection(db, `Vacancies/${vacancyId}/Applications`), applicationData);
 
             // Show success message after form submission
-            Swal.fire("Success", "Your application has been submitted!", "success");
+            Swal.fire({
+                title: "Success",
+                text: "Your application has been submitted!",
+                icon: "success"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.reload();
+                }
+            });
+
         } catch (error) {
             // Handle errors during file upload or submission
             Swal.fire("Error", "Submission failed! Please try again.", "error");

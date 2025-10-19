@@ -19,7 +19,7 @@ const Education = ({ setData }) => {
     }, [educationList, setData]);
 
     const addEducation = () => {
-        setEducationList([...educationList, { degree: "", university: "", year_of_passing: "", document: null }]);
+        setEducationList([...educationList, { degree: "", university: "", year_of_passing: ""}]);
     };
 
     const handleChange = (index, field, value) => {
