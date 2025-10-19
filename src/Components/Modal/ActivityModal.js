@@ -33,11 +33,10 @@ const ActivityModal = ({ activity, onClose }) => {
           {new Date(activity.activityDate.seconds * 1000).toLocaleString("en-US", { month: "short", year: "numeric", day: "numeric" })}
         </Typography>
 
-        {/* Long Description */}
-        <Box className="ql-editor">
-          <Box sx={{ mb: 2, minHeight: '65%', overflow: 'scroll' }} dangerouslySetInnerHTML={{ __html: activity.longDescription }} />
-        </Box>
-        {/* External Links */}
+          <Box sx={{ minHeight: '65%',}}>
+            <Box className="ql-editor" sx={{ mb: 2, overflow: 'hidden' }} dangerouslySetInnerHTML={{ __html: activity.longDescription }} />
+          </Box>
+          {/* External Links */}
         <Stack direction="row" spacing={1} mb={2} flexWrap="wrap">
           {activity.externalLinks?.map((link, index) => (
             <Button key={index} variant="outlined" href={link.url} target="_blank" sx={{ borderRadius: 20, color: '#0c2461', borderColor: '#0c2461', fontWeight: '600' }}>
