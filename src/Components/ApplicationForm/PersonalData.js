@@ -15,7 +15,10 @@ const PersonalData = ({ setData }) => {
     useEffect(() => {
         fetch("https://restcountries.com/v3.1/all?fields=name")
             .then(res => res.json())
-            .then(data => setCountries(data.map(c => c.name.common)))
+            .then(data => {
+                const sortedCountries = data.map(c => c.name.common).sort();
+                setCountries(sortedCountries);
+            })
             .catch(console.error);
     }, []);
 
