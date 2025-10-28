@@ -84,14 +84,14 @@ export default function VacancyDetails({ setNonHomePath }) {
                 <Typography className="my-3">{vacancy.short_description}</Typography>
 
                 {/* Requirements (HTML Rendered) */}
-                <SectionTitle title={"Requirements"} />
+                <SectionTitle title={"Responsibilites"} />
                 <Box className="ql-editor">
 
                     <Typography className="mb-3" dangerouslySetInnerHTML={{ __html: vacancy.requirements }} />
                 </Box>
 
                 {/* Broad Description (HTML Rendered) */}
-                <SectionTitle title="Description" />
+                <SectionTitle title="Requirements and Other Details" />
 
                 <Box className="ql-editor">
                     <Typography dangerouslySetInnerHTML={{ __html: vacancy.broad_description }} />
@@ -99,18 +99,23 @@ export default function VacancyDetails({ setNonHomePath }) {
             </Box>
 
             {/* Apply Button */}
-            <Box className="d-flex justify-content-center mt-4">
-                <Button
-                    component={Link}
-                    to={`/Apply/${id}`}
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className="fw-bold"
-                >
-                    Apply at this Position
-                </Button>
-            </Box>
+
+            {
+                vacancy.is_accepting &&
+                <Box className="d-flex justify-content-center mt-4">
+                    <Button
+                        component={Link}
+                        to={`/Apply/${id}`}
+                        variant="contained"
+                        color="primary"
+                        size="large"
+                        className="fw-bold"
+                    >
+                        Apply at this Position
+                    </Button>
+                </Box>
+            }
+
         </Box>
     );
 }
