@@ -101,7 +101,7 @@ export default function VacancyDetails({ setNonHomePath }) {
             {/* Apply Button */}
 
             {
-                vacancy.is_accepting &&
+                vacancy.is_accepting ?
                 <Box className="d-flex justify-content-center mt-4">
                     <Button
                         component={Link}
@@ -113,6 +113,12 @@ export default function VacancyDetails({ setNonHomePath }) {
                     >
                         Apply at this Position
                     </Button>
+                </Box> :
+                // If not accepting applications
+                <Box className="d-flex justify-content-center mt-4">
+                    <Typography variant="h6" color="error" fontWeight="bold">
+                        Applications are currently closed for this position.
+                    </Typography>
                 </Box>
             }
 

@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox"
 import Swal from "sweetalert2";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db, storage } from './../../Utils/Firebase';
 import PersonalData from "../../Components/ApplicationForm/PersonalData";
@@ -43,7 +43,7 @@ const ApplicationForm = ({ setNonHomePath }) => {
         const folderName = `${personalData.firstName}${personalData.lastName}${personalData.email}`
             .toLowerCase()
             .replace(/[^a-z0-9]/g, ''); // Remove all special characters
-        
+
         const timestamp = Date.now(); // Single timestamp for all files
         const basePath = `Applications/${vacancyId}/${timestamp}_${folderName}`;
 
@@ -192,6 +192,41 @@ const ApplicationForm = ({ setNonHomePath }) => {
     useEffect(() => {
         setNonHomePath(true)
     }, [setNonHomePath])
+
+    useEffect(() => {
+        // check from the firebase if the vacancyId is present and is the the value of is_accepting is true or false (invalid)
+        const checkVacancy = async () => {
+            try {
+                const docRef = doc(db, "Vacancies", vacancyId);
+                const docSnap = await getDoc(docRef);
+                if (!docSnap.exists() || !docSnap.data().is_accepting) {
+                    Swal.fire({
+                        title: "Error",
+                        text: "This vacancy is not accepting applications or does not exist.",
+                        icon: "error",
+                        confirmButtonText: "OK"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/vacancies";
+                        }
+                    });
+                }
+            } catch (err) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Failed to verify vacancy details.",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/vacancies";
+                    }
+                });
+            }
+        };
+        checkVacancy();
+
+    }, [vacancyId])
 
 
     return (
