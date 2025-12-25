@@ -4,11 +4,7 @@ import './About.css';
 const About = () => {
     return (
         <div className="about-section">
-            <div className="row inner-div-of-about-section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="col-lg-4 p-4">
-                    <img src="./Image/logo.png" className="about-image" alt="BIKE Logo" />
-                </div>
-                <div className="col-lg-8">
+            <div className="col-12 text-center mb-4">
                     <h1 className="text-left display-4 mb-2 font-weight-bold" style={{ color: '#102772', borderBottom: '4px solid #102772', fontSize: '32px' }}>
                         About BIKE Lab
                     </h1>
@@ -21,6 +17,14 @@ const About = () => {
                         conducts research in the fields of data, information, and knowledge engineering, with an emphasis on the data/information/knowledge lifecycle within data-intensive systems.
                         Our primary focus areas include <strong>Big (Linked) data management, integration, analysis, knowledge graph generation, and exploration</strong>.
                     </p>
+                </div>
+            <div className="row inner-div-of-about-section" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                
+
+                <div className="col-lg-4 p-4">
+                    <img src="./Image/logo.png" className="about-image" alt="BIKE Logo" />
+                </div>
+                <div className="col-lg-8">
 
                     <div className="info-section mt-4 p-4" style={{ backgroundColor: "#f4f6f9", borderLeft: "5px solid #102772", borderRadius: "8px", fontSize: '20px', fontWeight: 500 }}>
                         <p><strong style={{ color: "#0c2461", fontWeight: 800 }}>Vision:</strong> Providing data-driven solutions for societal challenges.</p>
