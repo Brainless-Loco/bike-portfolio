@@ -74,7 +74,7 @@ const ActivityModal = ({ activity, onClose }) => {
 
         {/* Close Button */}
         <Box className="text-center">
-          <Link to={"/Latest"}>
+          <Link to={"/latest"}>
             <Button variant="contained" onClick={handleClose}>
               Close
             </Button>

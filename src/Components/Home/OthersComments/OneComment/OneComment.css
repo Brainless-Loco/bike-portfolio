@@ -13,9 +13,10 @@
     flex-direction: column;
     padding: 10px;
     width: 42% !important;
-    margin: 10px 40px;
+    margin: 10px 20px;
     min-height: 330px !important;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .NoteSlide:hover{
     background-color: rgba(35, 72, 184, 0.7);

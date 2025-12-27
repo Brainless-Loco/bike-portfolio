@@ -44,7 +44,7 @@ const ActivitiesTimeline = () => {
                 padding: "0",
               }}
               contentArrowStyle={{ borderRight: "20px solid #fff" }}>
-              <Link to={"/Latest/" + activity.id} className="activity-card-link">
+              <Link to={"/latest/" + activity.id} className="activity-card-link">
                 <div className="activity-card-content">
                   <Typography variant="subtitle1" sx={{ fontWeight: 600, lineHeight: 1.3, color: "#0c2461" }}>
                     {activity.title}

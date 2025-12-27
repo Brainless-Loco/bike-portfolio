@@ -5,6 +5,8 @@
     background-position: center;
     min-height: 450px;
     height: auto;
+    overflow: hidden;
+    width: 100%;
 }
 .swiper-pagination{
     bottom: -1% !important;
