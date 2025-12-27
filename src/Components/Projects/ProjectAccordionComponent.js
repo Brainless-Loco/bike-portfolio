@@ -73,7 +73,7 @@ const ProjectAccordionComponent = ({ topic, handleOpenModal }) => {
           "&:focus": { outline: "none" }, // Removes black border focus
         }}
       >
-        <Typography variant="h4" color="#0c2461" lineHeight={1}>
+        <Typography variant="h4" color="#0c2461" lineHeight={1} sx={{ fontSize: { xs: '18px', sm: '24px', md: '28px', lg: '32px' } }}>
           {topic.topic_title}
         </Typography>
 
@@ -90,7 +90,7 @@ const ProjectAccordionComponent = ({ topic, handleOpenModal }) => {
       <AccordionDetails>
         {/* Associated Members */}
         {topic.associated_members && topic.associated_members.length > 0 && (
-          <Typography variant="h5" sx={{ mb: 1, fontWeight: "600" }}>
+          <Typography variant="h5" sx={{ mb: 1, fontWeight: "600", fontSize: { xs: '16px', sm: '20px', md: '24px', lg: '28px' } }}>
             Associated Members:{" "}
             {topic.associated_members.map((member, index) => (
               <Link key={member.id} to={`/Team/${member.id}`} style={{ textDecoration: "none" }}>

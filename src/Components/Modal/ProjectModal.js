@@ -4,23 +4,36 @@ import Modal from "@mui/material/Modal";
 import Chip from "@mui/material/Chip";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectModal({ open, handleClose, project }) {
+  const navigate = useNavigate();
+
+  const onClose = () => {
+    handleClose();
+    navigate('/projects');
+  }
+
+
+
   return (
     <Modal
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
     >
+      {/* Close Button removed */}
+
       <Box
         sx={{
           bgcolor: "white",
           p: 3,
-          width: "90vw",
+          width: "85%",
           height: "95vh",
           overflowY: "auto",
           borderRadius: 2,
           boxShadow: 3,
+          position: 'relative'
         }}
       >
         {/* Project Title */}
@@ -63,8 +76,8 @@ export default function ProjectModal({ open, handleClose, project }) {
         )}
 
         {/* Close Button */}
-        <Box className="text-right" sx={{ mt: 3 }}>
-          <Button onClick={handleClose} variant="contained">
+        <Box sx={{ textAlign: 'center', mt: 3 }}>
+          <Button onClick={onClose} variant="contained">
             Close
           </Button>
         </Box>

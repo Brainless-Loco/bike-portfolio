@@ -54,34 +54,32 @@ function App() {
         <Header isScrolled={scrolled} nonHomePath={nonHomePath} />
         <Routes>
           <Route path="/" element={<Home setNonHomePath={setNonHomePath} />} />
-          <Route path="/Home" element={<Home setNonHomePath={setNonHomePath} />} />
+          <Route path="/home" element={<Home setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Publications" element={<Publications setNonHomePath={setNonHomePath} />} />
-          <Route path="/Publications/:publicationID" element={<Publications setNonHomePath={setNonHomePath} />} />
+          <Route path="/publications" element={<Publications setNonHomePath={setNonHomePath} />} />
+          <Route path="/publications/:publicationID" element={<Publications setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Teaching" element={<Teaching setNonHomePath={setNonHomePath} />} />
-          <Route path="/Partners" element={<Partners setNonHomePath={setNonHomePath} />} />
+          <Route path="/teaching" element={<Teaching setNonHomePath={setNonHomePath} />} />
+          <Route path="/partners" element={<Partners setNonHomePath={setNonHomePath} />} />
+          <Route path="/latest" element={<LatestActivities setNonHomePath={setNonHomePath} />} />
+          <Route path="/latest/:activityID" element={<LatestActivities setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Latest" element={<LatestActivities setNonHomePath={setNonHomePath} />} />
-          <Route path="/Latest/:activityID" element={<LatestActivities setNonHomePath={setNonHomePath} />} />
+          <Route path="/team" element={<TeamSection setNonHomePath={setNonHomePath} />} />
+          <Route path="/team/:profileID" element={<TeamSection setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Team" element={<TeamSection setNonHomePath={setNonHomePath} />} />
-          <Route path="/Team/:profileID" element={<TeamSection setNonHomePath={setNonHomePath} />} />
-
-          <Route path="/Projects" element={<Projects setNonHomePath={setNonHomePath} />} />
-          <Route path="/Projects/:topic_id" element={<Projects setNonHomePath={setNonHomePath} />} /> {/* Modal opens inside TopicsList */}
-          <Route path="/Projects/:topic_id/subtopics/:subtopic_id" element={<SubtopicDetails setNonHomePath={setNonHomePath} />} />
+          <Route path="/projects" element={<Projects setNonHomePath={setNonHomePath} />} />
+          <Route path="/projects/:topic_id" element={<Projects setNonHomePath={setNonHomePath} />} /> {/* Modal opens inside TopicsList */}
+          <Route path="/projects/:topic_id/subtopics/:subtopic_id" element={<SubtopicDetails setNonHomePath={setNonHomePath} />} />
         
 
 
-          <Route path="/Vacancies" element={<Vacancies setNonHomePath={setNonHomePath} />} />
-          <Route path="/Vacancies/:id" element={<VacancyDetails setNonHomePath={setNonHomePath} />} />
+          <Route path="/vacancies" element={<Vacancies setNonHomePath={setNonHomePath} />} />
+          <Route path="/vacancies/:id" element={<VacancyDetails setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Apply/:id" element={<ApplicationForm setNonHomePath={setNonHomePath} />} />
+          <Route path="/apply/:id" element={<ApplicationForm setNonHomePath={setNonHomePath} />} />
 
-          <Route path="/Director" element={<Director setNonHomePath={setNonHomePath} />} />
-
-          <Route path="/AuthorGraph" element={<AuthorGraphVisualization setNonHomePath={setNonHomePath} />} />
+          <Route path="/director" element={<Director setNonHomePath={setNonHomePath} />} />
+          <Route path="/authorgraph" element={<AuthorGraphVisualization setNonHomePath={setNonHomePath} />} />
 
           {/* <Route path={["/Contact-us" , "/join-us" , "/Join-BIKE","/Latest"]} exact element={<ContactUs/>}/> */}
         </Routes>

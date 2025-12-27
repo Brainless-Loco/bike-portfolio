@@ -7,16 +7,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import { Link, useNavigate } from "react-router-dom";
 
 const modalStyle = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: '80vw',
+    width: '85%',
     height: '80vh',
     overflow: 'auto',
     bgcolor: "background.paper",
@@ -25,15 +24,20 @@ const modalStyle = {
     borderRadius: 2,
 };
 
+
 export default function VacancyModal({ open, handleClose, positionType, positionNames }) {
 
+    const navigate = useNavigate();
+    const onClose = () => {
+        handleClose();
+        navigate('/vacancies');
+    }
+
     return (
-        <Modal open={open} onClose={handleClose} aria-labelledby="vacancy-modal">
+        <Modal open={open} onClose={onClose} aria-labelledby="vacancy-modal">
+            {/* Close Button removed */}
+
             <Box sx={modalStyle}>
-                {/* Close Button */}
-                <IconButton onClick={handleClose} sx={{ position: "absolute", right: 10, top: 10 }}>
-                    <CloseIcon />
-                </IconButton>
 
                 {/* Modal Title */}
                 <Typography variant="h3" lineHeight={1} color="#0c2461" fontWeight="bold" gutterBottom>
@@ -49,7 +53,7 @@ export default function VacancyModal({ open, handleClose, positionType, position
                             </ListItemIcon>
                             <ListItemText
                                 primary={
-                                    <Link to={`/Vacancies/${pos.id}`} className="text-decoration-none text-primary fw-bold">
+                                    <Link to={`/vacancies/${pos.id}`} className="text-decoration-none text-primary fw-bold">
                                         {pos.position_name}
                                     </Link>
                                 }

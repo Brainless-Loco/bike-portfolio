@@ -8,7 +8,7 @@ import React from "react";
 const SubtopicCard = ({ subtopic, topicId }) => {
     return (
         <Link
-            to={`/Projects/${topicId}/subtopics/${subtopic.id}`}
+            to={`/projects/${topicId}/subtopics/${subtopic.id}`}
             key={subtopic.id}
             style={{
                 marginBottom: 10, display: "flex", justifyContent: "center", alignItems: "center", width: "100%", textDecoration: "none",
@@ -22,7 +22,7 @@ const SubtopicCard = ({ subtopic, topicId }) => {
                 </ListItemIcon>
                 <ListItemText
                     primary={
-                        <Link to={`/Projects/${topicId}/subtopics/${subtopic.id}`} style={{ color: "#0c2461", fontSize: "20px", textDecoration: "none" }}>
+                        <Link to={`/projects/${topicId}/subtopics/${subtopic.id}`} style={{ color: "#0c2461", fontSize: "20px", textDecoration: "none" }}>
                             {subtopic.subtopic_title}
                         </Link>
                     }

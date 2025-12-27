@@ -17,7 +17,7 @@ const Footer = () => {
                 </Box>
                 <Box className="col-md-5 mx-auto px-md-5 mt-5 text-left float-left">
                     <Typography variant='h5' className="text-white mb-4">Important Links</Typography>
-                    <Link to="/Vacancies" className="footerLinks" target="_blank" rel="noopener noreferrer">
+                    <Link to="/vacancies" className="footerLinks" target="_blank" rel="noopener noreferrer">
                         <i className="fas fa-briefcase"></i> Career
                     </Link>
                     <Link to="mailto::contact@bike-csecu.com" className="footerLinks" target="_blank" rel="noopener noreferrer"><i className="fas fa-at"></i> Email</Link>

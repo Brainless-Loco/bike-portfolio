@@ -27,7 +27,7 @@ const Header = ({isScrolled, nonHomePath}) => {
                     {
                      menuList.map(LinkName => <li button onClick={()=>{
                         isMenuOpenInMobile && setIsMenuOpenInMobile(!isMenuOpenInMobile)
-                     }} key={LinkName} className="ml-0"><Link to={"/"+LinkName} className="menu-btn">{LinkName}</Link></li>)
+                     }} key={LinkName} className="ml-0"><Link to={"/"+LinkName.toLowerCase()} className="menu-btn">{LinkName}</Link></li>)
                     }
                 </ul>
                 <Box  className="py-2 hambar float-right">

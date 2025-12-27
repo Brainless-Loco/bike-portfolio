@@ -9,7 +9,7 @@ const SingleActivity = ({ activity, onOpenModal }) => {
   const navigate = useNavigate();
 
   const handleBoxClick = () => {
-    navigate(`/Latest/${activity.id}`);
+    navigate(`/latest/${activity.id}`);
   };
 
   return (

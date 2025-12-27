@@ -94,14 +94,20 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
     }
   }, [graphData]);
 
+  const onClose = () => {
+    handleClose();
+    navigate('/team');
+  }
 
 
   return (
-    <Modal open={open} onClose={handleClose} aria-labelledby="team-member-modal">
+    <Modal open={open} onClose={onClose} aria-labelledby="team-member-modal">
+      {/* Close Button removed */}
+
       <Box
         sx={{
           position: "absolute", top: "50%", left: "50%",
-          transform: "translate(-50%, -50%)", width: '95vw', height: '95vh',
+          transform: "translate(-50%, -50%)", width: '85%', height: '95vh',
           overflow: 'auto', bgcolor: "background.paper", borderRadius: 2, boxShadow: 24, p: 4,
         }}
       >
@@ -245,8 +251,8 @@ const TeamMemberModal = ({ open, handleClose, member }) => {
 
         </Box>
         <Box width={'100%'}>
-
-          <Link to={'/Team'} onClick={handleClose}>
+          {/* Close Button */}
+          <Link to={'/Team'} onClick={onClose}>
             <Button variant="contained" sx={{ mt: 3, display: "block", mx: "auto" }} >
               Close
             </Button>

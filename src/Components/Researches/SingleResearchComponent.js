@@ -10,7 +10,7 @@ export default function SingleResearchComponent({ research }) {
         <Card key={research.id} sx={{ bgcolor: '#fff',  borderRadius: 2, boxShadow: 3, width: '90%' }}>
             <CardContent>
                 <Box display={'flex'} justifyContent={'flex-start'} alignItems={'center'} flexWrap={'wrap'}>
-                    <Link to={"/Publications/" + research.id}>
+                    <Link to={"/publications/" + research.id}>
                         <Typography variant="subtitle1" lineHeight={1.1} color="#0c2461" fontWeight={600}>{research.title} </Typography>
                     </Link>  &nbsp; | &nbsp; 
                     <a href={research.publisher.externalLink} target='__blank'>

@@ -105,7 +105,7 @@ export default function VacancyDetails({ setNonHomePath }) {
                 <Box className="d-flex justify-content-center mt-4">
                     <Button
                         component={Link}
-                        to={`/Apply/${id}`}
+                        to={`/apply/${id}`}
                         variant="contained"
                         color="primary"
                         size="large"

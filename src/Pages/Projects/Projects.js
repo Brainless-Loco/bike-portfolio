@@ -37,13 +37,13 @@ const Projects = ({ setNonHomePath }) => {
   useEffect(() => {
     if (topic_id && topics) {
       setSelectedTopic(topics.find((topic) => topic.id === topic_id));
-      navigate(`/Projects/${topic_id}`);
+      navigate(`/projects/${topic_id}`);
     }
   }, [topics, topic_id, navigate]);
 
   const handleOpenModal = (topic) => {
     setSelectedTopic(topic);
-    navigate(`/Projects/${topic.id}`);
+    navigate(`/projects/${topic.id}`);
   };
 
   return (
@@ -53,7 +53,7 @@ const Projects = ({ setNonHomePath }) => {
         <meta name="description" content="See the current Project topics of the BIKE Lab" />
       </Helmet>
 
-      <Typography variant="h2" sx={{ color: "#0c2461", mb: 2 }}>
+      <Typography variant="h2" sx={{ color: "#0c2461", mb: 2, fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '56px' } }}>
         Projects of BIKE Lab
       </Typography>
 

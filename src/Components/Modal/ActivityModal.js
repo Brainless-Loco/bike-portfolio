@@ -6,15 +6,42 @@ import Modal from "@mui/material/Modal";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ActivityModal = ({ activity, onClose }) => {
+  const navigate = useNavigate();
+
   if (!activity) return null;
 
+  const handleClose = () => {
+    onClose();
+    navigate('/latest');
+  };
+
   return (
-    <Modal open={Boolean(activity)} onClose={onClose}
+    <Modal open={Boolean(activity)} onClose={handleClose}
       sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-      <Box sx={{ width: "85%", bgcolor: "white", p: 4, borderRadius: 2, boxShadow: 3, mx: "auto", height: '95vh', overflow: 'scroll' }}>
+      <Box sx={{ width: "85%", bgcolor: "white", p: 4, borderRadius: 2, boxShadow: 3, mx: "auto", height: '95vh', overflow: 'scroll', position: 'relative', pr: 6 }}>
+        {/* Close Button - Fixed at top right corner of modal */}
+        {/* <IconButton
+          onClick={handleClose}
+          sx={{
+            position: 'absolute',
+            top: '2%',
+            right: '2%',
+            bgcolor: '#d32f2f',
+            color: 'white',
+            width: 44,
+            height: 44,
+            zIndex: 1000,
+            '&:hover': {
+              bgcolor: '#c62828'
+            }
+          }}
+        >
+          <CloseIcon />
+        </IconButton> */}
+
         {/* Title */}
         <Typography variant="h5" sx={{ mb: 1, color: '#0c2461' }} lineHeight={1}>
           {activity.title}
@@ -46,9 +73,9 @@ const ActivityModal = ({ activity, onClose }) => {
         </Stack>
 
         {/* Close Button */}
-        <Box className="text-right">
+        <Box className="text-center">
           <Link to={"/Latest"}>
-            <Button variant="contained" onClick={onClose}>
+            <Button variant="contained" onClick={handleClose}>
               Close
             </Button>
           </Link>

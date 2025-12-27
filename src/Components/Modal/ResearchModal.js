@@ -4,17 +4,26 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ResearchModal = ({ open, handleClose, research }) => {
+  const navigate = useNavigate();
+
+  const onClose=()=>{
+    handleClose();
+    navigate('/publications');
+  }
+
   if (!research) return null;
 
   return (
     <Modal
       open={open}
-      onClose={handleClose}
+      onClose={onClose}
       closeAfterTransition
     >
+      {/* Close Button removed */}
+
       <Fade in={open}>
         <Box
           sx={{
@@ -22,9 +31,9 @@ const ResearchModal = ({ open, handleClose, research }) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: "90%",
+            width: "85%",
             height: '95vh',
-            maxWidth: '90vw',
+            maxWidth: '85%',
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
@@ -74,7 +83,8 @@ const ResearchModal = ({ open, handleClose, research }) => {
           <Box className="ql-editor">
             <div style={{ minHeight: '60%' }} dangerouslySetInnerHTML={{ __html: research.longDescription }} />
           </Box>
-          <Box className="text-right">
+          <Box sx={{ textAlign: 'center' }}>
+            {/* Close Button */}
             <Link to="/Publications">
               <Button variant="contained" sx={{ mt: 2 }} onClick={handleClose}>
                 Close
