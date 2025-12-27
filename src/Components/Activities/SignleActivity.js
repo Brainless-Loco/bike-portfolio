@@ -3,16 +3,44 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SingleActivity = ({ activity, onOpenModal }) => {
+  const navigate = useNavigate();
+
+  const handleBoxClick = () => {
+    navigate(`/Latest/${activity.id}`);
+  };
+
   return (
-    <Box sx={{ p: 2, bgcolor: "#fff", borderRadius: 2, boxShadow: 3, width: "85%", marginBottom: 2 }}>
+    <Box 
+      onClick={handleBoxClick}
+      sx={{ 
+        p: 1.2, 
+        bgcolor: "#fff", 
+        borderRadius: 1, 
+        boxShadow: "0 1px 3px rgba(0,0,0,0.1)", 
+        width: "85%", 
+        marginBottom: 1.5, 
+        borderLeft: "3px solid #0c2461",
+        cursor: "pointer",
+        transition: "all 0.3s ease-in-out",
+        "&:hover": {
+          boxShadow: "0 4px 12px rgba(12, 36, 97, 0.2)",
+          borderLeftColor: "#617effff",
+          bgcolor: "#0c2461",
+          "& h6": {
+            color: "#fff !important"
+          },
+          transform: "scale(1.02)"
+        }
+      }}>
       {/* Activity Title and Labels */}
-      <Stack direction="column" alignItems="flex-start" spacing={1}>
+      <Stack direction="column" alignItems="flex-start" spacing={0.6}>
         {/* <Link to={"/Latest/" + activity.id}> */}
-          <Typography variant="subtitle1" sx={{ textAlign: "justify", fontWeight: '600', lineHeight: '110%', color: '#0c2461', minHeight: '20px', textDecoration: 'none', pb: 1, }}>{activity.title}</Typography>
+          <Typography variant="subtitle1" sx={{ textAlign: "justify", fontWeight: '600', lineHeight: '110%', color: '#0c2461', minHeight: '20px', textDecoration: 'none', pb: 0.3, transition: "color 0.2s ease-in-out" }}>
+            {activity.title}
+          </Typography>
         {/* </Link> */}
         <Box display={"flex"} gap={0.5} flexWrap={'wrap'}>
           {activity.labels?.map((label, index) => (
@@ -22,11 +50,11 @@ const SingleActivity = ({ activity, onOpenModal }) => {
       </Stack>
 
       {/* Date */}
-      <Typography variant="body2" sx={{ color: "gray", py: 1 }}>
-        {new Date(activity.activityDate.seconds * 1000).toLocaleString("en-US", { month: "short", year: "numeric" })}
-      </Typography>
+        <Typography variant="body2" sx={{ color: "gray", py: 0.3, mt: 0.3 }}>
+          {new Date(activity.activityDate.seconds * 1000).toLocaleString("en-US", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+        </Typography>
 
-      {/* Short Description */}
+        {/* Short Description */}
       {/* <Typography variant="body2" sx={{ mb: 1, minHeight:'50px',  textAlign: "justify" }}>
         {activity.shortDescription.length > 350
           ? `${activity.shortDescription.substring(0, 350)}...`
@@ -43,11 +71,6 @@ const SingleActivity = ({ activity, onOpenModal }) => {
       </Stack> */}
 
       {/* Details Button */}
-      <Link to={"/Latest/"+activity.id}> 
-        <Button  variant="contained" sx={{backgroundColor:'#0c2461', color:'white'}}>
-          Details
-        </Button>
-      </Link>
 
     </Box>
   );

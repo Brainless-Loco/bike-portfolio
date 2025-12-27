@@ -47,7 +47,7 @@ const Projects = ({ setNonHomePath }) => {
   };
 
   return (
-    <Box sx={{ paddingTop: "100px", paddingX: "5%", pb: "30px",minHeight:'85vh' }}>
+    <Box sx={{ paddingTop: "110px", paddingX: "5%", pb: "30px",minHeight:'85vh' }}>
       <Helmet>
         <title>Projects | BIKE Lab</title>
         <meta name="description" content="See the current Project topics of the BIKE Lab" />

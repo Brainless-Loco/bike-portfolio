@@ -71,7 +71,7 @@ const Publications = ({ setNonHomePath }) => {
   };
 
   return (
-    <Box sx={{ paddingTop: '100px', paddingX: '5%' }}>
+    <Box sx={{ paddingTop: '110px', paddingX: '5%' }}>
       <Helmet>
         <title>Research Publications | BIKE Lab</title>
         <meta name="description" content="Research publications of the BIKE" />

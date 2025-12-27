@@ -25,9 +25,9 @@ const ActivitiesTimeline = () => {
   }, []);
 
   return (
-    <Box sx={{ backgroundColor: 'transparent', height: '100%' }}>
+    <Box className="activities-container">
       <Typography variant="h4" sx={{ color: '#102772', fontWeight: 'bold' }} className="text-center py-2">Latest Activities</Typography>
-      <Box className="py-1" sx={{ height: '100%' }}>
+      <Box className="py-1 activities-content" sx={{ height: '100%' }}>
         <VerticalTimeline>
           {activities.map((activity, index) => (
             <VerticalTimelineElement
@@ -39,20 +39,23 @@ const ActivitiesTimeline = () => {
               contentStyle={{
                 background: "#fff",
                 color: "#102772",
-                boxShadow: "3px 3px 10px rgba(0,0,0,0.5)",
-                borderRadius: "10px",
+                boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+                borderRadius: "12px",
+                padding: "0",
               }}
-              contentArrowStyle={{ borderRight: "20px solid #102772" }}>
-              <Link to={"/Latest/" + activity.id}>
-                <Typography variant="subtitle1" color="#0c2461" sx={{ fontWeight: 600, lineHeight: 1.1, textDecoration: 'underline' }}>
-                  {activity.title}
-                </Typography>
+              contentArrowStyle={{ borderRight: "20px solid #fff" }}>
+              <Link to={"/Latest/" + activity.id} className="activity-card-link">
+                <div className="activity-card-content">
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600, lineHeight: 1.3, color: "#0c2461" }}>
+                    {activity.title}
+                  </Typography>
+                  <Stack direction="row" flexWrap={'wrap'} spacing={1} gap={1} display={'flex'} sx={{ mt: 1.5 }}>
+                    {activity.labels?.map((label, index) => (
+                      <Chip key={index} label={label} color="primary" size="small" />
+                    ))}
+                  </Stack>
+                </div>
               </Link>
-              <Stack direction="row" flexWrap={'wrap'} spacing={1} display={'flex'} sx={{ mt: 1, }}>
-                {activity.labels?.map((label, index) => (
-                  <Chip key={index} label={label} color="primary" />
-                ))}
-              </Stack>
               {/* <Typography variant="body2" sx={{ color: "gray" }}>
                 {activity.shortDescription}
               </Typography> */}

@@ -119,7 +119,7 @@ const TeamSection = ({ setNonHomePath }) => {
 
 
   return (
-    <Box sx={{ paddingTop: "100px", paddingX: "5%" }}>
+    <Box sx={{ paddingTop: "110px", paddingX: "5%" }}>
       <Helmet>
         <title>Team Members | BIKE Lab</title>
         <meta name="description" content="Meet the team members of the BIKE Lab" />

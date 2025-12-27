@@ -48,7 +48,7 @@ const Teaching = ({setNonHomePath}) => {
   }, [setNonHomePath]);
 
   return (
-    <Box sx={{ paddingTop: "100px", paddingX: "5%" }}>
+    <Box sx={{ paddingTop: "110px", paddingX: "5%" }}>
       <Helmet>
         <title>Teaching | BIKE Lab</title>
       </Helmet>
