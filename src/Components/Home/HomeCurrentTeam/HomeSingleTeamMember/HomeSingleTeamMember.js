@@ -27,12 +27,12 @@ const HomeSingleTeamMember = ({name, educationLevel, position, shortDescription,
                     variant="h6" 
                     sx={{ 
                         fontWeight: 700, 
-                        fontSize: '16px',
+                        fontSize: '15px',
                         color: '#242a41',
                         mb: 0.5,
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap'
+                        lineHeight: 1.2,
+                        overflow: 'visible',
+                        wordBreak: 'break-word'
                     }}
                 >
                     {name}

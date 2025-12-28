@@ -53,7 +53,7 @@ const TeamSection = ({ setNonHomePath }) => {
   }, [profileID, teamMembers])
 
 
-  const positionOrder = ["Director", "Research Assistant", "Teacher", "Researcher", "Others"];
+  const positionOrder = ["Director", "Research Assistant", "Researcher", "Office Members", "Others"];
 
   const categorizedMembers = {
     Current: {},
@@ -72,49 +72,59 @@ const TeamSection = ({ setNonHomePath }) => {
     if (position !== 'Co Author' && position !== 'Supervisor') categorizedMembers[category][position].push(member);
   });
 
-  // Sorting order for positions
-
-  // Sorting order for Researchers
-  const researcherOrder = ["PhD Student", "MS Student", "BSc Student", "Teacher", "Others"];
+  // Sorting order for Researchers and Office Members by education level
+  const educationLevelOrder = ["PhD Student", "MS Student", "BSc Student", "Others"];
 
   // Process each category (Current, Former)
   Object.keys(categorizedMembers).forEach((category) => {
     const sortedPositions = {};
 
-    // Sort positions based on predefined order
+    // Sort positions based on predefined order, with unknown positions at the end
     Object.keys(categorizedMembers[category])
-      .sort((a, b) => positionOrder.indexOf(a) - positionOrder.indexOf(b))
+      .sort((a, b) => {
+        const indexA = positionOrder.indexOf(a);
+        const indexB = positionOrder.indexOf(b);
+        // If position is not in the predefined order, put it at the end
+        const orderA = indexA === -1 ? positionOrder.length : indexA;
+        const orderB = indexB === -1 ? positionOrder.length : indexB;
+        return orderA - orderB;
+      })
       .forEach((position) => {
         sortedPositions[position] = categorizedMembers[category][position];
       });
 
     categorizedMembers[category] = sortedPositions;
 
-    // Handle "Researchers" separately
-    if (categorizedMembers[category]["Researcher"]) {
-      const researchers = categorizedMembers[category]["Researcher"];
-      const groupedResearchers = {};
-      researchers.forEach((member) => {
-        const eduLevel = researcherOrder.includes(member.educationLevel) ? member.educationLevel : "Others";
-        if (!groupedResearchers[eduLevel]) {
-          groupedResearchers[eduLevel] = [];
-        }
-        groupedResearchers[eduLevel].push(member);
-      });
+    // Handle "Researchers" and "Office Members" separately (both have education level subcategories)
+    ["Researcher", "Office Members"].forEach((positionType) => {
+      if (categorizedMembers[category][positionType]) {
+        const members = categorizedMembers[category][positionType];
+        const groupedMembers = {};
+        members.forEach((member) => {
+          const eduLevel = member.educationLevel && member.educationLevel.trim() ? member.educationLevel : "Others";
+          if (!groupedMembers[eduLevel]) {
+            groupedMembers[eduLevel] = [];
+          }
+          groupedMembers[eduLevel].push(member);
+        });
 
+        // Sort each subcategory by name
+        educationLevelOrder.forEach((eduLevel) => {
+          if (groupedMembers[eduLevel]) {
+            groupedMembers[eduLevel].sort((a, b) => a.name.localeCompare(b.name));
+          }
+        });
 
-      // Sort each researcher subcategory by name
-      researcherOrder.forEach((eduLevel) => {
-        if (groupedResearchers[eduLevel]) {
-          groupedResearchers[eduLevel].sort((a, b) => a.name.localeCompare(b.name));
-        }
-      });
+        // Add any other education levels not in the predefined order
+        Object.keys(groupedMembers).forEach((eduLevel) => {
+          if (!educationLevelOrder.includes(eduLevel)) {
+            groupedMembers[eduLevel].sort((a, b) => a.name.localeCompare(b.name));
+          }
+        });
 
-      categorizedMembers[category]["Researcher"] = groupedResearchers;
-
-      // console.log(categorizedMembers[category]["Researcher"]);
-
-    }
+        categorizedMembers[category][positionType] = groupedMembers;
+      }
+    });
   });
 
 
@@ -139,7 +149,15 @@ const TeamSection = ({ setNonHomePath }) => {
             >
               {category} Members
             </Typography>
-            {Object.entries(positions).sort().map(([position, members]) => {
+            {Object.entries(positions)
+              .sort((a, b) => {
+                const indexA = positionOrder.indexOf(a[0]);
+                const indexB = positionOrder.indexOf(b[0]);
+                const orderA = indexA === -1 ? positionOrder.length : indexA;
+                const orderB = indexB === -1 ? positionOrder.length : indexB;
+                return orderA - orderB;
+              })
+              .map(([position, members]) => {
               if (category === 'Former' && position === 'Student') {
                 // console.log(position);
                 return <></>
@@ -153,7 +171,7 @@ const TeamSection = ({ setNonHomePath }) => {
                   {position}
                 </Typography>
 
-                {position !== "Researcher" ? (
+                {position !== "Researcher" && position !== "Office Members" ? (
                   <Box className="d-flex flex-wrap justify-content-between" gap={5}>
                     {members.map((member) => (
                       <TeamMemberCard key={member.id} member={member} onClick={() => {
@@ -163,7 +181,13 @@ const TeamSection = ({ setNonHomePath }) => {
                     ))}
                   </Box>
                 ) : (
-                  researcherOrder.filter((eduLevel) => members[eduLevel]).map((eduLevel) => (
+                  Object.keys(members).filter((eduLevel) => educationLevelOrder.includes(eduLevel) || members[eduLevel]).sort((a, b) => {
+                    const indexA = educationLevelOrder.indexOf(a);
+                    const indexB = educationLevelOrder.indexOf(b);
+                    const orderA = indexA === -1 ? educationLevelOrder.length : indexA;
+                    const orderB = indexB === -1 ? educationLevelOrder.length : indexB;
+                    return orderA - orderB;
+                  }).map((eduLevel) => (
                     <Box key={eduLevel} sx={{ my: 2 }}>
                       <Typography variant="subtitle1" fontWeight={600}
                         sx={{ mb: 2, pb: 1, borderBottom: "2px solid #1976d2", display: "inline-block", width: "100%", }} >
