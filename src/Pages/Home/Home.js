@@ -157,7 +157,7 @@ const Home = ({ setNonHomePath }) => {
                         color: 'white',
                         padding: '14px 0',
                         position: 'absolute',
-                        top: 110,
+                        top: 90,
                         left: '50%',
                         transform: 'translateX(-50%)',
                         overflow: 'hidden',
