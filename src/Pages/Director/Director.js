@@ -40,12 +40,12 @@ const Director = ({ setNonHomePath }) => {
               <Typography variant="h3" fontWeight={600} className="mb-2" color="#0c2461">
                 Dr. Rudra Pratap Deb Nath
               </Typography>
-              <Typography fontWeight={600} className="fw-bold">Associate Professor, Department of Computer Science and Engineering, University of Chittagong</Typography>
+              <Typography fontWeight={600} className="fw-bold">Professor, Department of Computer Science and Engineering, University of Chittagong</Typography>
               <Typography fontWeight={600} className="fw-bold">Director, BIKE: Big Data, Information, and Knowledge Engineering Lab</Typography>
               <Typography fontWeight={600}>PhD (AAU, Denmark) | PhD (UPC, Spain) | M.Engg. (TUT, Japan) | B.Sc (CU, Bangladesh)</Typography>
               <Typography fontWeight={600}>Fellowship: MEXT, Erasmus Mundus</Typography>
               <Typography fontWeight={600}>H-Index: <a href={"https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao"}>13</a></Typography>
-              <Box display={"flex"} gap={2} flexWrap={'wrap'}>
+              <Box display={"flex"} gap={2} flexWrap={'wrap'} className="pt-2">
                 <a className="py-2 px-3 rounded border border-primary" href={`https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao`}>Google Scholar</a>
                 <a className="py-2 px-3 rounded border border-primary" href={`https://sites.google.com/cu.ac.bd/rudranath/home?authuser=0`}>Google Site</a>
                 <a className="py-2 px-3 rounded border border-primary" href={`mailto::rudra@cu.ac.bd`}>Email</a>
@@ -76,7 +76,7 @@ const Director = ({ setNonHomePath }) => {
 
           <Typography variant="h6" color="white" px={2} py={1} bgcolor={"#0c2461"} className="mt-3 mb-1 rounded">Short Bio</Typography>
           <Typography ml={2} fontSize={20} lineHeight={1.8} textAlign={"justify"}>
-            Dr. Rudra Pratap Deb Nath is working as an associate professor in the <a className="shortBioLinks textUnderLine" href="https://cu.ac.bd/cse/">Department of Computer Science and Engineering</a> at <a className="shortBioLinks textUnderLine" href="https://cu.ac.bd/">University of Chittagong</a>, Chattogram Bangladesh and the director of <span className="shortBioLinks" style={{ color: "#0c2461", textDecoration: "none" }} >BIKE: Big Data, Information, and Knowledge Engineering Lab</span>.<br /><br />
+            Dr. Rudra Pratap Deb Nath is working as a Professor in the <a className="shortBioLinks textUnderLine" href="https://cu.ac.bd/cse/">Department of Computer Science and Engineering</a> at <a className="shortBioLinks textUnderLine" href="https://cu.ac.bd/">University of Chittagong</a>, Chattogram Bangladesh and the director of <span className="shortBioLinks" style={{ color: "#0c2461", textDecoration: "none" }} >BIKE: Big Data, Information, and Knowledge Engineering Lab</span>.<br /><br />
 
             He earned his Ph.D. titles from <a href="https://www.cs.aau.dk/" className="shortBioLinks textUnderLine">Aalborg University, Denmark</a> and <a href="https://www.essi.upc.edu/dtim/" className="shortBioLinks textUnderLine"> Universitat Politècnica de Catalunya (UPC), Spain</a> with the prestigious <span className="colorTomato fontBold">Erasmus Mundus Scholarship</span> under the consortium of <a className="shortBioLinks textUnderLine" href="https://it4bi-dc.ulb.ac.be/">IT4BI-DC: Information Technology for Business Intelligence Doctoral College</a>. His Ph.D. thesis title is <a className="shortBioLinks textUnderLine" href="https://vbn.aau.dk/en/publications/aspects-of-semantic-etl">"Aspects of Semantic ETL"</a>, where they proposed and developed an ontology-based semantic ETL tool that integrates semantic and non-semantic data into a semantic data warehouse and enables OLAP queries on it. He did his Master of Engineering in Toyohashi University of Technology Japan with the prestigious <span className="colorTomato fontBold">MEXT scholarship</span>. <br /> <br />
 
@@ -98,7 +98,10 @@ const Director = ({ setNonHomePath }) => {
           <Typography ml={2} fontSize={20} lineHeight={1.8} textAlign={"justify"}>
             <ul style={{ listStyle: 'square' }}>
               <li>
-                <span className="fontBold colorBase1">2021- till date:</span> Associate Professor in Computer Science and Engineering Department, University of Chittagong, Bangladesh
+                <span className="fontBold colorBase1">2026- till date:</span>Professor in Computer Science and Engineering Department, University of Chittagong, Bangladesh
+              </li>
+              <li>
+                <span className="fontBold colorBase1">2021- 2026:</span> Associate Professor in Computer Science and Engineering Department, University of Chittagong, Bangladesh
               </li>
               <li>
                 <span className="fontBold colorBase1">2014-2021:</span> Assistant Professor in Computer Science and Engineering Department, University of Chittagong, Bangladesh (most of the time was on study leave)
