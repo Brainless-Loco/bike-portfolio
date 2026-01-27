@@ -70,7 +70,7 @@ const Director = ({ setNonHomePath }) => {
                 "https://orcid.org/0000-0001-8807-1927"
               ],
               "email": "mailto:rudra@cu.ac.bd",
-              "knowsAbout": ["Artificial Intelligence", "Big Data", "Linked Data", "Business Intelligence", "Semantic Web", "Semantic Integration and ETL", "Knowledge Graph Exploration", "Data Science and Engineering", "Affective Computing", "Computer Science", "Data Engineering", "Data Science", "Knowledge Engineering", "Knowledge Graphs", "Semantic Web Technologies", "Business Intelligence Systems", "Data Integration", "Extract, Transform, Load (ETL) Processes", "Linked Data Technologies", "Artificial Intelligence Applications", "Data Analytics", "Machine Learning", "Data Mining", "Information Systems", "Database Management", "Data Warehousing", "Data Visualization", "Big Data Analytics", "Data Modeling", "Information Retrieval", ],
+              "knowsAbout": ["Artificial Intelligence", "Big Data", "Linked Data", "Business Intelligence", "Semantic Web", "Semantic Integration and ETL", "Knowledge Graph Exploration", "Data Science and Engineering", "Affective Computing", "Computer Science", "Data Engineering", "Data Science", "Knowledge Engineering", "Knowledge Graphs", "Semantic Web Technologies", "Business Intelligence Systems", "Data Integration", "Extract, Transform, Load (ETL) Processes", "Linked Data Technologies", "Artificial Intelligence Applications", "Data Analytics", "Machine Learning", "Data Mining", "Information Systems", "Database Management", "Data Warehousing", "Data Visualization", "Big Data Analytics", "Data Modeling", "Information Retrieval"],
               "description": "Dr. Rudra Pratap Deb Nath, Director of BIKE Lab at CSE CU is a distinguished asscoiate professor in the field of computer science and engineering. He is known for his contributions in the fields of big data, information, and knowledge engineering.",
               "mainEntityOfPage": {
                 "@type": "WebPage",
@@ -96,8 +96,7 @@ const Director = ({ setNonHomePath }) => {
               },
               "awards": "Erasmus Mundus Scholarship, MEXT Scholarship",
               "honorificPrefix": "Dr.",
-              "honorificSuffix": "PhD",
-              
+              "honorificSuffix": "PhD"
             }
           `}
         </script>
