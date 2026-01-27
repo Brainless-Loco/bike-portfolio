@@ -27,6 +27,80 @@ const Director = ({ setNonHomePath }) => {
       <Helmet>
         <title>Director | BIKE Lab</title>
         <meta name="description" content="Dr. Rudra Pratap Deb Nath, Director of BIKE Lab at CSE CU is a distinguished asscoiate professor in the field of computer science and engineering. He is known for his contributions in the fields of big data, information, and knowledge engineering." />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Rudra Pratap Deb Nath",
+              "alternateName": "Dr. Rudra Pratap Deb Nath",
+              "url": "https://web.bike-csecu.com/director",
+              "image": [
+                "https://web.bike-csecu.com/static/media/rudranath.b7aab7b4790f8dccfa1e.jpg", 
+                "https://cu.ac.bd/assets/image/faculty_staff_users/42_8VSXSNIDSD.jpg",
+                "https://lh3.googleusercontent.com/sitesv/APaQ0SRkNd_KuUlpgYUXZerGUM0AFi7vCMzsNQ-q-OTBCQIbIxljTXKjF0s6hl383sdLKS4Z8-s2gVQ2aUvZz-gO9pESFf2Seu_QGHEBMALp_oyue-yj7g3hP6g_jrYc0dnOBBms0NTKf_ktWRmJ0A3NBBNzciMcQDXpsOFY1cg275l_HOx9TlcY3rqRBOOcSzDGlnF77QbDavUbvt2IHwnQ3_9d0Yi9bQbmnhQ7h5E=w1280"
+                ],
+              "jobTitle": "Professor",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "University of Chittagong"
+              },
+              "alumniOf": [
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "Aalborg University, Denmark"
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "Universitat Politècnica de Catalunya, Spain"
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "Toyohashi University of Technology, Japan"
+                },
+                {
+                  "@type": "CollegeOrUniversity",
+                  "name": "University of Chittagong, Bangladesh"
+                }
+              ],
+              "sameAs": [
+                "https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao",
+                "https://sites.google.com/cu.ac.bd/rudranath/home?authuser=0",
+                "https://cu.ac.bd/public_profile/index.php?ein=5168",
+                "https://orcid.org/0000-0001-8807-1927"
+              ],
+              "email": "mailto:rudra@cu.ac.bd",
+              "knowsAbout": ["Artificial Intelligence", "Big Data", "Linked Data", "Business Intelligence", "Semantic Web", "Semantic Integration and ETL", "Knowledge Graph Exploration", "Data Science and Engineering", "Affective Computing", "Computer Science", "Data Engineering", "Data Science", "Knowledge Engineering", "Knowledge Graphs", "Semantic Web Technologies", "Business Intelligence Systems", "Data Integration", "Extract, Transform, Load (ETL) Processes", "Linked Data Technologies", "Artificial Intelligence Applications", "Data Analytics", "Machine Learning", "Data Mining", "Information Systems", "Database Management", "Data Warehousing", "Data Visualization", "Big Data Analytics", "Data Modeling", "Information Retrieval", ],
+              "description": "Dr. Rudra Pratap Deb Nath, Director of BIKE Lab at CSE CU is a distinguished asscoiate professor in the field of computer science and engineering. He is known for his contributions in the fields of big data, information, and knowledge engineering.",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://web.bike-csecu.com/director"
+              },
+              "gender": "Male",
+              "nationality": {
+                "@type": "Country",
+                "name": "Bangladesh"
+              },
+              "birthPlace": {
+                "@type": "Place",
+                "name": "Rangamati, Bangladesh"
+              },
+              "hasOccupation": {
+                "@type": "Occupation",
+                "name": "Professor in Computer Science and Engineering",
+                "description": "Teaching and researching in the field of computer science and engineering, with a focus on Database Management Systems, Big data, Semantic Web."
+              },
+              "affiliation": {
+                "@type": "Organization",
+                "name": "BIKE Lab, University of Chittagong"
+              },
+              "awards": "Erasmus Mundus Scholarship, MEXT Scholarship",
+              "honorificPrefix": "Dr.",
+              "honorificSuffix": "PhD",
+              
+            }
+          `}
+        </script>
       </Helmet>
       <Typography variant="h2" color="#0c2461" gutterBottom>
         Director of BIKE Lab
@@ -48,7 +122,7 @@ const Director = ({ setNonHomePath }) => {
               <Box display={"flex"} gap={2} flexWrap={'wrap'} className="pt-2">
                 <a className="py-2 px-3 rounded border border-primary" href={`https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao`}>Google Scholar</a>
                 <a className="py-2 px-3 rounded border border-primary" href={`https://sites.google.com/cu.ac.bd/rudranath/home?authuser=0`}>Google Site</a>
-                <a className="py-2 px-3 rounded border border-primary" href={`mailto::rudra@cu.ac.bd`}>Email</a>
+                <a className="py-2 px-3 rounded border border-primary" href={`mailto:rudra@cu.ac.bd`}>Email</a>
 
               </Box>
 
