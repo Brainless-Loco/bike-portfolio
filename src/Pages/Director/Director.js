@@ -67,7 +67,8 @@ const Director = ({ setNonHomePath }) => {
                 "https://scholar.google.com/citations?user=TkQGAWoAAAAJ&hl=en&oi=ao",
                 "https://sites.google.com/cu.ac.bd/rudranath/home?authuser=0",
                 "https://cu.ac.bd/public_profile/index.php?ein=5168",
-                "https://orcid.org/0000-0001-8807-1927"
+                "https://orcid.org/0000-0001-8807-1927",
+                "https://www.wikidata.org/wiki/Q137911195"
               ],
               "email": "mailto:rudra@cu.ac.bd",
               "knowsAbout": ["Artificial Intelligence", "Big Data", "Linked Data", "Business Intelligence", "Semantic Web", "Semantic Integration and ETL", "Knowledge Graph Exploration", "Data Science and Engineering", "Affective Computing", "Computer Science", "Data Engineering", "Data Science", "Knowledge Engineering", "Knowledge Graphs", "Semantic Web Technologies", "Business Intelligence Systems", "Data Integration", "Extract, Transform, Load (ETL) Processes", "Linked Data Technologies", "Artificial Intelligence Applications", "Data Analytics", "Machine Learning", "Data Mining", "Information Systems", "Database Management", "Data Warehousing", "Data Visualization", "Big Data Analytics", "Data Modeling", "Information Retrieval"],
