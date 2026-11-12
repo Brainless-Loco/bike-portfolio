@@ -134,6 +134,7 @@ const TeamSection = ({ setNonHomePath }) => {
         <title>Team Members | BIKE Lab</title>
         <meta name="description" content="Meet the team members of the BIKE Lab" />
       </Helmet>
+      <div style={{ 'max-width': '1400px', margin: 'auto', overflowX: 'hidden' }}>
       <Typography variant="h2" sx={{ color: "#0c2461" }} gutterBottom>
         Meet Our Team
       </Typography>
@@ -214,6 +215,7 @@ const TeamSection = ({ setNonHomePath }) => {
           </Box>
         )
       })}
+      </div>
 
       {/* Modal for showing details */}
       {selectedMember && (

@@ -43,8 +43,8 @@ const ContactUs = () => {
       };
 
     return (
-        <div className="row w-100 text-center px-md-5 px-3 contactUs">
-            <div className="col-md-6 mb-md-0 mb-3 float-left text-left" uk-scrollspy="cls: uk-animation-slide-left; delay:500; repeat: false">
+        <div className="row w-100 text-center px-md-5 px-3 contactUs" style={{ 'max-width': '1400px', margin: 'auto', overflowX: 'hidden' }}>
+            <div className="col-md-6 mb-md-0 mb-3 float-left text-left" uk-scrollspy="cls: uk-animation-slide-left; delay:500; repeat: false" >
                 <h1 className="h1 text-color1">Get In Touch</h1>
                 <p className="contact-us-text text-dark">
                     Questions about our research, collaboration opportunities, or anything else regarding the BIKE research group? We're here to help. Your inquiries are important to us, and we're eager to connect. Feel free to reach out, and let's explore the possibilities in data, information, and knowledge engineering together.

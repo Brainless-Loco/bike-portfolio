@@ -44,7 +44,7 @@ const SingleActivity = ({ activity, onOpenModal }) => {
         {/* </Link> */}
         <Box display={"flex"} gap={0.5} flexWrap={'wrap'}>
           {activity.labels?.map((label, index) => (
-            <Chip key={index} label={label} sx={{ borderRadius: "16px", bgcolor: "lightblue", fontSize: '12px', fontWeight: '600' }} />
+            <Chip key={index} label={label} sx={{ borderRadius: "16px", bgcolor: "lightblue", fontSize: '10.5px', fontWeight: '600', padding: '0px', height: '17px', 'text-align':'center',  }} />
           ))}
         </Box>
       </Stack>

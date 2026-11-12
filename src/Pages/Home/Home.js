@@ -11,12 +11,14 @@ import { Box, Typography } from '@mui/material';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../Utils/Firebase';
 
+/*
+
 const particles = {
     number: {
-        value: 80,
+        value: 50,
         density: {
             enable: true,
-            value_area: 900
+            value_area: 1900
         }
     },
     color: {
@@ -35,9 +37,9 @@ const particles = {
     },
     line_linked: {
         enable: true,
-        distance: 150,
+        distance: 50,
         color: '#016DB2',
-        opacity: 0.7,
+        opacity: 0.6,
         width: 2 // slightly thicker connector lines
     },
     move: {
@@ -66,9 +68,9 @@ const interactivity = {
     },
     modes: {
         grab: {
-            distance: 200,
+            distance: 50,
             line_linked: {
-                opacity: 1
+                opacity: 0.2
             }
         },
         push: {
@@ -76,6 +78,8 @@ const interactivity = {
         }
     }
 }
+
+*/
 
 const Home = ({ setNonHomePath }) => {
     const [newsData, setNewsData] = useState(null);
@@ -91,17 +95,17 @@ const Home = ({ setNonHomePath }) => {
             try {
                 const docRef = doc(db, 'ScrollingNews', 'scrollingNews');
                 const docSnap = await getDoc(docRef);
-                
+
                 if (docSnap.exists()) {
                     const data = docSnap.data();
                     setNewsData(data);
-                    
+
                     // Check if news is within valid date range
                     if (data.title && data.startDateTime && data.endDateTime) {
                         const now = new Date();
                         const startDate = new Date(data.startDateTime);
                         const endDate = new Date(data.endDateTime);
-                        
+
                         const isValid = now >= startDate && now <= endDate;
                         setIsNewsValid(isValid);
                     }
@@ -110,31 +114,31 @@ const Home = ({ setNonHomePath }) => {
                 console.error('Error fetching news:', error);
             }
         };
-        
+
         fetchNews();
     }, [])
 
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
-        script.async = true;
-        script.onload = () => {
-            if (window.particlesJS) {
-                window.particlesJS('homeBackground', {
-                    particles: particles,
-                    interactivity: interactivity,
-                    retina_detect: true
-                });
-            }
-        };
-        document.head.appendChild(script);
+    // useEffect(() => {
+    //     const script = document.createElement('script');
+    //     script.src = 'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js';
+    //     script.async = true;
+    //     script.onload = () => {
+    //         if (window.particlesJS) {
+    //             window.particlesJS('homeBackground', {
+    //                 particles: particles,
+    //                 interactivity: interactivity,
+    //                 retina_detect: true
+    //             });
+    //         }
+    //     };
+    //     document.head.appendChild(script);
 
-        return () => {
-            if (script.parentNode) {
-                script.parentNode.removeChild(script);
-            }
-        };
-    }, [])
+    //     return () => {
+    //         if (script.parentNode) {
+    //             script.parentNode.removeChild(script);
+    //         }
+    //     };
+    // }, [])
 
     return (
         <div>
@@ -183,7 +187,7 @@ const Home = ({ setNonHomePath }) => {
                             }
                         }}
                     >
-                        <Typography 
+                        <Typography
                             variant="body1"
                             sx={{
                                 fontSize: '15px',
@@ -195,9 +199,9 @@ const Home = ({ setNonHomePath }) => {
                             {newsData.title}
                         </Typography>
                         {newsData.link && (
-                            <Typography 
-                                variant="body1" 
-                                sx={{ 
+                            <Typography
+                                variant="body1"
+                                sx={{
                                     ml: 2,
                                     fontWeight: '600',
                                     fontSize: '14px',
@@ -223,10 +227,9 @@ const Home = ({ setNonHomePath }) => {
                     `}</style>
                 </Box>
             )}
-
             <div className="home-first">
                 <div id='homeBackground'></div>
-                <div className="middle-center text-center">
+                <div className="middle-center text-center hero-text">
                     <h1 className="text-white pb-0 welcome-heading">Welcome to <span className="highlighted-text">BIKE CSE CU Lab</span> </h1>
                     <p className="Welcome-note">
                         Big Data, Information, and Knowledge Engineering Lab
@@ -243,6 +246,7 @@ const Home = ({ setNonHomePath }) => {
             <ActivitiesTimeline />
             <OthersComments />
             <ContactUs />
+
         </div>
     );
 };

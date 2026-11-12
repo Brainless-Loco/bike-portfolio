@@ -130,6 +130,8 @@ const LatestActivities = ({setNonHomePath}) => {
         <title>Latest Activities | BIKE Lab</title>
         <meta name="description" content="Latest BIKE Lab related activities from the University of Chittagong." />
       </Helmet>
+
+      <div style={{ 'max-width': '1400px', margin: 'auto', overflowX: 'hidden' }}>
       <Typography variant="h2" sx={{ color: "#0c2461", mb: 3 }} gutterBottom>
         Latest Activities
       </Typography>
@@ -193,6 +195,7 @@ const LatestActivities = ({setNonHomePath}) => {
       <Box ref={observerTarget} sx={{ display: 'flex', justifyContent: 'center', py: 4 }}>
         {loading && <CircularProgress />}
       </Box>
+      </div>
 
       {/* Activity Modal */}
       {selectedActivity && <ActivityModal activity={selectedActivity} onClose={() => setSelectedActivity(null)} />}

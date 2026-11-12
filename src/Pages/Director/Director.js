@@ -108,11 +108,11 @@ const Director = ({ setNonHomePath }) => {
           }
         </script>
       </Helmet>
-      <Typography variant="h2" color="#0c2461" gutterBottom>
+      <Typography variant="h2" color="#0c2461" gutterBottom className="text-center">
         Director of BIKE Lab
       </Typography>
 
-      <Card className="bg-light text-dark p-3 rounded">
+      <Card className="bg-light text-dark p-3 rounded" style={{ 'max-width': '1400px', margin: 'auto', overflowX: 'hidden' }}>
 
         <CardContent>
           <Box alignItems={'center'} className="d-flex flex-wrap-reverse flex-md-wrap justify-content-between">

@@ -17,19 +17,19 @@ const Publications = ({ setNonHomePath }) => {
 
   useEffect(() => {
     setNonHomePath(true);
-    
+
     const fetchResearches = async () => {
       const q = query(collection(db, "Researches"), orderBy("publicationDate", "desc"));
-      
+
       onSnapshot(q, (snapshot) => {
         const fetchedResearches = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-  
+
         // Define the fixed order for publication types
         const publicationOrder = ["Book", "Book (Chapters)", "Journal", "Conference", "Others"];
-  
+
         // Group and sort
         const grouped = fetchedResearches.reduce((acc, research) => {
           const type = research.publicationType || "Others";
@@ -37,20 +37,20 @@ const Publications = ({ setNonHomePath }) => {
           acc[type].push(research);
           return acc;
         }, {});
-  
+
         // Sort groups based on the predefined order
         const sortedGrouped = Object.fromEntries(
           Object.entries(grouped)
             .sort(([a], [b]) => (publicationOrder.indexOf(a) - publicationOrder.indexOf(b)))
         );
-  
+
         setGroupedResearches(sortedGrouped);
       });
     };
-  
+
     fetchResearches();
   }, [setNonHomePath]);
-  
+
 
   useEffect(() => {
     if (publicationID && groupedResearches) {
@@ -76,16 +76,18 @@ const Publications = ({ setNonHomePath }) => {
         <title>Research Publications | BIKE Lab</title>
         <meta name="description" content="Research publications of the BIKE" />
       </Helmet>
-      <Typography variant="h2" sx={{ color: '#0c2461' }} gutterBottom>
-        Research Publications
-      </Typography>
+      <div style={{ 'max-width': '1400px', margin: 'auto', overflowX: 'hidden' }}>
+        <Typography variant="h2" sx={{ color: '#0c2461' }} gutterBottom>
+          Research Publications
+        </Typography>
 
-      {Object.entries(groupedResearches).map(([publicationType, items]) => (
-        <GroupedResearches publicationType={publicationType} items={items} />
-      ))}
+        {Object.entries(groupedResearches).map(([publicationType, items]) => (
+          <GroupedResearches publicationType={publicationType} items={items} />
+        ))}
 
-      {/* Research Modal */}
-      <ResearchModal open={open} handleClose={handleClose} research={selectedResearch} />
+        {/* Research Modal */}
+        <ResearchModal open={open} handleClose={handleClose} research={selectedResearch} />
+      </div>
     </Box>
   );
 };

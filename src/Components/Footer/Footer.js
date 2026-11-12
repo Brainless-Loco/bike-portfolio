@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <Box className="footerDiv text-white">
-            <Box className="row text-center mt-4">
+            <Box className="row text-center mt-4" style={{ 'max-width': '1500px', margin: 'auto', overflowX: 'hidden' }}>
                 <Box className="col-md-5 mx-auto px-md-5 text-left float-left">
                     <img src="Image/logo.png" className="footerLogo mt-2" alt="" />
                     <h2 className="text-white mt-1 py-0 h2">Big Data, Information and Knowledge Engineering</h2>

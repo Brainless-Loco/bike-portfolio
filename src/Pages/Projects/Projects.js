@@ -53,6 +53,8 @@ const Projects = ({ setNonHomePath }) => {
         <meta name="description" content="See the current Project topics of the BIKE Lab" />
       </Helmet>
 
+     <div style={{ 'max-width': '1400px', margin: 'auto', overflowX: 'hidden' }}>
+
       <Typography variant="h2" sx={{ color: "#0c2461", mb: 2, fontSize: { xs: '24px', sm: '32px', md: '40px', lg: '56px' } }}>
         Projects of BIKE Lab
       </Typography>
@@ -66,6 +68,7 @@ const Projects = ({ setNonHomePath }) => {
           <ProjectAccordionComponent key={topic.id} topic={topic} handleOpenModal={handleOpenModal} />
         ))
       )}
+      </div>
 
       {selectedTopic && <SubtopicsModal topic={selectedTopic} onClose={() => setSelectedTopic(null)} />}
     </Box>
