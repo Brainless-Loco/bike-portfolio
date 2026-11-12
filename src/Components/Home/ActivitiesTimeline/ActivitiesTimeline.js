@@ -12,7 +12,7 @@ const ActivitiesTimeline = () => {
   const [activities, setActivities] = useState([]);
 
   useEffect(() => {
-    const q = query(collection(db, "Activities"), orderBy("activityDate", "desc"), limit(10)); // Get activities sorted by date
+    const q = query(collection(db, "Activities"), orderBy("activityDate", "desc"), limit(6)); // Get activities sorted by date
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedActivities = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -26,7 +26,7 @@ const ActivitiesTimeline = () => {
 
   return (
     <Box className="activities-container">
-      <Typography variant="h4" sx={{ color: '#102772', fontWeight: 'bold' }} className="text-center py-2">Latest Activities</Typography>
+      <Typography variant="h4" sx={{ color: '#102772', fontWeight: 'bold' }} className="text-center py-2">Recent Activities</Typography>
       <Box className="py-1 activities-content" sx={{ height: '100%' }}>
         <VerticalTimeline>
           {activities.map((activity, index) => (
@@ -46,12 +46,12 @@ const ActivitiesTimeline = () => {
               contentArrowStyle={{ borderRight: "20px solid #fff" }}>
               <Link to={"/latest/" + activity.id} className="activity-card-link">
                 <div className="activity-card-content">
-                  <Typography variant="subtitle1" sx={{ fontWeight: 600, lineHeight: 1.3, color: "#0c2461" }}>
+                  <Typography variant="subtitle1" sx={{ fontWeight: 600, lineHeight: 1.2, color: "#0c2461" }}>
                     {activity.title}
                   </Typography>
-                  <Stack direction="row" flexWrap={'wrap'} spacing={1} gap={1} display={'flex'} sx={{ mt: 1.5 }}>
+                  <Stack direction="row" flexWrap={'wrap'} spacing={1} display={'flex'} sx={{ mt: 1 }}>
                     {activity.labels?.map((label, index) => (
-                      <Chip key={index} label={label} color="primary" size="small" />
+                      <Chip key={index} label={label} color="primary" size="small" style={{ fontSize: '11px', height:'20px' }} />
                     ))}
                   </Stack>
                 </div>

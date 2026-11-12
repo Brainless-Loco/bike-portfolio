@@ -44,10 +44,9 @@ const HomeSingleTeamMember = ({name, educationLevel, position, shortDescription,
                         sx={{ 
                             height: 24,
                             fontSize: '12px',
-                            fontWeight: 600,
                             backgroundColor: '#007bff',
                             color: 'white',
-                            mb: 1
+                            padding: '0px',
                         }}
                     />
                 )}

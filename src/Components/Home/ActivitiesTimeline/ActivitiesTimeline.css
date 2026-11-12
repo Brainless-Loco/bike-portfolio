@@ -31,7 +31,6 @@
 /* New richer background for activities section */
 .activities-container{
     position: relative;
-    padding: 48px 0;
     overflow: hidden;
     background: linear-gradient(135deg, #f6fbff 0%, #eaf3ff 40%, #eef7ff 100%);
 }
@@ -106,4 +105,17 @@
     color:rgb(12, 42, 141);
     background-color: white;
     border: 3px solid rgb(12, 42, 141);
+}
+
+.vertical-timeline-element {
+  margin: 1em 0 !important;
+}
+
+.vertical-timeline-element-content {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.vertical-timeline {
+  padding: 1em 0 !important;
 }
