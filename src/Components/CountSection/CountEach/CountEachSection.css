@@ -5,25 +5,31 @@
     padding: 0px 20px;
     margin-bottom: 30px;
     border-radius: 20px;
-    background-color: #1b42a5;
-    color: white;
+    background-color: #fafafa;
+    color: #2b5fe2;
     transition: all .6s;
     cursor: pointer;
     overflow: hidden;
 }
 .eachCount:hover{
     background-color: #2b5fe2;
+    color: white;
     transform: scale(1.10);
+}
+.eachCount:hover *{
+    color: white;
 }
 .countUp{
     font-size: 70px;
     font-weight: 700;
+    color: #2b5fe2;
 }
 .countTitle{
-    color: white;
+    color: #2b5fe2;
     font-size: 40px;
 }
 .countDesc{
     font-size: 15px;
-    color: white;
+    font-weight: 600;
+    color: #2b5fe2;
 }

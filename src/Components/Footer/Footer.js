@@ -7,6 +7,18 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <Box className="footerDiv text-white">
+            <video
+                className="footerVideo"
+                autoPlay
+                muted
+                loop
+                playsInline
+            >
+                <source src="./video-bg-1.mp4" type="video/mp4" />
+                Your browser does not support HTML5 video.
+            </video>
+            {/* Video Overlay */}
+            <Box className="footerOverlay"></Box>
             <Box className="row text-center mt-4" style={{ 'max-width': '1500px', margin: 'auto', overflowX: 'hidden' }}>
                 <Box className="col-md-5 mx-auto px-md-5 text-left float-left">
                     <img src="Image/logo.png" className="footerLogo mt-2" alt="" />

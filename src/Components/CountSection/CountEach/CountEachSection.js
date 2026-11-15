@@ -11,7 +11,7 @@ const CountEachSection = (props) => {
             <p className="countUp mb-0">
                 {inView && <CountUp start={0} end={props.EndCount} duration={1.5} />}+
             </p>
-            <h1 className="text-white mt-0 countTitle">{props.Name}</h1>
+            <h1 className="mt-0 countTitle">{props.Name}</h1>
             <p className="countDesc">{props.shortDescrption}</p>
         </div>
     );
