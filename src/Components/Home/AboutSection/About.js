@@ -15,7 +15,7 @@ const About = () => {
                         Industry 4.0 is shifting towards a data-driven society. The value of data gets unlocked when it is semantically integrated and analytically explored to derive intelligent decisions.
                     </p>
                     <p className="about-desc text-justify" style={{ fontSize: '18px' }}>
-                        The <strong>BIKE</strong> research group in the <strong>Computer Science and Engineering Department, University of Chittagong</strong>
+                        The <strong>BIKE</strong> research group in the <strong><a href="https://cu.ac.bd/cse" target="_blank" rel="noopener noreferrer"> Computer Science and Engineering Department, University of Chittagong </a></strong>
                         conducts research in the fields of data, information, and knowledge engineering, with an emphasis on the data/information/knowledge lifecycle within data-intensive systems.
                         Our primary focus areas include <strong>Big (Linked) data management, integration, analysis, knowledge graph generation, and exploration</strong>.
                     </p>

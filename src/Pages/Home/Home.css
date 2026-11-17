@@ -16,11 +16,73 @@
     top: 0;
     left: 0;
     z-index: 1;
-    background-image: url("../../Images/hero-section-bg-1.png");
+    overflow: hidden;
+}
+
+.home-background-image{
+    position: absolute;
+    inset: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     filter: brightness(0.6);
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    will-change: opacity, transform;
+}
+
+.home-background-image.zoom-in{
+    transform: scale(1.05);
+}
+
+.home-background-image.zoom-out{
+    transform: scale(1);
+}
+
+.home-background-image.is-active{
+    opacity: 1;
+}
+
+.home-background-image.zoom-in.is-active{
+    animation: homeBackgroundZoomIn 7s ease-out both;
+}
+
+.home-background-image.zoom-out.is-active{
+    animation: homeBackgroundZoomOut 7s ease-in-out both;
+}
+
+@keyframes homeBackgroundZoomIn{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.05);
+    }
+}
+
+@keyframes homeBackgroundZoomOut{
+    from{
+        transform: scale(1.05);
+    }
+    to{
+        transform: scale(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce){
+    .home-background-image{
+        transition-duration: 0.01ms, 0.01ms;
+    }
+
+    .home-background-image.zoom-in,
+    .home-background-image.zoom-out{
+        transform: scale(1);
+    }
+
+    .home-background-image.zoom-in.is-active,
+    .home-background-image.zoom-out.is-active{
+        animation: none;
+    }
 }
 
 .middle-center{

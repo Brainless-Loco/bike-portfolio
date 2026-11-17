@@ -10,6 +10,8 @@ import ActivitiesTimeline from '../../Components/Home/ActivitiesTimeline/Activit
 import { Box, Typography } from '@mui/material';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../Utils/Firebase';
+import heroBackground1 from '../../Images/hero-section-bg-1.png';
+import heroBackground2 from '../../Images/hero-section-bg-2.png';
 
 /*
 
@@ -81,9 +83,20 @@ const interactivity = {
 
 */
 
+const homeBackgrounds = [heroBackground1, heroBackground2];
+
 const Home = ({ setNonHomePath }) => {
     const [newsData, setNewsData] = useState(null);
     const [isNewsValid, setIsNewsValid] = useState(false);
+    const [activeBackground, setActiveBackground] = useState(0);
+
+    useEffect(() => {
+        const intervalId = window.setInterval(() => {
+            setActiveBackground((currentBackground) => (currentBackground + 1) % homeBackgrounds.length);
+        }, 4000);
+
+        return () => window.clearInterval(intervalId);
+    }, []);
 
     useEffect(() => {
         setNonHomePath(false)
@@ -228,7 +241,15 @@ const Home = ({ setNonHomePath }) => {
                 </Box>
             )}
             <div className="home-first">
-                <div id='homeBackground'></div>
+                <div id='homeBackground' aria-hidden="true">
+                    {homeBackgrounds.map((background, index) => (
+                        <div
+                            key={background}
+                            className={`home-background-image ${index % 2 === 0 ? 'zoom-in' : 'zoom-out'}${activeBackground === index ? ' is-active' : ''}`}
+                            style={{ backgroundImage: `url("${background}")` }}
+                        />
+                    ))}
+                </div>
                 <div className="middle-center text-center hero-text">
                     <h1 className="text-white pb-0 welcome-heading">Welcome to <span className="highlighted-text">BIKE CSE CU Lab</span> </h1>
                     <p className="Welcome-note">
